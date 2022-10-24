@@ -76,7 +76,7 @@
                           <br>
                           <h5 class="card-title">300 Mbps Internet</h5>
                           <p class="card-text"><small class="text-muted">No data caps and no Contract</small></p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <p class="card-text"><small class="text-muted">So much</small></p>
                         
                       </div>
                       <div class="col-md-2">
