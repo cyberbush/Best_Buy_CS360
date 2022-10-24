@@ -4,6 +4,8 @@ import Home from "../components/Home.vue";
 import Ping from "../components/Ping.vue";
 import Vendor from "../components/Vendor.vue";
 import User from "../components/User.vue";
+import Product from "../components/Product.vue";
+import Services from "../components/Services.vue";
 
 Vue.use(Router);
 
@@ -27,6 +29,16 @@ const routes = [
     path: "/user",
     name: "User",
     component: User,
+  },
+  {
+    path: "/Product",
+    name: "Product",
+    component: Product,
+  },
+  {
+    path: "/Services",
+    name: "Services",
+    component: Services,
   },
 ];
 
