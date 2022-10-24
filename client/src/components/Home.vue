@@ -12,7 +12,7 @@
                   </a>
                   <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-justify" href="/">Home</a>
-                    <a class="dropdown-item text-justify" href="users">Customers</a>
+                    <a class="dropdown-item text-justify" href="user">Customers</a>
                     <a class="dropdown-item text-justify" href="vendor">Vendors</a>
                     <a class="dropdown-item text-justify" href="Product">Products</a>
                     <a class="dropdown-item text-justify" href="Services">Services</a>
