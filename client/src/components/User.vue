@@ -11,111 +11,126 @@
   <body class="bg-dark">
       <!--Upper Nav-Bar-->
       <div class="bg-dark">
-          <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-              <a class="navbar-brand" href="#">
-                <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="20" alt="MDB Logo"
-                  loading="lazy" />
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary ">
+            <a class="navbar-brand" href="/"> Best Buy!
+            </a>
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </a>
+                <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item text-justify" href="/">Home</a>
+                  <a class="dropdown-item text-justify" href="users">Customers</a>
+                  <a class="dropdown-item text-justify" href="vendor">Vendors</a>
+                  <a class="dropdown-item text-justify" href="Product">Products</a>
+                  <a class="dropdown-item text-justify" href="Services">Services</a>
+                  <a class="dropdown-item text-justify" href="All_In_One">All-In-One Packages</a>
+                  <a class="dropdown-item text-justify" href="Wishlist">wishlist</a>
+                  <a class="dropdown-item text-justify" href="about">About</a>
+                  <a class="dropdown-item text-justify" href="help">Help</a>
+                </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarNavDarkDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="bi bi-menu-button"></i>
-                    </a>
-                    <div class="dropdown-menu bg-dark text-light" aria-labelledby="navbarNavDarkDropdown">
-                      <a class="dropdown-item" href="/">Home</a>
-                      <a class="dropdown-item" href="/Product">Products</a>
-                      <a class="dropdown-item" href="Services">Services</a>
-                      <a class="dropdown-item" href="#">All-In-One Packages</a>
-                      <a class="dropdown-item" href="#">wishlist</a>
-                      <a class="dropdown-item" href="#">About</a>
-                      <a class="dropdown-item" href="#">Help</a>
-                    </div>
-                  </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-light my-2 my-sm-0 bg-secondary" type="submit">Search</button>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline mx-auto my-2">
+                    <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
                 </form>
-              </div>
+            </div>
+            <p class="">Logged in Peoples!</p>
           </nav>
         </div>
         <!--BANNER SECTION-->
-        <div class="container_banner">
-          <p>Welcome to the User Page!</p>
-          
+        <div class="Banner_Container">
+          <img src="../components/Images/logo.png" class="" height="150px" width="100%" alt="Matrix picture Banner">
         </div>
         <!--END BANNER SECTION-->
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <!--main body columns and rows-->
-        <div class="container_page">
-          <div class="row ">
+        <div class="container_page rounded-5">
+          <div class="row">
             <!--Featured product section-->
-            <div class="col-7 text-center mx-auto border border-primary container-fluid">
-              <div class="row bg-primary Text-lg-center">
-                <h2>Featured Product!</h2>
+            <div class="col-7 text-center mx-auto container-fluid">
+              <div class="row bg-primary text-lg-center font-weight-bolder">
+                <h2_User>Featured Product!</h2_User>
               </div>
-              <div class="row border border-danger container-fluid">
-                <div class="container_user">
-                  <div class="card bg-dark" style="width:100%">
-                    <img class="card-img-top" src="img_avatar1.png" alt="Card image">
-                    <div class="card-body">
-                      <h4 class="card-title">Product Name</h4>
-                      <p class="card-text">Product description</p>
+              <div class="row">
+                <div class="container_user align-content-center">
+                  <div class="card bg-light border border-primary rounded-5" style="width:auto">
+                    <img class="card-img-top" src="../components/Logo/logo.png" alt="Card image">
+                    <div class="card-body text-center ">
+                      <h4 class="card-title text-dark font-weight-bold">Product #1326</h4>
+                      <p class="card-text text-dark">This is a product, it is this thingy.</p>
+                      <p class="display-5 my-4 text-primary fw-bold">$1000.99/mo</p>
                       <!--Add link to cart database here!-->
-                      <a href="#" class="btn btn-primary text-sm-center">Add to cart!</a>
+                      <button type="button" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-shopping-cart">
+                        </span>
+                        <b> Add to Cart </b>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <!--Based on your cart section-->
-            <div class="col-3 text-center border mx-auto border-primary">
+            <div class="col-3 text-center mx-auto ">
               <div class="row bg-primary">
-                <h2>Based on your cart, you may be interested in:</h2>
+                <h2_User>Based on your cart, you may be interested in:</h2_User>
               </div>
-              <div class="row border border-danger">
+              <div class="row">
                 <div class="container_user">
-                  <div class="card" style="width:400px">
-                    <img class="card-img-top" src="img_avatar1.png" alt="Card image">
-                    <div class="card-body">
-                      <h4 class="card-title">John Doe</h4>
-                      <p class="card-text">Some example text.</p>
+                  <div class="card bg-light border border-primary rounded-5" style="width:auto">
+                    <img class="card-img-top" src="../components/Logo/logo.png" alt="Card image">
+                    <div class="card-body text-center ">
+                      <h4 class="card-title text-dark fw-bold">Product #235346526</h4>
+                      <p class="card-text text-dark">This is a product, it is this thingy.</p>
+                      <p class="display-5 my-4 text-primary fw-bold">$1550.99/mo</p>
                       <!--Add link to cart database here!-->
-                      <a href="#" class="btn btn-primary">Add to cart!</a>
+                      <button type="button" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-shopping-cart">
+                        </span>
+                        <b> Add to Cart </b>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="row border border-danger">
+              <div class="row">
                 <div class="container_user">
-                  <div class="card" style="width:400px">
-                    <img class="card-img-top" src="img_avatar1.png" alt="Card image">
-                    <div class="card-body">
-                      <h4 class="card-title">John Doe</h4>
-                      <p class="card-text">Some example text.</p>
+                  <div class="card bg-light border border-primary rounded-5" style="width:auto">
+                    <img class="card-img-top" src="../components/Logo/logo.png" alt="Card image">
+                    <div class="card-body text-center ">
+                      <h4 class="card-title text-dark fw-bold">Product #2342346</h4>
+                      <p class="card-text text-dark">This is a product, it is this thingy.</p>
+                      <p class="display-5 my-4 text-primary fw-bold">$1.99/mo</p>
                       <!--Add link to cart database here!-->
-                      <a href="#" class="btn btn-primary">Add to cart!</a>
+                      <button type="button" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-shopping-cart">
+                        </span>
+                        <b> Add to Cart </b>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="row border border-danger">
+              <div class="row">
                 <div class="container_user">
-                  <div class="card" style="width:400px">
-                    <img class="card-img-top" src="img_avatar1.png" alt="Card image">
-                    <div class="card-body">
-                      <h4 class="card-title">John Doe</h4>
-                      <p class="card-text">Some example text.</p>
+                  <div class="card bg-light border border-primary rounded-5" style="width:auto">
+                    <img class="card-img-top" src="../components/Logo/logo.png" alt="Card image">
+                    <div class="card-body text-center ">
+                      <h4 class="card-title text-dark fw-bold">Product #13226</h4>
+                      <p class="card-text text-dark">This is a product, it is this thingy.</p>
+                      <p class="display-5 my-4 text-primary fw-bold">$1000.99/mo</p>
                       <!--Add link to cart database here!-->
-                      <a href="#" class="btn btn-primary">Add to cart!</a>
+                      <button type="button" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-shopping-cart">
+                        </span>
+                        <b> Add to Cart </b>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -128,9 +143,9 @@
           <!--Your Cart-->
           <div class="col text-center mx-auto">
             <div class="row bg-primary mx-auto">
-              <h2>Your Cart:</h2>
+              <h2_User>Your Cart:</h2_User>
             </div>
-            <div class="row border border-danger mx-auto  ">
+            <div class="row mx-auto  ">
               <p>Hello world</p>
             </div>
           </div>
@@ -142,7 +157,11 @@
 </template>
 
 <script>
-
+ export default {
+    data: () => ({
+      show: false,
+    }),
+  }
 </script>
 
 <style>

@@ -6,6 +6,10 @@ import Vendor from "../components/Vendor.vue";
 import User from "../components/User.vue";
 import Product from "../components/Product.vue";
 import Services from "../components/Services.vue";
+import All_In_One from"../components/All_In_One.vue";
+import Wishlist from "../components/Wishlist.vue";
+import about from "../components/about.vue";
+import help from "../components/help.vue";
 
 Vue.use(Router);
 
@@ -39,6 +43,26 @@ const routes = [
     path: "/Services",
     name: "Services",
     component: Services,
+  },
+  {
+    path: "/All_In_One",
+    name: "All_In_One",
+    component: All_In_One,
+  },
+  {
+    path: "/Wishlist",
+    name: "Wishlist",
+    component: Wishlist,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: about,
+  },
+  {
+    path: "/help",
+    name: "help",
+    component: help,
   },
 ];
 
