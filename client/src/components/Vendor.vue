@@ -178,15 +178,65 @@
         </div>
       </div>    
     </div>
+  </div>
 
+  </div>
 </div>
 
-          </div>
+<form>
+<div class="container_page rounded-5">
+  <div class="row">
+  <div class="col-7 text-center mx-auto container-fluid">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Product Name</label>
+          <input type="email" class="form-control" id="inputEmail4" placeholder="High-speed Internet Router">
         </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Product Number</label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="N00907678">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Description</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Two packet-switched network connector">
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">Product Brand</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="NETGEAR">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">Product Category</label>
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Price</label>
+          <input type="text" class="form-control" id="inputZip">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Check me out
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+  </div>
+  </div>
+</form>
 
-
-
-    </body>
+</body>
 </template>
 
 <script>
@@ -224,6 +274,11 @@
     .card:hover .btn-outline-primary{
       color:white;
       background:#007bff;
+    }
+
+    .px-2 {
+      padding-left: ($spacer * .45) !important;
+      padding-right: ($spacer * .45) !important;
     }
 
 </style>
