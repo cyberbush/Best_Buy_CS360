@@ -47,7 +47,7 @@
     font-family: 'Questrial', sans-serif;
   }
   
-  #app h4, #app a, #app p { 
+  #app h4, #app a, #app p, #app label { 
     margin: 1em 0 .6em 0;
     padding: 0 0 0 20px;
     font-weight: normal;

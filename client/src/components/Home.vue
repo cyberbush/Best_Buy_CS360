@@ -45,7 +45,8 @@
                 <h2>Links have been updated for all current pages above at "HOME" ^^^^... except ping..</h2>
                 <h1>__________________________</h1>
                 <h1>Home</h1>
-                <a href="/ping"><u>Go to ping</u></a>
+                <!-- <a href="/ping"><u>Go to ping</u></a> -->
+                <a href="/Menu_DB"><u>Go to DB Menu</u></a>
                 <a href="/vendor"><u>Go to Vendor</u></a>
                 <a href="/user"><u>Go to User</u></a>
             </div>
