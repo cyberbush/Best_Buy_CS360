@@ -1,4 +1,5 @@
 <template>
+  <!--Creating entery for database... for ppls that didn't understand-->
 <div id="UserMenu" class="container">
     <h1> User Menu </h1>
     <!-- <form> -->

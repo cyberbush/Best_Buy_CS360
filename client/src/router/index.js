@@ -64,6 +64,16 @@ const routes = [
     name: "DatabaseMenu",
     component: DataBaseMenu,
   },
+  {
+    path: "/Login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/Signup",
+    name: "Signup",
+    component: Signup,
+  },
 ];
 
 const router = new Router({
