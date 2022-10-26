@@ -9,7 +9,7 @@ import All_In_One from "../components/All_In_One.vue";
 import Wishlist from "../components/Wishlist.vue";
 import about from "../components/about.vue";
 import help from "../components/help.vue";
-import DataBaseMenu from "../components/UserMenu.vue";
+import ProductMenu from "../components/ProductMenu.vue";
 
 Vue.use(Router);
 
@@ -34,21 +34,21 @@ const routes = [
     name: "Product",
     component: Product,
   },
-  {
-    path: "/Services",
-    name: "Services",
-    component: Services,
-  },
-  {
-    path: "/All_In_One",
-    name: "All_In_One",
-    component: All_In_One,
-  },
-  {
-    path: "/Wishlist",
-    name: "Wishlist",
-    component: Wishlist,
-  },
+  // {
+  //   path: "/Services",
+  //   name: "Services",
+  //   component: Services,
+  // },
+  // {
+  //   path: "/All_In_One",
+  //   name: "All_In_One",
+  //   component: All_In_One,
+  // },
+  // {
+  //   path: "/Wishlist",
+  //   name: "Wishlist",
+  //   component: Wishlist,
+  // },
   {
     path: "/about",
     name: "about",
@@ -60,9 +60,9 @@ const routes = [
     component: help,
   },
   {
-    path: "/Menu_db",
-    name: "DatabaseMenu",
-    component: DataBaseMenu,
+    path: "/Product_Menu",
+    name: "ProductMenu",
+    component: ProductMenu,
   },
   {
     path: "/Login",
