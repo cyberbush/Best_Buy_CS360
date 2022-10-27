@@ -14,7 +14,7 @@
                     <a class="dropdown-item text-justify" href="/">Home</a>
                     <a class="dropdown-item text-justify" href="user">Customers</a>
                     <a class="dropdown-item text-justify" href="vendor">Vendors</a>
-                    <a class="dropdown-item text-justify" href="Product">Products</a>
+                    <!-- <a class="dropdown-item text-justify" href="Product">Products</a> -->
                     <!-- <a class="dropdown-item text-justify" href="Services">Services</a> -->
                     <!-- <a class="dropdown-item text-justify" href="All_In_One">All-In-One Packages</a> -->
                     <!-- <a class="dropdown-item text-justify" href="Wishlist">Wishlist</a> -->
@@ -36,9 +36,9 @@
             </nav>
           </div>
           <!--BANNER SECTION-->
-          <div class="Banner_Container">
+          <!-- <div class="Banner_Container">
             <img src="../components/Images/logo.png" class="" height="150px" width="100%" alt="Matrix picture Banner">
-          </div>
+          </div> -->
           <!--END BANNER SECTION-->
           <!--main body columns and rows-->
             <div id="home">

@@ -64,16 +64,16 @@ const routes = [
     name: "ProductMenu",
     component: ProductMenu,
   },
-  {
-    path: "/Login",
-    name: "Login",
-    component: Login,
-  },
-  {
-    path: "/Signup",
-    name: "Signup",
-    component: Signup,
-  },
+  // {
+  //   path: "/Login",
+  //   name: "Login",
+  //   component: Login,
+  // },
+  // {
+  //   path: "/Signup",
+  //   name: "Signup",
+  //   component: Signup,
+  // },
 ];
 
 const router = new Router({
