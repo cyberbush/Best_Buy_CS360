@@ -85,5 +85,28 @@
       font-size: 35px;
       line-height: 40px;
   }
+  #app h2_home{
+    margin: 1em 0 .6em 0;
+      padding: 0 0 0 20px;
+      font-weight: bolder;
+      color: smokewhite;
+      font-family: 'Hammersmith One', sans-serif;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+      position: relative;
+      font-size: 48px;
+      line-height: 40px;
+  }
+  #app h2_Home-Secondary{
+    margin: 1em 0 .6em 0;
+      padding: 0 0 0 20px;
+      font-weight: bold;
+      color: whitesmoke;
+      font-family: 'Hammersmith One', sans-serif;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+      position: relative;
+      border-bottom: 5px whitesmoke;
+      font-size: 36px;
+      line-height: 40px;
+  }
  
 </style>
