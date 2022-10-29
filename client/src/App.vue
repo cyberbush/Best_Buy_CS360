@@ -108,5 +108,17 @@
       font-size: 36px;
       line-height: 40px;
   }
+  #app h_sub{
+    margin: 1em 0 .6em 0;
+      padding: 0 0 0 20px;
+      font-weight: bold;
+      color: black;
+      font-family: 'Hammersmith One', sans-serif;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+      position: relative;
+      border-bottom: 5px whitesmoke;
+      font-size: 20px;
+      line-height: 40px;
+  }
  
 </style>
