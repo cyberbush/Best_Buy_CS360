@@ -42,7 +42,7 @@
           <!--END BANNER SECTION-->
           <!--main body columns and rows-->
           <h2_User>Help Page Under construction!</h2_User>
-          <p>Please remain calm... Well maybe not, after all the "Help" page is down...</p>
+          <p>David and Holly: Use this page for Navbar links in the mean time. While I get the login in situation figured out! Tracy 10/29/2022</p>
     </body>
       
   

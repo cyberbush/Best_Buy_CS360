@@ -60,7 +60,7 @@
     font-family: 'Questrial', sans-serif;
   }
 
-  #home, .container{
+  #home, .container_home{
     margin: auto;
     margin-top: 50px;
     width: 50%;
@@ -69,7 +69,7 @@
     text-align: center;
   }
 
-  .container button {
+  .container_Button{
     padding: 15px;
     margin: 30px;
   }

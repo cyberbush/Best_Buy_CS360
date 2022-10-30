@@ -10,6 +10,7 @@ import Wishlist from "../components/Wishlist.vue";
 import about from "../components/about.vue";
 import help from "../components/help.vue";
 import ProductMenu from "../components/ProductMenu.vue";
+import Signup from "../components/Signup.vue";
 
 Vue.use(Router);
 
@@ -64,15 +65,15 @@ const routes = [
     name: "ProductMenu",
     component: ProductMenu,
   },
+  {
+  path: "/Signup",
+  name: "Signup",
+  component: Signup,
+  },
   // {
   //   path: "/Login",
   //   name: "Login",
   //   component: Login,
-  // },
-  // {
-  //   path: "/Signup",
-  //   name: "Signup",
-  //   component: Signup,
   // },
 ];
 
