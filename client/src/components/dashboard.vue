@@ -1,5 +1,4 @@
 <template>
-<script type="text/javascript" src="Home.vue"> </script>
 <div id="dashboardMenu" class="container">
     <h2> User's Table </h2>
     <div id="userTable" class="userTable">
@@ -8,7 +7,7 @@
             {{ user.firstName + " | " + user.lastName + " | " + user.email + " | " + user.password }}<button class="btn btn-primary" @click="delete_user(id=user.id)">Delete</button>
             </li>
         </ul>
-    <h5 href="/user">Go to User's Page</h5>
+      <h5><a href="/user">Go to User's Page</a></h5>
     </div>
 </div>
 </template>
@@ -18,15 +17,13 @@ export default {
   name: 'Register',
   data() {
     return {
-        currentUser: {},
         users: [ { id: 0, firstnName: "", lastName: "", email: "", password: ""}, ],
     }
   },
   mounted: function() {
     this.read_users();
   },
-  },
-  methods:{
+  methods: {
     read_users: function() {
       this.axios
         .get("http://localhost:5000/api/users")
