@@ -6,6 +6,7 @@ import "bootstrap/dist/js/bootstrap.js";
 import axios from "axios";
 
 Vue.config.productionTip = false;
+// global variables
 Vue.prototype.axios = axios;
 
 new Vue({

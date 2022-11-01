@@ -85,7 +85,7 @@
       font-size: 35px;
       line-height: 40px;
   }
-  #app h2_home{
+  #app #home h2{
     margin: 1em 0 .6em 0;
       padding: 0 0 0 20px;
       font-weight: bolder;

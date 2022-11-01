@@ -13,26 +13,25 @@
                     <div class="text-center">
                       <img src="../components/Logo/logo_transparent.png"
                         style="width: 185px;" alt="logo">
-                      <h2_home class="mt-1 mb-5 pb-1">Welcome!</h2_home>
+                      <h2 id="h2_home" class="mt-1 mb-5 pb-1">Welcome!</h2>
                     </div>
                         <br>
                     <form>
                       <h_sub>Please login to your account</h_sub>
     
                       <div class="form-outline mb-4">
-                        <input type="email" id="form2Example11" class="form-control"
-                          placeholder="Phone number or email address" />
                         <h_sub class="form-label" for="form2Example11">Username</h_sub>
+                        <input type="email" id="form2Example11" class="form-control"
+                          placeholder="Phone number or email address" v-model="email" />
                       </div>
     
                       <div class="form-outline mb-4">
-                        <input type="password" id="form2Example22" class="form-control" placeholder="**********" />
                         <h_sub class="" for="form2Example22">Password</h_sub>
+                        <input type="password" id="form2Example22" class="form-control" v-model="password" placeholder="**********" />
                       </div>
     
                       <div class="text-center pt-1 mb-5 pb-1">
-                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" onclick="../components/User.vue">Log
-                          in</button>
+                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" @click=login_user() >Log In</button>
                         <a class="h_text text-dark" href="#!">Forgot password?</a>
                       </div>
     
@@ -47,7 +46,7 @@
                 </div>
                 <div class="col-lg-6 d-flex align-items-center gradient-custom-HomePage">
                   <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                    <h2_Home-Secondary class="">Begin living your tech dreams!</h2_Home-Secondary>
+                    <h2 class="h2_Home-Secondary">Begin living your tech dreams!</h2>
                     <br>
                     <br>
                     <h_sub class="small mb-0">This software is here to support your dreams! We can help you decide on a best fit for your
@@ -61,14 +60,43 @@
         </div>
       </div>
     </section>
-      <!--<div id="home">
-          <h1>Home Page</h1>
-          <a href="/Product_Menu"><u>Go to Product Menu Example</u></a>
-          <a href="/vendor"><u>Go to Vendor</u></a>
-          <a href="/user"><u>Go to User</u></a>
-      </div>-->
     </body>
 </template>
+
+<script>
+export default {
+  name: 'Login',
+    data() {
+      return {
+        currentUser: {},
+        email:'',
+        password:'',
+      }
+    },
+    methods:{
+      sleep: function(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      },
+      login_user: async function(){
+        var data ={ email:this.email, password: this.password };
+        console.log(data);
+        this.axios
+          .post("http://localhost:5000/api/login", data)
+          .then(response => (this.currentUser = response.data))
+          .catch(error => { console.log(error.response) });
+        // add small delay
+        await this.sleep(2000);
+        console.log(this.currentUser);
+        if( this.currentUser != null) {
+          location.href = 'Dashboard'; // Redirect to dashboard
+        }
+        else {
+          alert("Error logging in! Unknown password or username!");
+        }
+      }
+    }
+}
+</script>
 
 <style>
 .gradient-custom-HomePage {

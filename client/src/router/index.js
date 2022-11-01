@@ -11,6 +11,7 @@ import about from "../components/about.vue";
 import help from "../components/help.vue";
 import ProductMenu from "../components/ProductMenu.vue";
 import Signup from "../components/Signup.vue";
+import Dashboard from "../components/dashboard.vue";
 
 Vue.use(Router);
 
@@ -35,21 +36,6 @@ const routes = [
     name: "Product",
     component: Product,
   },
-  // {
-  //   path: "/Services",
-  //   name: "Services",
-  //   component: Services,
-  // },
-  // {
-  //   path: "/All_In_One",
-  //   name: "All_In_One",
-  //   component: All_In_One,
-  // },
-  // {
-  //   path: "/Wishlist",
-  //   name: "Wishlist",
-  //   component: Wishlist,
-  // },
   {
     path: "/about",
     name: "about",
@@ -70,11 +56,11 @@ const routes = [
   name: "Signup",
   component: Signup,
   },
-  // {
-  //   path: "/Login",
-  //   name: "Login",
-  //   component: Login,
-  // },
+  {
+  path: "/Dashboard",
+  name: "Dashboard",
+  component: Dashboard,
+  },
 ];
 
 const router = new Router({
