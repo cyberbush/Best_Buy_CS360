@@ -20,12 +20,9 @@
                     Menu
                 </a>
                 <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item text-justify" href="/">Home</a>
-                  <a class="dropdown-item text-justify" href="user">Customers</a>
-                  <!-- <a class="dropdown-item text-justify" href="Product">Products</a>
-                  <a class="dropdown-item text-justify" href="Services">Services</a>
-                  <a class="dropdown-item text-justify" href="All_In_One">All-In-One Packages</a>
-                  <a class="dropdown-item text-justify" href="Wishlist">Wishlist</a> -->
+                  <a class="dropdown-item text-justify" href="/">Log Out</a>
+                  <a class="dropdown-item text-justify" href="/User/this.currentUser.id">Home</a>
+                  <a class="dropdown-item text-justify" href="Product">Products</a>
                   <a class="dropdown-item text-justify" href="about">About</a>
                   <a class="dropdown-item text-justify" href="help">Help</a>
                 </div>
@@ -40,7 +37,7 @@
                     <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            <p class="">Logged in Peoples!</p>
+            <p class="" v-if="currentUser!=null">Logged in as {{this.currentUser.firstName}}</p>
           </nav>
         </div>
         <!--BANNER SECTION-->
@@ -156,11 +153,44 @@
 </template>
 
 <script>
- export default {
-    data: () => ({
-      show: false,
-    }),
+export default {
+  name: 'Register',
+  data() {
+    return {
+        show: false,
+        users: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
+        currentUser: null,
+    }
+  },
+  mounted: function() {
+    this.read_users();
+  },
+  methods: {
+    load_user: function() {
+      this.users.forEach( user => {
+        if (user.id == this.$route.params.id) {
+          this.currentUser = user;
+        }
+      })
+    },
+    read_users: function() {
+      this.axios
+        .get("http://localhost:5000/api/users")
+        .then(response => {
+          this.users = response.data;
+          this.load_user();
+        })
+        .catch(error => { console.log(error.response) });
+    },
+    delete_user: function(id) {
+      var data = {'delete': true, 'id': id };
+      this.axios
+        .post("http://localhost:5000/api/users", data)
+        .then(response => (this.users = response.data))
+        .catch(error => { console.log(error.response) });
+    },
   }
+};
 </script>
 
 <style>

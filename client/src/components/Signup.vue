@@ -47,7 +47,7 @@
                       <button type="button" @click=submit_user() class="btn btn-success btn-block btn-lg gradient-custom-Signup1 text-light">Register</button>
                     </div>
     
-                    <p class="text-center text-muted mt-2 mb-3">Have already an account? <a href="/"
+                    <p class="text-center text-muted mt-2 mb-3">Have already an account? <a href="/Login"
                         class="fw-bold text-body"><u>Login here</u></a></p>    
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default {
         .catch(error => { console.log(error.response) });
       // add small delay
       await this.sleep(2000);
-      location.href = '/'; // Redirect to login
+      location.href = '/Login'; // Redirect to login
     },
   }
 };

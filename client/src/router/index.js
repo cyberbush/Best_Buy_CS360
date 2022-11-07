@@ -4,13 +4,11 @@ import Home from "../components/Home.vue";
 import Vendor from "../components/Vendor.vue";
 import User from "../components/User.vue";
 import Product from "../components/Product.vue";
-import Services from "../components/Services.vue";
-import All_In_One from "../components/All_In_One.vue";
-import Wishlist from "../components/Wishlist.vue";
 import about from "../components/about.vue";
 import help from "../components/help.vue";
 import ProductMenu from "../components/ProductMenu.vue";
 import Signup from "../components/Signup.vue";
+import Login from "../components/Login.vue";
 import Dashboard from "../components/dashboard.vue";
 
 Vue.use(Router);
@@ -27,7 +25,7 @@ const routes = [
     component: Vendor,
   },
   {
-    path: "/user",
+    path: "/User/:id",
     name: "User",
     component: User,
   },
@@ -52,12 +50,17 @@ const routes = [
     component: ProductMenu,
   },
   {
+    path: "/Login",
+    name: "Login",
+    component: Login,
+  },
+  {
   path: "/Signup",
   name: "Signup",
   component: Signup,
   },
   {
-  path: "/Dashboard",
+  path: "/Dashboard/:id",
   name: "Dashboard",
   component: Dashboard,
   },
