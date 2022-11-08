@@ -8,6 +8,9 @@ from datetime import datetime
 from passlib.apps import custom_app_context as pwd_context
 import os
 
+#-------------------------------------------
+#------------------ Setup ------------------
+#-------------------------------------------
 app = Flask(__name__)
 CORS(app)
 # load settings from the config.py
@@ -18,7 +21,13 @@ api = Api(app)
 db = SQLAlchemy(app)
 # marshmallow converting complex datatypes, such as objects, to and from native Python datatypes
 ma = Marshmallow(app)
+#-------------------------------------------
+#---------------- End Setup ----------------
+#-------------------------------------------
 
+#-------------------------------------------
+#------------------ Tables -----------------
+#-------------------------------------------
 # Class for users
 class User(db.Model):
     __tablename__ = 'users'
@@ -33,11 +42,24 @@ class User(db.Model):
 
     # def verify_password(self, password):
     #     return pwd_context.verify(password, self.password_hash)
-
 # Setup User Schema
 class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = User
+        load_instance = True
+
+# Class for Vendors
+class Vendor(db.Model):
+    __tablename__ = 'vendors'
+    id = db.Column(db.Integer, primary_key=True)
+    firstName = db.Column(db.String(50), nullable=False)
+    lastName = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+# Setup Vendor Schema
+class VendorSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Vendor
         load_instance = True
 
 # Setup products table
@@ -49,46 +71,128 @@ class Products(db.Model):
     price = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(100), nullable=False)
     status = db.Column(db.String(100), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow)
-    deleted_at = db.Column(db.DateTime, default=datetime.utcnow)
 # Setup products Schema
 class ProductsSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Products
         load_instance = True
 
+# Setup Offers table
+class Offers(db.Model):
+    # Use Column to define a column. 
+    id = db.Column(db.Integer, primary_key=True)
+    vendorId = db.Column(db.Integer, nullable=False)
+    userId = db.Column(db.Integer, nullable=False)
+    productId = db.Column(db.Integer, nullable=False)
+    penalty = db.Column(db.Float, nullable=False)
+    vendorAccept = db.Column(db.Boolean, nullable=False, default=False)
+    userAccept = db.Column(db.Boolean, nullable=False, default=False)
+# Setup Offers Schema
+class OffersSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Offers
+        load_instance = True
+#-------------------------------------------
+#---------------- End Tables ---------------
+#-------------------------------------------
+
+#-------------------------------------------
+#------------ Utility Functions ------------
+#-------------------------------------------
 # if the database does not exist, use db.create_all()
 def initialize_database():
     try:
-        Products.query.get(1)
-        User.query.get(1)
+        User.query.get(1) and Vendor.query.get(1) and Products.query.get(1) and Offers.query.get(1) 
     except:
         db.create_all()
-        # put some place holder data
+        # Add initial user
+        user1 = User(firstName='Joe', lastName='Vandal', email='joe@vandal.com', password='123')
+        db.session.add(user1)        
+        # Add initial vendor
+        vendor1 = Vendor(firstName='Vendor1', lastName='V', email='vendor1@gmail.com', password='123')
+        db.session.add(vendor1)  
+        # Add initial products
         product1 = Products(name='product1', price=0.0, description='productDescription1', category='category1', status='productStatus1')
         product2 = Products(name='product2', price=0.0, description='productDescription2', category='category1', status='productStatus2')
         db.session.add(product1)
         db.session.add(product2)
-        # put some place holder data
-        user1 = User(firstName='Joe', lastName='Vandal', email='joe@vandal.com', password='123456')
-        db.session.add(user1)
+        # Add initial offer
+        offer1 = Offers(vendorId=1, userId=1, productId=1, penalty=50)
+        db.session.add(offer1)  
         # add and then commit to apply changes
         db.session.commit()
-
-def query_products():
-    products = Products.query.all()
-    products_schema = ProductsSchema(many=True)
-    # convert the sqlresult into python dictionary that can be jsonify
-    output = products_schema.dump(products)
-    return output
 
 def query_users():
     users = User.query.all()
     users_schema = UserSchema(many=True)
-    # convert the sqlresult into python dictionary that can be jsonify
+    # convert the sql result into python dictionary that can be jsonify
     output = users_schema.dump(users)
     return output
+
+def query_vendors():
+    vendors = Vendor.query.all()
+    vendors_schema = VendorSchema(many=True)
+    # convert the sql result into python dictionary that can be jsonify
+    output = vendors_schema.dump(vendors)
+    return output
+
+def query_products():
+    products = Products.query.all()
+    products_schema = ProductsSchema(many=True)
+    # convert the sql result into python dictionary that can be jsonify
+    output = products_schema.dump(products)
+    return output
+
+def query_offers():
+    offers = Offers.query.all()
+    offers_schema = OffersSchema(many=True)
+    # convert the sql result into python dictionary that can be jsonify
+    output = offers_schema.dump(offers)
+    return output
+
+def modify_users( id=-1, email='', firstName='', lastName='', password='', delete=False):
+    if id == -1:
+        # if the id is not specified, then we add a new user
+        if email is None or password is None:
+            os.abort(400) # missing arguments
+        if User.query.filter_by(email = email).first() is not None:
+            os.abort(400) # existing user
+        new_user = User(email = email, firstName=firstName, lastName=lastName, password=password)
+        db.session.add(new_user)
+    else:
+        # if the id already exist, then modify the existing item
+        existing_user = User.query.get(id)
+        if delete == True:
+            db.session.delete(existing_user)
+        else:
+            existing_user.firstName = firstName
+            existing_user.lastName = lastName
+            existing_user.email = email
+            existing_user.password = password
+    # apply changes
+    db.session.commit()
+
+def modify_vendors( id=-1, email='', firstName='', lastName='', password='', delete=False):
+    if id == -1:
+        # if the id is not specified, then we add a new vendor
+        if email is None or password is None:
+            os.abort(400) # missing arguments
+        if Vendor.query.filter_by(email = email).first() is not None:
+            os.abort(400) # existing vendor
+        new_vendor = Vendor(email = email, firstName=firstName, lastName=lastName, password=password)
+        db.session.add(new_vendor)
+    else:
+        # if the id already exist, then modify the existing item
+        existing_vendor = Vendor.query.get(id)
+        if delete == True:
+            db.session.delete(existing_vendor)
+        else:
+            existing_vendor.firstName = firstName
+            existing_vendor.lastName = lastName
+            existing_vendor.email = email
+            existing_vendor.password = password
+    # apply changes
+    db.session.commit()
 
 def modify_products( id=-1, name='', price=0.0, description='', category='', status='', delete=False):
     if id == -1:
@@ -99,7 +203,6 @@ def modify_products( id=-1, name='', price=0.0, description='', category='', sta
         # if the id already exist, then modify the existing item
         existing_product = Products.query.get(id)
         if delete == True:
-            existing_product.deleted_at = datetime.utcnow
             db.session.delete(existing_product)
         else:
             existing_product.name = name
@@ -107,49 +210,28 @@ def modify_products( id=-1, name='', price=0.0, description='', category='', sta
             existing_product.price = price
             existing_product.status = status
             existing_product.category = category
-            existing_product.updated_at = datetime.utcnow
     # apply changes
     db.session.commit()
 
-class products_database_access(Resource):
-    def get(self):
-        output = query_products()
-        return jsonify(output)
-    def post(self):
-        products_args = request.get_json()
-        print(products_args)
-        modify_products(**products_args)
-        return jsonify(status='modify success')
 
-api.add_resource(products_database_access, '/products_db')
+#-------------------------------------------
+#---------- End Utility Functions ----------
+#-------------------------------------------
+
+#-------------------------------------------
+#------------------ APIs -------------------
+#-------------------------------------------
 
 @app.route('/api/users', methods = ['GET', 'POST'])
-def get_users():
+def users():
     if request.method == 'GET':
         output = query_users()
         return jsonify(output)
     elif request.method == 'POST':
-        user = request.get_json()
-        existing_user = User.query.get(user['id'])
-        if user['delete'] == True:
-            db.session.delete(existing_user)
-            db.session.commit()
-        return jsonify(status='deleted success')
-
-@app.route('/api/signup', methods = ['POST'])
-def new_user():
-    email = request.json.get('email')
-    firstName = request.json.get('firstName')
-    lastName = request.json.get('lastName')
-    password = request.json.get('password')
-    if email is None or password is None:
-        os.abort(400) # missing arguments
-    if User.query.filter_by(email = email).first() is not None:
-        os.abort(400) # existing user
-    new_user = User(email = email, firstName=firstName, lastName=lastName, password=password)
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify({'user':new_user.firstName, 'status':'add user success'})
+        user_args = request.get_json()
+        # print(user_args)
+        modify_users(**user_args)
+        return jsonify(status='modify success')
 
 @app.route('/api/login', methods = ['POST'])
 def login():
@@ -162,7 +244,44 @@ def login():
     output = user_schema.dump(user)
     return jsonify(output)
 
+@app.route('/api/vendors', methods = ['GET', 'POST'])
+def vendors():
+    if request.method == 'GET':
+        output = query_vendors()
+        return jsonify(output)
+    elif request.method == 'POST':
+        vendor_args = request.get_json()
+        # print(vendor_args)
+        modify_vendors(**vendor_args)
+        return jsonify(status='modify success')
+
+@app.route('/api/products', methods = ['GET', 'POST'])
+def products():
+    if request.method == 'GET': 
+        output = query_products()
+        return jsonify(output)
+    elif request.method == 'POST':
+        products_args = request.get_json()
+        # print(products_args)
+        modify_products(**products_args)
+        return jsonify(status='modify success')
+
+@app.route('/api/offers', methods = ['GET'])
+def offers():
+    output = query_offers()
+    return jsonify(output)
+
+#-------------------------------------------
+#---------------- End APIs -----------------
+#-------------------------------------------
+
+#-------------------------------------------
+#------------------ Main -------------------
+#-------------------------------------------
 if __name__ == '__main__':
     initialize_database()
-    query_products()
+    # query_products()
     app.run(debug=True)
+#-------------------------------------------
+#---------------- End Main -----------------
+#-------------------------------------------

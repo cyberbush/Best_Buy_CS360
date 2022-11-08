@@ -78,7 +78,7 @@ export default {
       var data ={ firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password };
       console.log(data);
       this.axios
-        .post("http://localhost:5000/api/signup", data)
+        .post("http://localhost:5000/api/users", data)
         .then(response => console.log(response.data))
         .catch(error => { console.log(error.response) });
       // add small delay

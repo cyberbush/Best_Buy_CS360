@@ -60,7 +60,7 @@ export default {
     // all the methods will be replaced with REST API call later
     read_products: function() {
         this.axios
-            .get("http://localhost:5000/products_db")
+            .get("http://localhost:5000/api/products")
             .then(response => (this.products = response.data))
             .catch(error => { console.log(error.response) });
     },
@@ -68,7 +68,7 @@ export default {
     {
         var data = { id: id, name: name, price:price, description: description, category:category, status: status, delete: delete_ };
         this.axios
-            .post("http://localhost:5000/products_db", data)
+            .post("http://localhost:5000/api/products", data)
             .then(() => this.read_products())
             .catch(error => { console.log(error.response) });
         //   add a delay to make sure the backend respond
