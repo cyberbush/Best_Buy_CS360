@@ -11,15 +11,11 @@
                     Menu
                 </a>
                 <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item text-justify" href="/">Home</a>
-                  <a class="dropdown-item text-justify" href="user">Customers</a>
-                  <a class="dropdown-item text-justify" href="vendor">Vendors</a>
-                  <!-- <a class="dropdown-item text-justify" href="Product">Products</a>
-                  <a class="dropdown-item text-justify" href="Services">Services</a>
-                  <a class="dropdown-item text-justify" href="All_In_One">All-In-One Packages</a>
-                  <a class="dropdown-item text-justify" href="Wishlist">Wishlist</a> -->
-                  <a class="dropdown-item text-justify" href="about">About</a>
-                  <a class="dropdown-item text-justify" href="help">Help</a>
+                  <a class="dropdown-item text-justify" href="/">Home </a>
+                  <a class="dropdown-item text-justify" href="ProductDisplay">Product Display </a>
+                  <a class="dropdown-item text-justify" href="vendor">Vendors </a>
+                  <a class="dropdown-item text-justify" href="about">About </a>
+                  <a class="dropdown-item text-justify" href="help">Help </a>
                 </div>
               </li>
             </ul>

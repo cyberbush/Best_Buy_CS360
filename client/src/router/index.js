@@ -5,6 +5,7 @@ import Vendor from "../components/Vendor.vue";
 import User from "../components/User.vue";
 import Product from "../components/Product.vue";
 import about from "../components/about.vue";
+import ProductDisplay from "../components/product_display.vue";
 import help from "../components/help.vue";
 import ProductMenu from "../components/ProductMenu.vue";
 import Signup from "../components/Signup.vue";
@@ -48,6 +49,11 @@ const routes = [
     path: "/Product_Menu",
     name: "ProductMenu",
     component: ProductMenu,
+  },
+  {
+    path: "/ProductDisplay",
+    name: "ProductDisplay",
+    component: ProductDisplay,
   },
   {
     path: "/Login",
