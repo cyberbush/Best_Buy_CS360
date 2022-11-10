@@ -10,9 +10,7 @@ import help from "../components/help.vue";
 import ProductMenu from "../components/ProductMenu.vue";
 import Signup from "../components/Signup.vue";
 import Login from "../components/Login.vue";
-import LoginVendor from "../components/LoginVendor.vue";
 import Dashboard from "../components/dashboard.vue";
-import Offers from "../components/Offers.vue";
 
 Vue.use(Router);
 
@@ -63,24 +61,14 @@ const routes = [
     component: Login,
   },
   {
-    path: "/Signup",
-    name: "Signup",
-    component: Signup,
+  path: "/Signup",
+  name: "Signup",
+  component: Signup,
   },
   {
-    path: "/Dashboard/:id",
-    name: "Dashboard",
-    component: Dashboard,
-  },
-  {
-    path: "/LoginVendor",
-    name: "LoginVendor",
-    component: LoginVendor,
-  },
-  {
-    path: "/Offers",
-    name: "Offers",
-    component: Offers,
+  path: "/Dashboard/:id",
+  name: "Dashboard",
+  component: Dashboard,
   },
 ];
 

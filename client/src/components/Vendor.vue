@@ -180,7 +180,6 @@
 </div>
 
 <form>
-<h1><center>Product Regristration Form </center></h1>
 <div class="container_page rounded-5">
   <div class="row">
   <div class="col-7 text-center mx-auto container-fluid">
@@ -198,54 +197,36 @@
         <label for="inputAddress">Description</label>
         <input type="text" class="form-control" id="inputAddress" placeholder="Two packet-switched network connector">
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="inputAddress2">Product Brand</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="NETGEAR">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputAddress2">Size</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="75 inches">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputAddress2">Price</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="75 inches">
-        </div>
+      <div class="form-group">
+        <label for="inputAddress2">Product Brand</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="NETGEAR">
       </div>
       <div class="form-row">
-        <div class="form-group col-md-3">
-          <label for="inputCity">Color</label>
-          <input type="text" class="form-control" id="inputCity" placeholder="Blue">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity">
         </div>
         <div class="form-group col-md-4">
           <label for="inputState">Product Category</label>
           <select id="inputState" class="form-control">
             <option selected>Choose...</option>
-            <option>Electronics</option>
-            <option>TV & Video</option>
-            <option>Home Audio & Theater</option>
-            <option>Portable Audio</option>
-            <option>Computers</option>
-            <option>Tablets</option>
-            <option>Cell Phones</option>
-            <option>Wearable Technology</option>
-            <option>Cameras, Camcorders, & Drones</option>
-            <option>Video Games</option>
-            <option>Auto Electronics</option>
+            <option>...</option>
           </select>
         </div>
-        <div class="form-group col-md-4">
-          <label for="inputZip">Note</label>
-          <input type="text" class="form-control" id="inputZip" placeholder="$2000">
-        </div>
-        <div class="form-row">
-          <div>
-            <input type="file" id="myFile" name="filename" style="display:none;">
-            <label for="myFile">Upload an Image</label>
-          </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Price</label>
+          <input type="text" class="form-control" id="inputZip">
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Enter Product</button>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Check me out
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign in</button>
     </div>
   </div>
   </div>
@@ -295,6 +276,5 @@
       padding-left: ($spacer * .45) !important;
       padding-right: ($spacer * .45) !important;
     }
-
 
 </style>
