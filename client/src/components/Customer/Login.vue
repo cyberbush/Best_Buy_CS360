@@ -11,7 +11,7 @@
                   <div class="card-body p-md-5 mx-md-4">
     
                     <div class="text-center">
-                      <img src="../components/Logo/logo_transparent.png"
+                      <img src="../Logo/logo_transparent.png"
                         style="width: 185px;" alt="logo">
                       <h2 id="h2_home" class="mt-1 mb-5 pb-1">Welcome!</h2>
                     </div>
