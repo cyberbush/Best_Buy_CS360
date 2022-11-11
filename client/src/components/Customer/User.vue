@@ -47,11 +47,7 @@
         <!--END BANNER SECTION-->
         <!--main body columns and rows-->
 
-        <!--adjust column width ratios for many
-        also set JS so that if there is x amount of offers, it shows, 
-        otherwise dont show the offers!
-
-        This area is the base for the many products that will show up, and as we add/ subtract items from the DB
+        <!--This area is the base for the many products that will show up, and as we add/ subtract items from the DB
         we will see it grow and shrink... doing test run with arrays at this time to make sure using base level scripts 
         in page... TJR 11/10/2022
       
