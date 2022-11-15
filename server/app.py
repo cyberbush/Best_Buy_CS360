@@ -70,7 +70,8 @@ class Products(db.Model):
     description = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(100), nullable=False)
-    status = db.Column(db.String(100), nullable=False)
+    productBrand = db.Column(db.String(100), nullable=False)
+    size = db.Column(db.Float, nullable=False)
 # Setup products Schema
 class ProductsSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
