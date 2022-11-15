@@ -8,6 +8,8 @@ import ProductMenu from "../components/ProductMenu.vue";
 import Signup from "../components/Signup.vue";
 import Login from "../components/Customer/Login.vue";
 import Dashboard from "../components/dashboard.vue";
+import VendorOffers from "../components/VendorOffers.vue";
+import LoginVendor from "../components/LoginVendor.vue";
 
 Vue.use(Router);
 
@@ -43,14 +45,24 @@ const routes = [
     component: Login,
   },
   {
-  path: "/Signup",
-  name: "Signup",
-  component: Signup,
+    path: "/Signup",
+    name: "Signup",
+    component: Signup,
   },
   {
-  path: "/Dashboard/:id",
-  name: "Dashboard",
-  component: Dashboard,
+    path: "/Dashboard/:id",
+    name: "Dashboard",
+    component: Dashboard,
+  },
+  {
+    path: "/VendorOffers",
+    name: "VendorOffers",
+    component: VendorOffers,
+  },
+  {
+    path: "/LoginVendor",
+    name: "LoginVendor",
+    component: LoginVendor,
   },
 ];
 

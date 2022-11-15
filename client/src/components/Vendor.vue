@@ -1,280 +1,511 @@
 <template>
-    <body class="bg-dark">
-      <!--Upper Nav-Bar-->
-      <div class="bg-dark">
-          <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary ">
-            <a class="navbar-brand" href="/"> Best Buy!
+  <body class="bg-dark">
+    <!--Upper Nav-Bar-->
+    <div class="bg-dark">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/"> Best Buy! </a>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Menu
             </a>
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Menu
-                </a>
-                <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item text-justify" href="/">Home </a>
-                  <a class="dropdown-item text-justify" href="ProductDisplay">Product Display </a>
-                  <a class="dropdown-item text-justify" href="vendor">Vendors </a>
-                  <a class="dropdown-item text-justify" href="about">About </a>
-                  <a class="dropdown-item text-justify" href="help">Help </a>
-                </div>
-              </li>
-            </ul>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <div
+              class="dropdown-menu bg-primary"
+              aria-labelledby="navbarDropdown"
+            >
+              <a class="dropdown-item text-justify" href="/">Home </a>
+              <a class="dropdown-item text-justify" href="ProductDisplay"
+                >Product Display
+              </a>
+              <a class="dropdown-item text-justify" href="vendor">Vendors </a>
+              <a class="dropdown-item text-justify" href="about">About </a>
+              <a class="dropdown-item text-justify" href="help">Help </a>
+            </div>
+          </li>
+        </ul>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline mx-auto my-2">
+            <input
+              class="form-control mr-sm-1"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-dark my-2 my-sm-0" type="submit">
+              Search
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline mx-auto my-2">
-                    <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-            <p class="">Logged in Peoples!</p>
-          </nav>
+          </form>
         </div>
-        <!--END OF NAVIGATION BAR-->
+        <p class="">Logged in Peoples!</p>
+      </nav>
+    </div>
+    <!--END OF NAVIGATION BAR-->
 
-        <!--BANNER SECTION-->
-        <div class="Banner_Container">
-          <img src="../components/Images/logo.png" class="" height="150px" width="100%" alt="Matrix picture Banner">
-        </div>
-        <!--END BANNER SECTION-->
+    <!--BANNER SECTION-->
+    <div class="Banner_Container">
+      <img
+        src="../components/Images/logo.png"
+        class=""
+        height="150px"
+        width="100%"
+        alt="Matrix picture Banner"
+      />
+    </div>
+    <!--END BANNER SECTION-->
 
-        <!--Featured product section-->
-        <div class="container_page rounded-5">
-          <div class="row">
-            <div class="col-7 text-center mx-auto container-fluid">
-              <div class="row bg-primary text-lg-center font-weight-bolder">
-                <h2_User>Welcome ____(Vendor Name)____!  </h2_User>
-                <img src="../components/Logo/Vendor_Logo.png" class="" height="100px" alt="Spectrum Logo">
-              </div>
-            </div>
+    <!--Featured product section-->
+    <div class="container_page rounded-5">
+      <div class="row">
+        <div class="col-7 text-center mx-auto container-fluid">
+          <div class="row bg-primary text-lg-center font-weight-bolder">
+            <h2_User>Welcome ____(Vendor Name)____! </h2_User>
+            <img
+              src="../components/Logo/Vendor_Logo.png"
+              class=""
+              height="100px"
+              alt="Spectrum Logo"
+            />
           </div>
         </div>
-        <br>
+      </div>
+    </div>
+    <br />
+
+    <div class="container_page rounded-5">
+      <form>
+        <h1><center>Product Regristration Form</center></h1>
         <div class="container_page rounded-5">
           <div class="row">
             <div class="col-7 text-center mx-auto container-fluid">
-              <div class="row bg-primary text-lg-center font-weight-bolder">
-                <h2_User> Products: </h2_User>
+              <label for="inputAddress">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputAddress"
+                placeholder="Two packet-switched network connector"
+              />
+
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="inputAddress2">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress2"
+                    placeholder="NETGEAR"
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputAddress2">Product Brand</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress2"
+                    placeholder="NETGEAR"
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputAddress2">Size</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress2"
+                    placeholder="75 inches"
+                  />
+                </div>
               </div>
-                <div class="row"> 
-                <div class="col-7 text-center mx-auto container-fluid">
-                <div class="row bg-primary text-lg-center font-weight-bolder">
-                  <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                    <div class="col-md-2">
-                      <br>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
-                        <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
-                      </svg>
-                    </div>
-                      <div class="col-md-7">
-                          <br>
-                          <h5 class="card-title">300 Mbps Internet</h5>
-                          <p class="card-text"><small class="text-muted">No data caps and no Contract</small></p>
-                          <p class="card-text"><small class="text-muted">So much</small></p>
-                        
-                      </div>
-                      <div class="col-md-2">
-                          <br>
-                          <h5 class="card-title">$40</h5>
-                        
-                      </div>
-                    </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputAddress2">Price</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress2"
+                    placeholder="75 inches"
+                  />
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="inputState">Product Category</label>
+                  <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>Electronics</option>
+                    <option>TV & Video</option>
+                    <option>Home Audio & Theater</option>
+                    <option>Portable Audio</option>
+                    <option>Computers</option>
+                    <option>Tablets</option>
+                    <option>Cell Phones</option>
+                    <option>Wearable Technology</option>
+                    <option>Cameras, Camcorders, & Drones</option>
+                    <option>Video Games</option>
+                    <option>Auto Electronics</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <div>
+                    <input
+                      type="file"
+                      id="myFile"
+                      name="filename"
+                      style="display: none"
+                    />
+                    <label for="myFile">Upload an Image</label>
                   </div>
                 </div>
-                </div> </div>
-            </div>
-<div class="container-fluid" style="background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);">
-    <div class="container p-5">
-      <div class="row">
-        <div class="col-lg-4 col-md-12 mb-4">
-          <div class="card h-100 shadow-lg">
-            <div class="card-body">
-              <div class="text-center p-3">
-                <h5 class="card-title">Basic</h5>
-                <small>Individual</small>
-                <br><br>
-                <span class="h2">$8</span>/month
-                <br><br>
               </div>
-              <p class="card-text"><small class="text-muted">Some quick example text to build on the card title and make up the bulk of the card's content.</small></p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> No intitial sign up fee</li>
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> Set your own text limits</li>
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> AutoPay</li>
-            </ul>
-            <div class="card-body text-center">
-              <button class="btn btn-outline-primary btn-lg" style="border-radius:30px">Select</button>
+
+              <button type="submit" class="btn btn-primary">
+                Enter Product
+              </button>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-12 mb-4">
-          <div class="card h-100 shadow-lg">
-            <div class="card-body">
-              <div class="text-center p-3">
-                <h5 class="card-title">Standard</h5>
-                <small>Small Business</small>
-                <br><br>
-                <span class="h2">$20</span>/month 
-                <br><br>
-              </div>
-              <p class="card-text"><small class="text-muted">Some quick example text to build on the card title and make up the bulk of the card's content.</small></p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> No contracts</li>
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> Enhanced Security for all devices </li>
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> No added taxes or fees</li>
-            </ul>
-            <div class="card-body text-center">
-              <button class="btn btn-outline-primary btn-lg" style="border-radius:30px">Select</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-12 mb-4">
-          <div class="card h-100 shadow-lg">
-            <div class="card-body">
-              <div class="text-center p-3">
-                <h5 class="card-title">Premium</h5>
-                <small>Large Companies</small>
-                <br><br>
-                <span class="h2">$40</span>/month
-                <br><br>
-              </div>
-              <p class="card-text"><small class="text-muted">Some quick example text to build on the card title and make up the bulk of the card's content.</small></p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> Unlimited Text and Talk</li>
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> Easy add devices</li>
-              <li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-              </svg> No fee increases</li>
-            </ul>
-            <div class="card-body text-center">
-              <button class="btn btn-outline-primary btn-lg" style="border-radius:30px">Select</button>
-            </div>
-          </div>
-        </div>
-      </div>    
+      </form>
     </div>
-  </div>
 
-  </div>
-</div>
-
-<form>
-<div class="container_page rounded-5">
-  <div class="row">
-  <div class="col-7 text-center mx-auto container-fluid">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Product Name</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="High-speed Internet Router">
+    <div class="container-fluid d-flex justify-content-center">
+      <div class="row mt-5">
+        <div class="col-sm-4">
+          <div class="card">
+            <img
+              src="https://imgur.com/SKZolYE.png"
+              class="card-img-top"
+              width="100%"
+            />
+            <div class="card-body pt-0 px-0">
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT NAME:</small>
+                <h6>iPhone 10</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT BRAND:</small>
+                <h6>Apple</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRICE:</small>
+                <h6>&dollar;869</h6>
+              </div>
+              <hr class="mt-2 mx-3" />
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Description:</span>
+                  <small>This is the description of the product being offered</small>
+                </div>
+              </div>
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Size Details:</span>
+                  <small>75 inch</small>
+                </div>
+              </div>
+              <small class="text-muted key pl-3">Cell Phones category</small>
+              <div class="mx-3 mt-3 mb-2">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block"
+                >
+                  <small>EDIT</small>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Product Number</label>
-          <input type="password" class="form-control" id="inputPassword4" placeholder="N00907678">
+        <div class="col-sm-4">
+          <div class="card">
+            <img
+              src="https://imgur.com/SKZolYE.png"
+              class="card-img-top"
+              width="100%"
+            />
+            <div class="card-body pt-0 px-0">
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT NAME:</small>
+                <h6>iPhone 10</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT BRAND:</small>
+                <h6>Apple</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRICE:</small>
+                <h6>&dollar;869</h6>
+              </div>
+              <hr class="mt-2 mx-3" />
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Description:</span>
+                  <small>This is the description of the product being offered</small>
+                </div>
+              </div>
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Size Details:</span>
+                  <small>75 inch</small>
+                </div>
+              </div>
+              <small class="text-muted key pl-3">Cell Phones category</small>
+              <div class="mx-3 mt-3 mb-2">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block"
+                >
+                  <small>EDIT</small>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <img
+              src="https://imgur.com/SKZolYE.png"
+              class="card-img-top"
+              width="100%"
+            />
+            <div class="card-body pt-0 px-0">
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT NAME:</small>
+                <h6>iPhone 10</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT BRAND:</small>
+                <h6>Apple</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRICE:</small>
+                <h6>&dollar;869</h6>
+              </div>
+              <hr class="mt-2 mx-3" />
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Description:</span>
+                  <small>This is the description of the product being offered</small>
+                </div>
+              </div>
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Size Details:</span>
+                  <small>75 inch</small>
+                </div>
+              </div>
+              <small class="text-muted key pl-3">Cell Phones category</small>
+              <div class="mx-3 mt-3 mb-2">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block"
+                >
+                  <small>EDIT</small>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="inputAddress">Description</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="Two packet-switched network connector">
-      </div>
-      <div class="form-group">
-        <label for="inputAddress2">Product Brand</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="NETGEAR">
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">Product Category</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-        </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Price</label>
-          <input type="text" class="form-control" id="inputZip">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Check me out
-          </label>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
     </div>
-  </div>
-  </div>
-</form>
 
-</body>
+
+    <div class="container-fluid d-flex justify-content-center">
+      <div class="row mt-5">
+        <div class="col-sm-4">
+          <div class="card">
+            <img
+              src="https://imgur.com/SKZolYE.png"
+              class="card-img-top"
+              width="100%"
+            />
+            <div class="card-body pt-0 px-0">
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT NAME:</small>
+                <h6>iPhone 10</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT BRAND:</small>
+                <h6>Apple</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRICE:</small>
+                <h6>&dollar;869</h6>
+              </div>
+              <hr class="mt-2 mx-3" />
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Description:</span>
+                  <small>This is the description of the product being offered</small>
+                </div>
+              </div>
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Size Details:</span>
+                  <small>75 inch</small>
+                </div>
+              </div>
+              <small class="text-muted key pl-3">Cell Phones category</small>
+              <div class="mx-3 mt-3 mb-2">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block"
+                >
+                  <small>EDIT</small>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <img
+              src="https://imgur.com/SKZolYE.png"
+              class="card-img-top"
+              width="100%"
+            />
+            <div class="card-body pt-0 px-0">
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT NAME:</small>
+                <h6>iPhone 10</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRODUCT BRAND:</small>
+                <h6>Apple</h6>
+              </div>
+              <div class="d-flex flex-row justify-content-between mb-0 px-3">
+                <small class="text-muted mt-1">PRICE:</small>
+                <h6>&dollar;869</h6>
+              </div>
+              <hr class="mt-2 mx-3" />
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Description:</span>
+                  <small>This is the description of the product being offered</small>
+                </div>
+              </div>
+              <div class="d-flex flex-row justify-content-between px-3 pb-3">
+                <div class="d-flex flex-column">
+                  <span class="text-muted">Size Details:</span>
+                  <small>75 inch</small>
+                </div>
+              </div>
+              <small class="text-muted key pl-3">Cell Phones category</small>
+              <div class="mx-3 mt-3 mb-2">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block"
+                >
+                  <small>EDIT</small>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </body>
 </template>
 
 <script>
-
+export default {
+  name: "Products",
+  data() {
+    return {
+      productNumber: {},
+      name: "",
+      description: "",
+      productBrand: "",
+      size: "",
+      price: "",
+      productCategory: "",
+    };
+  },
+  methods: {
+    sleep: function (ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    },
+    login_user: async function () {
+      var data = {
+        name: this.name,
+        description: this.description,
+        productBrand: this.productBrand,
+        size: this.size,
+        price: this.price,
+        productCategory: this.productBrand,
+      };
+      console.log(data);
+      this.axios
+        .post("http://localhost:5000/api/products", data)
+        .then((response) => (this.productNumber = response.data))
+        .catch((error) => {
+          console.log(error.response);
+        });
+      // add small delay
+      await this.sleep(2000);
+      console.log(this.productNumber);
+      if (this.productNumber != null) {
+        // redirect to user's page
+        this.$router.push({
+          name: "productNumber",
+          params: { id: this.productNumber.id },
+        });
+      } else {
+        alert("Error logging in! Unknown password or username!");
+      }
+    },
+  },
+};
 </script>
 
 <style>
-    .card {
-      border:none;
-      padding: 10px 50px;
-    }
+.card {
+  border: none;
+  padding: 10px 50px;
+}
 
-    .card::after {
-      position: absolute;
-      z-index: -1;
-      opacity: 0;
-      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
+.card::after {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
-    .card:hover {
+.card:hover {
+  transform: scale(1.02, 1.02);
+  -webkit-transform: scale(1.02, 1.02);
+  backface-visibility: hidden;
+  will-change: transform;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.75) !important;
+}
 
+.card:hover::after {
+  opacity: 1;
+}
 
-      transform: scale(1.02, 1.02);
-      -webkit-transform: scale(1.02, 1.02);
-      backface-visibility: hidden; 
-      will-change: transform;
-      box-shadow: 0 1rem 3rem rgba(0,0,0,.75) !important;
-    }
+.card:hover .btn-outline-primary {
+  color: white;
+  background: #007bff;
+}
 
-    .card:hover::after {
-      opacity: 1;
-    }
-
-    .card:hover .btn-outline-primary{
-      color:white;
-      background:#007bff;
-    }
-
-    .px-2 {
-      padding-left: ($spacer * .45) !important;
-      padding-right: ($spacer * .45) !important;
-    }
-
+.px-2 {
+  padding-left: ($spacer * 0.45) !important;
+  padding-right: ($spacer * 0.45) !important;
+}
 </style>
