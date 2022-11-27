@@ -5,7 +5,7 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 from flask_marshmallow import Marshmallow
 from datetime import datetime
-from passlib.apps import custom_app_context as pwd_context
+# from passlib.apps import custom_app_context as pwd_context
 import os
 
 #-------------------------------------------
@@ -280,9 +280,10 @@ def offers():
 #------------------ Main -------------------
 #-------------------------------------------
 if __name__ == '__main__':
-    initialize_database()
-    # query_products()
-    app.run(debug=True)
+    with app.app_context():
+        initialize_database()
+        # query_products()
+        app.run(debug=True)
 #-------------------------------------------
 #---------------- End Main -----------------
 #-------------------------------------------
