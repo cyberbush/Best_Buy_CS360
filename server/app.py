@@ -70,7 +70,7 @@ class Products(db.Model):
     description = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(100), nullable=False)
-    productBrand = db.Column(db.String(100), nullable=False)
+    brand = db.Column(db.String(100), nullable=False)
     size = db.Column(db.Float, nullable=False)
 # Setup products Schema
 class ProductsSchema(ma.SQLAlchemyAutoSchema):
@@ -113,8 +113,8 @@ def initialize_database():
         vendor1 = Vendor(firstName='Vendor1', lastName='V', email='vendor1@gmail.com', password='123')
         db.session.add(vendor1)  
         # Add initial products
-        product1 = Products(name='product1', price=0.0, description='productDescription1', productBrand='productBrand1', category='category1', size=0.0)
-        product2 = Products(name='product2', price=0.0, description='productDescription2', productBrand='productBrand2', category='category2', size=0.0)
+        product1 = Products(name='product1', price=0.0, description='productDescription1', brand='productBrand1', category='category1', size=0.0)
+        product2 = Products(name='product2', price=0.0, description='productDescription2', brand='productBrand2', category='category2', size=0.0)
         db.session.add(product1)
         db.session.add(product2)
         # Add initial offer
@@ -195,10 +195,10 @@ def modify_vendors( id=-1, email='', firstName='', lastName='', password='', del
     # apply changes
     db.session.commit()
 
-def modify_products( id=-1, name='', price=0.0, description='', category='', status='', delete=False):
+def modify_products( id=-1, name='', price=0.0, size=0.0, description='', category='', brand='', delete=False):
     if id == -1:
         # if the id is not specified, then we add a new item
-        new_product = Products( name=name, price=price, description=description, category=category, status=status)
+        new_product = Products( name=name, price=price, size=size, description=description, category=category, brand=brand)
         db.session.add(new_product)
     else:
         # if the id already exist, then modify the existing item
@@ -209,7 +209,8 @@ def modify_products( id=-1, name='', price=0.0, description='', category='', sta
             existing_product.name = name
             existing_product.description = description
             existing_product.price = price
-            existing_product.status = status
+            existing_product.size = size
+            existing_product.brand = brand
             existing_product.category = category
     # apply changes
     db.session.commit()

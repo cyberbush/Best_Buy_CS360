@@ -37,7 +37,7 @@
     
                       <div class="d-flex align-items-center justify-content-center pb-8">
                         <p class="mb-0 text-dark text-center mb-3">Don't have an account?</p>
-                        <button type="button" class="btn btn-primary" onclick="location.href='Signup'">Create New Account</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='SignupVendor'">Create New Account</button>
                       </div>
     
                     </form>

@@ -308,6 +308,7 @@
                 type="text"
                 class="form-control"
                 id="inputAddress"
+                v-model="description"
                 placeholder="Two packet-switched network connector"
               />
 
@@ -318,6 +319,7 @@
                     type="text"
                     class="form-control"
                     id="inputAddress2"
+                    v-model="name"
                     placeholder="NETGEAR"
                   />
                 </div>
@@ -327,6 +329,7 @@
                     type="text"
                     class="form-control"
                     id="inputAddress2"
+                    v-model="productBrand"
                     placeholder="NETGEAR"
                   />
                 </div>
@@ -336,6 +339,7 @@
                     type="text"
                     class="form-control"
                     id="inputAddress2"
+                    v-model="size"
                     placeholder="75 inches"
                   />
                 </div>
@@ -347,13 +351,14 @@
                     type="text"
                     class="form-control"
                     id="inputAddress2"
+                    v-model="price"
                     placeholder="75 inches"
                   />
                 </div>
 
                 <div class="form-group col-md-6">
                   <label for="inputState">Product Category</label>
-                  <select id="inputState" class="form-control">
+                  <select id="inputState" class="form-control" v-model="category">
                     <option selected>Choose...</option>
                     <option>Electronics</option>
                     <option>TV & Video</option>
@@ -382,7 +387,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary" @click="product_upload(id=-1, name=name, price=price, size=size, description=description, category=category, brand=productBrand, delete_=false)">
                 Enter Product
               </button>
             </div>
@@ -390,17 +395,15 @@
         </div>
       </form>
     </div>
-
-    
-
-
   </body>
 </template>
 
 <script>
-export default {
+export default 
+{
   name: "Products",
-  data() {
+  data() 
+  {
     return {
       productNumber: {},
       name: "",
@@ -411,18 +414,19 @@ export default {
       category: "",
     };
   },
-  methods: {
+  methods: 
+  {
     sleep: function (ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
-    product_upload: async function () {
+    product_upload: async function (id = -1, name = "", price = 0.00, size = 0.00, description = "", category= "", brand = "", delete_ = false) {
       var data = {
-        name: this.name,
-        description: this.description,
-        productBrand: this.productBrand,
-        size: this.size,
-        price: this.price,
-        productCategory: this.productBrand,
+        name: name,
+        description: description,
+        brand: brand,
+        size: size,
+        price: price,
+        category: category,
       };
       console.log(data);
       this.axios
@@ -431,23 +435,9 @@ export default {
         .catch((error) => {
           console.log(error.response);
         });
-      // add small delay
-      await this.sleep(2000);
-      console.log(this.productNumber);
-      if (this.productNumber != null) {
-        // redirect to user's page
-        this.$router.push({
-          name: "productNumber",
-          params: { id: this.productNumber.id },
-        });
-      } else {
-        alert("Error logging in! Unknown password or username!");
-      }
     },
   },
 };
-
-
 </script>
 
 <style>

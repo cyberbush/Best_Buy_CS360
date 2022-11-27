@@ -5,11 +5,12 @@ import Vendor from "../components/Vendor.vue";
 import User from "../components/Customer/User.vue";
 import ProductDisplay from "../components/product_display.vue";
 import ProductMenu from "../components/ProductMenu.vue";
-import Signup from "../components/Signup.vue";
+import Signup from "../components/Customer/Signup.vue";
 import Login from "../components/Customer/Login.vue";
 import Dashboard from "../components/dashboard.vue";
 import VendorOffers from "../components/VendorOffers.vue";
 import LoginVendor from "../components/LoginVendor.vue";
+import SignupVendor from "../components/SignupVendor.vue";
 
 Vue.use(Router);
 
@@ -63,6 +64,11 @@ const routes = [
     path: "/LoginVendor",
     name: "LoginVendor",
     component: LoginVendor,
+  },
+  {
+    path: "/SignupVendor",
+    name: "SignupVendor",
+    component: SignupVendor,
   },
 ];
 
