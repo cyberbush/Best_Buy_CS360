@@ -405,6 +405,8 @@ export default
   data() 
   {
     return {
+      currentVendor: null, // Keep track of the logged in Vendor
+      vendors: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
       productNumber: {},
       name: "",
       description: "",
@@ -414,13 +416,33 @@ export default
       category: "",
     };
   },
+  mounted: function() {
+    this.read_vendors();
+  },
   methods: 
   {
+    load_vendor: function() {
+      this.vendors.forEach( vendor => {
+        if (vendor.id == this.$route.params.id) {
+          this.currentVendor = vendor;
+        }
+      })
+    },
+    read_vendors: function() {
+      this.axios
+        .get("http://localhost:5000/api/vendors")
+        .then(response => {
+          this.vendors = response.data;
+          this.load_vendor();
+        })
+        .catch(error => { console.log(error.response) });
+    },
     sleep: function (ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
     product_upload: async function (id = -1, name = "", price = 0.00, size = 0.00, description = "", category= "", brand = "", delete_ = false) {
       var data = {
+        vendorId: this.currentVendor.id,
         name: name,
         description: description,
         brand: brand,

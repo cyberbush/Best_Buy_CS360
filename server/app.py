@@ -66,6 +66,7 @@ class VendorSchema(ma.SQLAlchemyAutoSchema):
 class Products(db.Model):
     # Use Column to define a column. 
     id = db.Column('product_id', db.Integer, primary_key=True)
+    vendorId = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
@@ -87,7 +88,7 @@ class Offers(db.Model):
     productId = db.Column(db.Integer, nullable=False)
     penalty = db.Column(db.Float, nullable=False)
     vendorAccept = db.Column(db.Boolean, nullable=False, default=False)
-    userAccept = db.Column(db.Boolean, nullable=False, default=False)
+    userAccept = db.Column(db.Boolean, nullable=False, default=True)
 # Setup Offers Schema
 class OffersSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
@@ -113,8 +114,8 @@ def initialize_database():
         vendor1 = Vendor(firstName='Vendor1', lastName='V', email='vendor1@gmail.com', password='123')
         db.session.add(vendor1)  
         # Add initial products
-        product1 = Products(name='product1', price=0.0, description='productDescription1', brand='productBrand1', category='category1', size=0.0)
-        product2 = Products(name='product2', price=0.0, description='productDescription2', brand='productBrand2', category='category2', size=0.0)
+        product1 = Products(vendorId=1, name='product1', price=0.0, description='productDescription1', brand='productBrand1', category='category1', size=0.0)
+        product2 = Products(vendorId=2, name='product2', price=0.0, description='productDescription2', brand='productBrand2', category='category2', size=0.0)
         db.session.add(product1)
         db.session.add(product2)
         # Add initial offer
@@ -195,10 +196,10 @@ def modify_vendors( id=-1, email='', firstName='', lastName='', password='', del
     # apply changes
     db.session.commit()
 
-def modify_products( id=-1, name='', price=0.0, size=0.0, description='', category='', brand='', delete=False):
+def modify_products( id=-1, vendorId=0, name='', price=0.0, size=0.0, description='', category='', brand='', delete=False):
     if id == -1:
         # if the id is not specified, then we add a new item
-        new_product = Products( name=name, price=price, size=size, description=description, category=category, brand=brand)
+        new_product = Products( vendorId=vendorId, name=name, price=price, size=size, description=description, category=category, brand=brand)
         db.session.add(new_product)
     else:
         # if the id already exist, then modify the existing item
@@ -215,6 +216,15 @@ def modify_products( id=-1, name='', price=0.0, size=0.0, description='', catego
     # apply changes
     db.session.commit()
 
+def modify_offers(vendorId=0, userId=0, productId=0, penalty=0.0, vendorAccept=False, userAccept=False, delete=False):
+    if delete == True:
+        existing_offer = Offers.query.get(id)
+        db.session.delete(existing_offer)
+    else:
+        new_offer = Offers( vendorId=vendorId, userId=userId, productId=productId, penalty=penalty, vendorAccept=vendorAccept, userAccept=userAccept)
+        db.session.add(new_offer)
+    # apply changes
+    db.session.commit()
 
 #-------------------------------------------
 #---------- End Utility Functions ----------
@@ -279,10 +289,16 @@ def products():
         modify_products(**products_args)
         return jsonify(status='modify success')
 
-@app.route('/api/offers', methods = ['GET'])
+@app.route('/api/offers', methods = ['GET', 'POST'])
 def offers():
-    output = query_offers()
-    return jsonify(output)
+    if request.method == 'GET':
+        output = query_offers()
+        return jsonify(output)
+    elif request.method == 'POST':
+        offers_args = request.get_json()
+        # print(offers_args)
+        modify_offers(**offers_args)
+        return jsonify(status='modify success')
 
 #-------------------------------------------
 #---------------- End APIs -----------------
