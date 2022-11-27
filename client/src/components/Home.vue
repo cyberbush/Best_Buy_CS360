@@ -1,37 +1,43 @@
 <template>
-    <body class="gradient-custom-HomePage">
-        <!--main body columns and rows-->
-            <div class="container py-5 border border-dangerss">
-              <div class="row d-flex justify-content-center align-items-center h-100 border border-warning">
-                <div class="col-xxl">
-                  <div class="card rounded-3" style="background-color:#A9A9A9">
-                    <div class="row g-0">
-                    <div class="card-body p-md-5 mx-md-4">
-                        <div class="text-center border border-success">
-                        <img src="../components/Logo/logo_transparent.png"
-                            style="width: 185px;" alt="logo">
-                        <h2 id="h2_home" class="mt-1 mb-5 pb-1">Welcome!</h2>
-                        </div>
-                        <br>
-                        <div class="container">
-                            <h_sub>Please login to your account</h_sub>
-                            <div class="mx-auto my-4 text-center">
-                                <button class="btn btn-primary mx-4 text-center">
-                                    <a href="/LoginVendor">Vendor</a>
-                                </button>
-                                <button class="btn btn-primary mx-4 text-center">
-                                    <a href="/Login">User</a>
-                                </button>
-                            </div>
-                      </div>
+  <body class=" h-100 gradient-custom-HomePage">
+    <!--main body columns and rows-->
+    <section class="h-100 gradient-form ">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-xxl">
+            <div class="card rounded-3" style="background-color:#A9A9A9">
+              <div class="row g-0">
+                <div class="col-lg-12">
+                  <div class="card-body p-md-5 mx-md-4">
+    
+                    <div class="text-center">
+                      <img src="../components/Logo/logo_transparent.png"
+                        style="width: 185px;" alt="logo">
+                      <h2 id="h2_home" class="mt-1 mb-5 pb-1">Welcome!</h2>
                     </div>
+                      <br>
+                      <div class="container">
+                        <h_sub>Please choose your login type:</h_sub>
+                        <div class="mx-auto my-4 text-center">
+                            <button class="btn btn-primary mx-4 text-center">
+                                <a href="/LoginVendor">Vendor</a>
+                            </button>
+                            <button class="btn btn-primary mx-4 text-center">
+                              <a href="/Login">User</a>
+                            </button>
+                        </div>
+                      </div>
                   </div>
-                </div>
               </div>
             </div>
-        </div>  
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
     </body>
 </template>
+
 <style>
 .gradient-custom-HomePage {
     /* fallback for old browsers */

@@ -9,37 +9,93 @@
   5. Login system
   -->
   <body class="gradient-custom-HomePage">
-      <!--Upper Nav-Bar-->
-      <div class="gradient-custom-HomePage">
-          <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-secondary">
-            <a class="navbar-brand" href="/"> Best Buy!
+    <header>
+  <!-- Navbar -->
+      <nav class="navbar align-top navbar-expand-sm navbar-dark bg-dark text-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand align-content-center" href="/Users">
+              <img
+                src="../Logo/logo_transparent.png"
+                height="100"
+                alt="Best Buy! Logo"
+                loading="lazy"
+              />
             </a>
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Menu
-                </a>
-                <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item text-justify" href="/">Log Out</a>
-                  <a class="dropdown-item text-justify" href="/User/this.currentUser.id">Home</a>
-                  <a class="dropdown-item text-justify" href="Product">Products</a>
-                  <a class="dropdown-item text-justify" href="about">About</a>
-                  <a class="dropdown-item text-justify" href="help">Help</a>
-                </div>
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/Users">Customer Interface!</a>
               </li>
             </ul>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline mx-auto my-2">
-                    <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
-                </form>
+            <!-- Left links -->
+          </div>
+          <!-- Collapsible wrapper -->
+
+          <!-- Right elements -->
+          <div class="d-flex align-items-center">
+            <!-- Icon -->
+            <a class="link-secondary me-3" href="#">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <!-- Avatar -->
+            <div class="dropdown">
+              <a
+                class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                href="#"
+                id="navbarDropdownMenuAvatar"
+                role="button"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                  class="rounded-circle"
+                  height="25"
+                  alt="Black and White Portrait of a Man"
+                  loading="lazy"
+                />
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuAvatar">
+                <li>
+                  <a class="dropdown-item" href="#">My profile</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Settings</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Logout</a>
+                </li>
+              </ul>
             </div>
-            <p class="" v-if="currentUser!=null">Logged in as {{this.currentUser.firstName}}</p>
-          </nav>
+          </div>
+          <!-- Right elements -->
         </div>
+        <!-- Container wrapper -->
+      </nav>
+  <!-- Navbar -->
+
+    </header>
+      
         <!--BANNER SECTION-->
         <!--END BANNER SECTION-->
         <!--main body columns and rows-->
@@ -52,9 +108,9 @@
         as well =) DONT PANIC... and dont forget a towel!--> 
 
         <!--Main layout-->
-  <main class="mt-2 pt-4">
-    <h3 class="text-center"> Featured Product:</h3>
-    <div class="container-fluid dark-grey-text mt-5">
+  <main>
+    <h3 class="text-left ml-5"> Featured Product:</h3>
+    <div class="container-fluid dark-grey-text">
 
       <!--Grid row-->
       <div class="row wow fadeIn border bg-white">
@@ -147,7 +203,7 @@
 
     <!--Copyright-->
     <div class="footer-copyright py-3">
-      Product not final! CS360 Best Buy! 
+      Product not final! CS360 Best Buy! Holly Kier, David Bush, Tracy Rountree 2022 
       <a href="/" target="_blank">  </a>
     </div>
     <!--/.Copyright-->
