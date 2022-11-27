@@ -86,8 +86,8 @@ export default {
           .catch(error => { console.log(error.response) });
         // add small delay
         await this.sleep(2000);
-        console.log(this.currentUser);
-        if( this.currentUser != null) {
+        console.log(this.currentUser.id);
+        if( this.currentUser.id != null) {
           // redirect to user's page
           this.$router.push({ name: 'User', params: { id: this.currentUser.id} })
           // this.$router.push({ name: 'Dashboard', params: { id: this.currentUser.id} })

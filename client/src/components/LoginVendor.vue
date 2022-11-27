@@ -86,8 +86,8 @@ export default {
           .catch(error => { console.log(error.response) });
         // add small delay
         await this.sleep(2000);
-        console.log(this.currentVendor);
-        if( this.currentVendor != null) {
+        console.log(this.currentVendor.id);
+        if( this.currentVendor.id != null) {
           // redirect to vendors's page
           this.$router.push({ name: 'Vendor', params: { id: this.currentVendor.id} })
         }
