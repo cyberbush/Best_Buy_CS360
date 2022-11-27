@@ -81,7 +81,7 @@ export default {
         var data ={ email:this.email, password: this.password };
         console.log(data);
         this.axios
-          .post("http://localhost:5000/api/login", data)
+          .post("http://localhost:5000/api/users/login", data)
           .then(response => (this.currentUser = response.data))
           .catch(error => { console.log(error.response) });
         // add small delay

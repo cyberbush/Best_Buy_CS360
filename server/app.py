@@ -235,8 +235,8 @@ def users():
         modify_users(**user_args)
         return jsonify(status='modify success')
 
-@app.route('/api/login', methods = ['POST'])
-def login():
+@app.route('/api/users/login', methods = ['POST'])
+def loginUser():
     email = request.json.get('email')
     password = request.json.get('password')
     user = User.query.filter_by(email = email).first()
@@ -256,6 +256,17 @@ def vendors():
         # print(vendor_args)
         modify_vendors(**vendor_args)
         return jsonify(status='modify success')
+
+@app.route('/api/vendors/login', methods = ['POST'])
+def loginVendor():
+    email = request.json.get('email')
+    password = request.json.get('password')
+    vendor = Vendor.query.filter_by(email = email).first()
+    if not vendor or vendor.password != password:
+        return jsonify({'Error':'Enter wrong password or username'})
+    vendor_schema = VendorSchema()
+    output = vendor_schema.dump(vendor)
+    return jsonify(output)
 
 @app.route('/api/products', methods = ['GET', 'POST'])
 def products():

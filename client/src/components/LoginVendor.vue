@@ -68,7 +68,7 @@ export default {
   name: 'Login',
     data() {
       return {
-        currentUser: {},
+        currentVendor: {},
         email:'',
         password:'',
       }
@@ -82,15 +82,14 @@ export default {
         console.log(data);
         this.axios
           .post("http://localhost:5000/api/vendors/login", data)
-          .then(response => (this.currentUser = response.data))
+          .then(response => (this.currentVendor = response.data))
           .catch(error => { console.log(error.response) });
         // add small delay
         await this.sleep(2000);
-        console.log(this.currentUser);
-        if( this.currentUser != null) {
-          // redirect to user's page
-          this.$router.push({ name: 'User', params: { id: this.currentUser.id} })
-          // this.$router.push({ name: 'Dashboard', params: { id: this.currentUser.id} })
+        console.log(this.currentVendor);
+        if( this.currentVendor != null) {
+          // redirect to vendors's page
+          this.$router.push({ name: 'Vendor', params: { id: this.currentVendor.id} })
         }
         else {
           alert("Error logging in! Unknown password or username!");
