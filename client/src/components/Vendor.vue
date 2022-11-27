@@ -88,7 +88,214 @@
         </div>
       </div>
     </div>
-    <br />
+    <br>
+  <!-- END OF VENDOR HEADER-->
+  
+
+<!-- <div class="row">
+  <div class="column">
+    <div class="card">
+      <h3>Card 1</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h3>Card 2</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Card 3</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Card 4</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <h3>Card 1</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h3>Card 2</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+</div> -->
+
+<section class="grid-cards">
+  <div class="card">
+    <img
+        src="https://imgur.com/SKZolYE.png"
+      >
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRODUCT NAME:</small>
+      <h6>iPhone 10</h6>
+    </div>
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRODUCT BRAND:</small>
+      <h6>Apple</h6>
+    </div>
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRICE:</small>
+      <h6>&dollar;869</h6>
+    </div>
+    <hr class="mt-2 mx-3" />
+    <div class="d-flex flex-row justify-content-between px-3 pb-3">
+      <div class="d-flex flex-column">
+        <span class="text-muted">Description:</span>
+        <small>This is the description of the product being offered</small>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-between px-3 pb-3">
+      <div class="d-flex flex-column">
+        <span class="text-muted">Size Details:</span>
+        <small>75 inch</small>
+      </div>
+    </div>
+    <small class="text-muted key pl-3">Cell Phones category</small>
+    <div class="mx-3 mt-3 mb-2">
+      <button
+        type="button"
+        class="btn btn-primary btn-block"
+      >
+        <small>EDIT</small>
+      </button>
+    </div>
+  </div>
+         
+
+  <div class="card">
+    <img
+        src="https://imgur.com/SKZolYE.png"
+      >
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRODUCT NAME:</small>
+      <h6>iPhone 10</h6>
+    </div>
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRODUCT BRAND:</small>
+      <h6>Apple</h6>
+    </div>
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRICE:</small>
+      <h6>&dollar;869</h6>
+    </div>
+    <hr class="mt-2 mx-3" />
+    <div class="d-flex flex-row justify-content-between px-3 pb-3">
+      <div class="d-flex flex-column">
+        <span class="text-muted">Description:</span>
+        <small>This is the description of the product being offered</small>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-between px-3 pb-3">
+      <div class="d-flex flex-column">
+        <span class="text-muted">Size Details:</span>
+        <small>75 inch</small>
+      </div>
+    </div>
+    <small class="text-muted key pl-3">Cell Phones category</small>
+    <div class="mx-3 mt-3 mb-2">
+      <button
+        type="button"
+        class="btn btn-primary btn-block"
+      >
+        <small>EDIT</small>
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img
+        src="https://imgur.com/SKZolYE.png"
+      >
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRODUCT NAME:</small>
+      <h6>iPhone 10</h6>
+    </div>
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRODUCT BRAND:</small>
+      <h6>Apple</h6>
+    </div>
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRICE:</small>
+      <h6>&dollar;869</h6>
+    </div>
+    <hr class="mt-2 mx-3" />
+    <div class="d-flex flex-row justify-content-between px-3 pb-3">
+      <div class="d-flex flex-column">
+        <span class="text-muted">Description:</span>
+        <small>This is the description of the product being offered</small>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-between px-3 pb-3">
+      <div class="d-flex flex-column">
+        <span class="text-muted">Size Details:</span>
+        <small>75 inch</small>
+      </div>
+    </div>
+    <small class="text-muted key pl-3">Cell Phones category</small>
+    <div class="mx-3 mt-3 mb-2">
+      <button
+        type="button"
+        class="btn btn-primary btn-block"
+      >
+        <small>EDIT</small>
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+  <h3>Card 2</h3>
+  <p>Some text</p>
+  <p>Some text</p>
+  </div>
+
+  <div class="card">
+  <h3>Card 2</h3>
+  <p>Some text</p>
+  <p>Some text</p>
+  </div>
+
+  <div class="card">
+  <h3>Card 2</h3>
+  <p>Some text</p>
+  <p>Some text</p>
+  </div>
+
+  <div class="card">
+  <h3>Card 2</h3>
+  <p>Some text </p>
+  <p>Some text</p>
+  </div>
+
+  <div class="card">
+  <h3>Card 2</h3>
+  <p>Some text</p>
+  <p>Some text</p>
+  </div>
+</section>
 
     <div class="container_page rounded-5">
       <form>
@@ -184,241 +391,9 @@
       </form>
     </div>
 
-    <div class="container-fluid d-flex justify-content-center">
-      <div class="row mt-5">
-        <div class="col-sm-4">
-          <div class="card">
-            <img
-              src="https://imgur.com/SKZolYE.png"
-              class="card-img-top"
-              width="100%"
-            />
-            <div class="card-body pt-0 px-0">
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT NAME:</small>
-                <h6>iPhone 10</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT BRAND:</small>
-                <h6>Apple</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRICE:</small>
-                <h6>&dollar;869</h6>
-              </div>
-              <hr class="mt-2 mx-3" />
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Description:</span>
-                  <small>This is the description of the product being offered</small>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Size Details:</span>
-                  <small>75 inch</small>
-                </div>
-              </div>
-              <small class="text-muted key pl-3">Cell Phones category</small>
-              <div class="mx-3 mt-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-block"
-                >
-                  <small>EDIT</small>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <img
-              src="https://imgur.com/SKZolYE.png"
-              class="card-img-top"
-              width="100%"
-            />
-            <div class="card-body pt-0 px-0">
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT NAME:</small>
-                <h6>iPhone 10</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT BRAND:</small>
-                <h6>Apple</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRICE:</small>
-                <h6>&dollar;869</h6>
-              </div>
-              <hr class="mt-2 mx-3" />
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Description:</span>
-                  <small>This is the description of the product being offered</small>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Size Details:</span>
-                  <small>75 inch</small>
-                </div>
-              </div>
-              <small class="text-muted key pl-3">Cell Phones category</small>
-              <div class="mx-3 mt-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-block"
-                >
-                  <small>EDIT</small>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <img
-              src="https://imgur.com/SKZolYE.png"
-              class="card-img-top"
-              width="100%"
-            />
-            <div class="card-body pt-0 px-0">
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT NAME:</small>
-                <h6>iPhone 10</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT BRAND:</small>
-                <h6>Apple</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRICE:</small>
-                <h6>&dollar;869</h6>
-              </div>
-              <hr class="mt-2 mx-3" />
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Description:</span>
-                  <small>This is the description of the product being offered</small>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Size Details:</span>
-                  <small>75 inch</small>
-                </div>
-              </div>
-              <small class="text-muted key pl-3">Cell Phones category</small>
-              <div class="mx-3 mt-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-block"
-                >
-                  <small>EDIT</small>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
 
-    <div class="container-fluid d-flex justify-content-center">
-      <div class="row mt-5">
-        <div class="col-sm-4">
-          <div class="card">
-            <img
-              src="https://imgur.com/SKZolYE.png"
-              class="card-img-top"
-              width="100%"
-            />
-            <div class="card-body pt-0 px-0">
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT NAME:</small>
-                <h6>iPhone 10</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT BRAND:</small>
-                <h6>Apple</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRICE:</small>
-                <h6>&dollar;869</h6>
-              </div>
-              <hr class="mt-2 mx-3" />
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Description:</span>
-                  <small>This is the description of the product being offered</small>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Size Details:</span>
-                  <small>75 inch</small>
-                </div>
-              </div>
-              <small class="text-muted key pl-3">Cell Phones category</small>
-              <div class="mx-3 mt-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-block"
-                >
-                  <small>EDIT</small>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <img
-              src="https://imgur.com/SKZolYE.png"
-              class="card-img-top"
-              width="100%"
-            />
-            <div class="card-body pt-0 px-0">
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT NAME:</small>
-                <h6>iPhone 10</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRODUCT BRAND:</small>
-                <h6>Apple</h6>
-              </div>
-              <div class="d-flex flex-row justify-content-between mb-0 px-3">
-                <small class="text-muted mt-1">PRICE:</small>
-                <h6>&dollar;869</h6>
-              </div>
-              <hr class="mt-2 mx-3" />
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Description:</span>
-                  <small>This is the description of the product being offered</small>
-                </div>
-              </div>
-              <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                <div class="d-flex flex-column">
-                  <span class="text-muted">Size Details:</span>
-                  <small>75 inch</small>
-                </div>
-              </div>
-              <small class="text-muted key pl-3">Cell Phones category</small>
-              <div class="mx-3 mt-3 mb-2">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-block"
-                >
-                  <small>EDIT</small>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>    
   </body>
 </template>
 
@@ -433,14 +408,14 @@ export default {
       productBrand: "",
       size: "",
       price: "",
-      productCategory: "",
+      category: "",
     };
   },
   methods: {
     sleep: function (ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
-    login_user: async function () {
+    product_upload: async function () {
       var data = {
         name: this.name,
         description: this.description,
@@ -471,13 +446,36 @@ export default {
     },
   },
 };
+
+
 </script>
 
 <style>
 .card {
-  border: none;
-  padding: 10px 50px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
 }
+
+@media screen and (max-width: 800px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 30px;
+  }
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 
 .card::after {
   position: absolute;
@@ -507,5 +505,20 @@ export default {
 .px-2 {
   padding-left: ($spacer * 0.45) !important;
   padding-right: ($spacer * 0.45) !important;
+}
+
+
+/* Cards */
+.grid-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 24px;
+  row-gap: 36px;
+  margin: 36px 36px;
+
+}
+
+.card p {
+  color: black;
 }
 </style>

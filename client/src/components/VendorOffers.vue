@@ -47,31 +47,45 @@
                 </div>
             </div>
         </div>
+<br>
 
+<section class="grid">
+    <div class="card2" >
+      
+        <h2 style="color:black; line-height: 20px;" > Offer: From Company </h2>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
+        <div class="ui buttons big">
+          <button
+            class="btn btn-success"
+            @click="toggle"
+            :class="[showCreditCard ? 'active' : '']">Accept</button>
+          <button
+            class="btn btn-danger"
+            @click="toggle"
+            :class="[!showCreditCard ? 'active' : '']">Decline</button>
+        </div>
+    </div>
 
-<button type="button" class="collapsible">Open Section 1</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-<button type="button" class="collapsible">Open Section 2</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
-<button type="button" class="collapsible">Open Section 3</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
+    <div class="card2" >
+      
+        <h2 style="color:black; line-height: 20px;" > Offer: From Company </h2>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
+        <div class="ui buttons big">
+          <button
+            class="btn btn-success"
+            @click="toggle"
+            :class="[showCreditCard ? 'active' : '']">Accept</button>
+          <button
+            class="btn btn-danger"
+            @click="toggle"
+            :class="[!showCreditCard ? 'active' : '']">Decline</button>
+        </div>
+    </div>
+    <br>
 
-<div class="ui buttons big">
-  <button
-    class="btn btn-success"
-    @click="toggle"
-    :class="[showCreditCard ? 'active' : '']">Accept</button>
-  <button
-    class="btn btn-danger"
-    @click="toggle"
-    :class="[!showCreditCard ? 'active' : '']">Decline</button>
-</div>
+</section>
 
     </body>
 </template>
@@ -90,15 +104,24 @@ export default {
   },
 };
 
+
+
 </script>
 
 <style>
-    .card {
+    .card2 {
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+      background-color: #f1f1f1;
       border:none;
-      padding: 10px 50px;
+      text-align: center;
+      padding: 20px, 20px;
+      padding-top: 30px;
+      width: 860px;
+      height: 250px;
+      margin: 0 auto;
     }
 
-    .card::after {
+    .card2::after {
       position: absolute;
       z-index: -1;
       opacity: 0;
@@ -106,7 +129,7 @@ export default {
       transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    .card:hover {
+    .card2:hover {
 
 
       transform: scale(1.02, 1.02);
@@ -116,11 +139,11 @@ export default {
       box-shadow: 0 1rem 3rem rgba(0,0,0,.75) !important;
     }
 
-    .card:hover::after {
+    .card2:hover::after {
       opacity: 1;
     }
 
-    .card:hover .btn-outline-primary{
+    .card2:hover .btn-outline-primary{
       color:white;
       background:#007bff;
     }
@@ -158,5 +181,14 @@ export default {
       height: 500px;
       background-color: lightblue;
     }
+
+    .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 24px;
+  row-gap: 24px;
+  margin: 36px 36px;
+
+}
 
 </style>

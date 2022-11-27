@@ -113,8 +113,8 @@ def initialize_database():
         vendor1 = Vendor(firstName='Vendor1', lastName='V', email='vendor1@gmail.com', password='123')
         db.session.add(vendor1)  
         # Add initial products
-        product1 = Products(name='product1', price=0.0, description='productDescription1', category='category1', status='productStatus1')
-        product2 = Products(name='product2', price=0.0, description='productDescription2', category='category1', status='productStatus2')
+        product1 = Products(name='product1', price=0.0, description='productDescription1', productBrand='productBrand1', category='category1', size=0.0)
+        product2 = Products(name='product2', price=0.0, description='productDescription2', productBrand='productBrand2', category='category2', size=0.0)
         db.session.add(product1)
         db.session.add(product2)
         # Add initial offer
