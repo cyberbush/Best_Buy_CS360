@@ -151,7 +151,7 @@
       >
     <div class="d-flex flex-row justify-content-between mb-0 px-3">
       <small class="text-muted mt-1">PRODUCT NAME:</small>
-      <h6>iPhone 10</h6>
+      <h6> product.name </h6>
     </div>
     <div class="d-flex flex-row justify-content-between mb-0 px-3">
       <small class="text-muted mt-1">PRODUCT BRAND:</small>
@@ -184,7 +184,62 @@
       </button>
     </div>
   </div>
-         
+
+  
+  <div id="productTable" class="productTable text-dark bg-light">
+    <ul>
+      <li v-for="product in products" :key="product.id"> 
+        {{ product.name + " | $" + product.price + " | " + product.size + " | " + product.description + " | " + product.category + " | " + product.brand }}
+      </li>
+    </ul>
+  </div> 
+    
+
+  <div class="card">
+    <img
+        src="https://imgur.com/SKZolYE.png"
+      >
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRODUCT NAME:</small>
+        <li v-for="product in products" :key="product.id"> 
+          {{ product.name}}
+          <h6> hi </h6>
+          {{ product.id }}
+        </li>            
+    </div>
+
+
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRODUCT BRAND:</small>
+      <h6> apple </h6>
+    </div>
+    <div class="d-flex flex-row justify-content-between mb-0 px-3">
+      <small class="text-muted mt-1">PRICE:</small>
+      <h6>&dollar;869</h6>
+    </div>
+    <hr class="mt-2 mx-3" />
+    <div class="d-flex flex-row justify-content-between px-3 pb-3">
+      <div class="d-flex flex-column">
+        <span class="text-muted">Description:</span>
+        <small>This is the description of the product being offered</small>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-between px-3 pb-3">
+      <div class="d-flex flex-column">
+        <span class="text-muted">Size Details:</span>
+        <small>75 inch</small>
+      </div>
+    </div>
+    <small class="text-muted key pl-3">Cell Phones category</small>
+    <div class="mx-3 mt-3 mb-2">
+      <button
+        type="button"
+        class="btn btn-primary btn-block"
+      >
+        <small>EDIT</small>
+      </button>
+    </div>
+  </div>
 
   <div class="card">
     <img
@@ -227,46 +282,6 @@
   </div>
 
   <div class="card">
-    <img
-        src="https://imgur.com/SKZolYE.png"
-      >
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRODUCT NAME:</small>
-      <h6>iPhone 10</h6>
-    </div>
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRODUCT BRAND:</small>
-      <h6>Apple</h6>
-    </div>
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRICE:</small>
-      <h6>&dollar;869</h6>
-    </div>
-    <hr class="mt-2 mx-3" />
-    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-      <div class="d-flex flex-column">
-        <span class="text-muted">Description:</span>
-        <small>This is the description of the product being offered</small>
-      </div>
-    </div>
-    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-      <div class="d-flex flex-column">
-        <span class="text-muted">Size Details:</span>
-        <small>75 inch</small>
-      </div>
-    </div>
-    <small class="text-muted key pl-3">Cell Phones category</small>
-    <div class="mx-3 mt-3 mb-2">
-      <button
-        type="button"
-        class="btn btn-primary btn-block"
-      >
-        <small>EDIT</small>
-      </button>
-    </div>
-  </div>
-
-  <div class="card">
   <h3>Card 2</h3>
   <p>Some text</p>
   <p>Some text</p>
@@ -278,23 +293,6 @@
   <p>Some text</p>
   </div>
 
-  <div class="card">
-  <h3>Card 2</h3>
-  <p>Some text</p>
-  <p>Some text</p>
-  </div>
-
-  <div class="card">
-  <h3>Card 2</h3>
-  <p>Some text </p>
-  <p>Some text</p>
-  </div>
-
-  <div class="card">
-  <h3>Card 2</h3>
-  <p>Some text</p>
-  <p>Some text</p>
-  </div>
 </section>
 
     <div class="container_page rounded-5">
@@ -340,7 +338,7 @@
                     class="form-control"
                     id="inputAddress2"
                     v-model="size"
-                    placeholder="75 inches"
+                    placeholder="75"
                   />
                 </div>
               </div>
@@ -352,7 +350,7 @@
                     class="form-control"
                     id="inputAddress2"
                     v-model="price"
-                    placeholder="75 inches"
+                    placeholder="75.00"
                   />
                 </div>
 
@@ -405,14 +403,11 @@ export default
   data() 
   {
     return {
-      productNumber: {},
-      name: "",
-      description: "",
-      productBrand: "",
-      size: "",
-      price: "",
-      category: "",
-    };
+      products: [ { id: 2, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""}, ],
+    }
+  },
+  mounted: function() {
+    this.read_products();
   },
   methods: 
   {
@@ -435,6 +430,12 @@ export default
         .catch((error) => {
           console.log(error.response);
         });
+    },
+    read_products: function() {
+      this.axios
+        .get("http://localhost:5000/api/products")
+        .then(response => (this.products = response.data))
+        .catch(error => { console.log(error.response) });
     },
   },
 };

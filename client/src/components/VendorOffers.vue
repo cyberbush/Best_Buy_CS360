@@ -59,11 +59,11 @@
           <button
             class="btn btn-success"
             @click="toggle"
-            :class="[showCreditCard ? 'active' : '']">Accept</button>
+            :class="[acceptDecline ? 'active' : '']">Accept</button>
           <button
             class="btn btn-danger"
             @click="toggle"
-            :class="[!showCreditCard ? 'active' : '']">Decline</button>
+            :class="[!acceptDecline ? 'active' : '']">Decline</button>
         </div>
     </div>
 
@@ -76,16 +76,24 @@
           <button
             class="btn btn-success"
             @click="toggle"
-            :class="[showCreditCard ? 'active' : '']">Accept</button>
+            :class="[acceptDecline ? 'active' : '']">Accept</button>
           <button
             class="btn btn-danger"
             @click="toggle"
-            :class="[!showCreditCard ? 'active' : '']">Decline</button>
+            :class="[!acceptDecline ? 'active' : '']">Decline</button>
         </div>
     </div>
     <br>
 
 </section>
+
+<div id="productTable" class="productTable text-dark bg-light">
+    <ul>
+      <li v-for="offer in offers" :key="offer.id"> 
+        {{ offer.penalty + " | $" + offer.productId + " | " + offer.userId + " | " + offer.userAccept + " | " + offer.vendorAccept + " | " + offer.vendorId }}
+      </li>
+    </ul>
+</div> 
 
     </body>
 </template>
@@ -94,12 +102,22 @@
 export default {
   data() {
     return {
-      showCreditCard: true,
+      acceptDecline: true,
+      offers: [ { id: 2, penalty: 0.0, productId: 1, userId: 1, userAccept: false, vendorAccept: false, vendorId: 1}, ],
     };
+  },
+  mounted: function() {
+    this.read_offers();
   },
   methods: {
     toggle() {
-      this.showCreditCard = !this.showCreditCard;
+      this.acceptDecline = !this.acceptDecline;
+    },
+    read_offers: function() {
+      this.axios
+        .get("http://localhost:5000/api/offers")
+        .then(response => (this.offers = response.data))
+        .catch(error => { console.log(error.response) });
     },
   },
 };

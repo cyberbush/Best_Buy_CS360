@@ -203,7 +203,7 @@
 
     <!--Copyright-->
     <div class="footer-copyright py-3">
-      Product not final! CS360 Best Buy! Holly Kier, David Bush, Tracy Rountree 2022 
+      Product not final! CS360 Best Buy! Holly Keir, David Bush, Tracy Rountree 2022 
       <a href="/" target="_blank">  </a>
     </div>
     <!--/.Copyright-->
