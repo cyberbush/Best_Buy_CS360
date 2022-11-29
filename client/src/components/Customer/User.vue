@@ -61,10 +61,10 @@
               <button class="btn btn-secondary dropdown-toggle border border-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ currentUser.firstName }}
               </button>
-              <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item bg-primary" href="#">Settings</a>
-                <a class="dropdown-item bg-primary" href="#">Edit Profile</a>
-                <a class="dropdown-item bg-primary" href="/">Logout!</a>
+              <div class="dropdown-menu bg-primary border border-dark" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item bg-primary border border-dark" href="#">Settings</a>
+                <a class="dropdown-item bg-primary border border-dark" href="#">Edit Profile</a>
+                <a class="dropdown-item bg-primary border border-dark" href="/">Logout!</a>
               </div>
             </div>
           </div>
