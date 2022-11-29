@@ -55,7 +55,7 @@
             </button>
           </form>
         </div>
-        <p class="">Logged in Peoples!</p>
+        <p class="">Logged in {{ currentVendor.firstName }}!</p>
       </nav>
     </div>
     <!--END OF NAVIGATION BAR-->
@@ -77,13 +77,7 @@
       <div class="row">
         <div class="col-7 text-center mx-auto container-fluid">
           <div class="row bg-primary text-lg-center font-weight-bolder">
-            <h2_User>Welcome ____(Vendor Name)____! </h2_User>
-            <img
-              src="../components/Logo/Vendor_Logo.png"
-              class=""
-              height="100px"
-              alt="Spectrum Logo"
-            />
+            <h2_User>Welcome {{ currentVendor.firstName }} ! </h2_User>
           </div>
         </div>
       </div>
@@ -145,6 +139,7 @@
 </div> -->
 
 <section class="grid-cards">
+  <!--
   <div class="card">
     <img
         src="https://imgur.com/SKZolYE.png"
@@ -280,15 +275,49 @@
       </button>
     </div>
   </div>
-
+  -->
   <div v-for="product in products" :key="product.id">
     <div class="card">
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.category }}</p>
-      <p>{{ product.brand }}</p>
-      <p>{{ product.price }}</p>
+      <img
+          src="https://imgur.com/SKZolYE.png"
+        >
+      <div class="d-flex flex-row justify-content-between mb-0 px-3">
+        <small class="text-muted mt-1">PRODUCT NAME:</small>
+        <h6> {{ product.name }} </h6>
+      </div>
+      <div class="d-flex flex-row justify-content-between mb-0 px-3">
+        <small class="text-muted mt-1">PRODUCT BRAND:</small>
+        <h6>{{ product.brand }}</h6>
+      </div>
+      <div class="d-flex flex-row justify-content-between mb-0 px-3">
+        <small class="text-muted mt-1">PRICE:</small>
+        <h6>&dollar; {{ product.price }}</h6>
+      </div>
+      <hr class="mt-2 mx-3" />
+      <div class="d-flex flex-row justify-content-between px-3 pb-3">
+        <div class="d-flex flex-column">
+          <span class="text-muted">Description:</span>
+          <small>{{ product.description }}</small>
+        </div>
+      </div>
+      <div class="d-flex flex-row justify-content-between px-3 pb-3">
+        <div class="d-flex flex-column">
+          <span class="text-muted">Size Details:</span>
+          <small>{{ product.size }} inch</small>
+        </div>
+      </div>
+      <small class="text-muted key pl-3">{{ product.category }}</small>
+      <div class="mx-3 mt-3 mb-2">
+        <button
+          type="button"
+          class="btn btn-primary btn-block"
+        >
+          <small>EDIT</small>
+        </button>
+      </div>
     </div>
   </div>
+
 
 </section>
 
