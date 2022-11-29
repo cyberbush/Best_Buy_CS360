@@ -198,7 +198,7 @@
                 type="button"
                 class="btn btn-primary btn-block"
               >
-                <small>EDIT</small>
+                <small>BID</small>
               </button>
             </div>
           </div>
