@@ -11,7 +11,7 @@
   <body class="gradient-custom-HomePage">
     <header>
   <!-- Navbar -->
-      <nav class="navbar align-top navbar-expand-sm navbar-dark bg-dark text-light">
+      <nav class="navbar navbar-expand-sm py-0 align-top navbar-dark bg-primary text-light border  border-5 border-dark rounded">
         <!-- Container wrapper -->
         <div class="container-fluid">
           <!-- Toggle button -->
@@ -28,20 +28,21 @@
           </button>
 
           <!-- Collapsible wrapper -->
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Navbar brand -->
-            <a class="navbar-brand align-content-center" href="/Users">
-              <img
-                src="../Logo/logo_transparent.png"
-                height="100"
-                alt="Best Buy! Logo"
-                loading="lazy"
-              />
-            </a>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <!-- Navbar brand -->
+            <a class="navbar-brand d-inline-block align-top py-0" href="#">
+            <img
+              src="../Logo/logo_transparent.png"
+              height="50"
+              class="pr-3"
+              alt="Best Buy! Logo"
+              loading="lazy"
+            />Welcome Customer!
+          </a>            
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="/Users">Customer Interface!</a>
+                <a class="nav-link" href="/Users"></a>
               </li>
             </ul>
             <!-- Left links -->
@@ -57,35 +58,14 @@
 
             <!-- Avatar -->
             <div class="dropdown">
-              <a
-                class="dropdown-toggle d-flex align-items-center hidden-arrow"
-                href="#"
-                id="navbarDropdownMenuAvatar"
-                role="button"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                  class="rounded-circle"
-                  height="25"
-                  alt="Black and White Portrait of a Man"
-                  loading="lazy"
-                />
-              </a>
-              <ul
-                class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="navbarDropdownMenuAvatar">
-                <li>
-                  <a class="dropdown-item" href="#">My profile</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Settings</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Logout</a>
-                </li>
-              </ul>
+              <button class="btn btn-secondary dropdown-toggle border border-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ users.firstName }}
+              </button>
+              <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item bg-primary" href="#">Settings</a>
+                <a class="dropdown-item bg-primary" href="#">Edit Profile</a>
+                <a class="dropdown-item bg-primary" href="/">Logout!</a>
+              </div>
             </div>
           </div>
           <!-- Right elements -->
@@ -118,7 +98,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+          <img src="../Images/LG_OLED.jpg" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
@@ -131,32 +111,22 @@
 
             <div class="mb-3">
               <a href="">
-                <span class="badge purple mr-1 text-dark">Category 2</span>
-              </a>
-              <a href="">
-                <span class="badge blue mr-1 text-dark">New</span>
-              </a>
-              <a href="">
-                <span class="badge red mr-1 text-dark">Bestseller</span>
+                <h3 class=" text-dark font-weight-bolder">LG - 65" Class C2 Series OLED evo 4K UHD Smart webOS TV </h3>
               </a>
             </div>
 
             <p class="lead">
-              <span class="mr-1 text-dark">
-                <del>$200</del>
+              <span class="text-dark font-weight-bolder"> $1699
               </span>
-              <span class="text-dark">$100</span>
+               <br>
+               <br>
+               <br>
+              <span class="text-danger"> Dropped from: $2,099.99</span>
             </p>
-
-            <p class="lead font-weight-bold text-dark">Description</p>
-
-            <p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-              sint voluptatibus!
-              Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
 
             <form class="d-flex justify-content-left mt-12">
               <!-- Default input -->
-              <button class="btn btn-primary btn-md my-5 p" type="submit">Add to cart
+              <button class="btn btn-primary btn-md my-5 p" type="submit">Bid NOW!
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
 
@@ -180,8 +150,7 @@
         <div class="col-md-6 text-center mb-3">
 
           <h4 class="my-4">More Products:</h4>
-          <!--WILL UPDATE THIS FOR PROJECT DEMO. DAVID OR HOLLY CAN YOU CHECK OUT THE SCRIPT BELOW TO SEE IF THIS 
-          MAKES SENSE? IT WAS NOT UPDATING, BUT THE ProductMenu.vue PAGE WAS? -->
+          <!--Working for david 11/28/2022 -->
 
           <div id="productTable" class="productTable text-dark bg-light">
             <ul>
@@ -216,7 +185,6 @@
 </template>
 
 <script>
-//Tracy TO-DO:
 export default {
   name: 'Register',
   data() {
