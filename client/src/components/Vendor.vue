@@ -403,6 +403,8 @@ export default
   data() 
   {
     return {
+      currentVendor: null, // Keep track of the logged in Vendor
+      vendors: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
       productNumber: {},
       name: "",
       description: "",
@@ -436,6 +438,7 @@ export default
     sleep: function (ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
+    
     product_upload: async function (id = -1, name = "", price = 0.00, size = 0.00, description = "", category= "", brand = "", delete_ = false) {
       var data = {
         vendorId: this.currentVendor.id,
@@ -446,6 +449,7 @@ export default
         price: price,
         category: category,
       };
+      
       console.log(data);
       this.axios
         .post("http://localhost:5000/api/products", data)

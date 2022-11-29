@@ -67,10 +67,9 @@
         </div>
     </div>
 
-    <div class="card2" >
-      
+    <div class="card2" v-for="offer in offers" :key="offer.id"> 
         <h2 style="color:black; line-height: 20px;" > Offer: From Company </h2>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> {{offers.id}} </small> </h4>
         <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
         <div class="ui buttons big">
           <button
@@ -102,7 +101,7 @@
 export default {
   data() {
     return {
-      acceptDecline: true,
+      // acceptDecline: true,
       offers: [ { id: 2, penalty: 0.0, productId: 1, userId: 1, userAccept: false, vendorAccept: false, vendorId: 1}, ],
     };
   },
