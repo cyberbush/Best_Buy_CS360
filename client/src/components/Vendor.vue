@@ -281,16 +281,13 @@
     </div>
   </div>
 
-  <div class="card">
-  <h3>Card 2</h3>
-  <p>Some text</p>
-  <p>Some text</p>
-  </div>
-
-  <div class="card">
-  <h3>Card 2</h3>
-  <p>Some text</p>
-  <p>Some text</p>
+  <div v-for="product in products" :key="product.id">
+    <div class="card">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.category }}</p>
+      <p>{{ product.brand }}</p>
+      <p>{{ product.price }}</p>
+    </div>
   </div>
 
 </section>
@@ -371,7 +368,7 @@
                     <option>Auto Electronics</option>
                   </select>
                 </div>
-
+                <!--
                 <div class="form-row">
                   <div>
                     <input
@@ -383,6 +380,7 @@
                     <label for="myFile">Upload an Image</label>
                   </div>
                 </div>
+                -->
               </div>
 
               <button type="submit" class="btn btn-primary" @click="product_upload(id=-1, name=name, price=price, size=size, description=description, category=category, brand=productBrand, delete_=false)">
@@ -406,6 +404,9 @@ export default
       currentVendor: null, // Keep track of the logged in Vendor
       vendors: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
       productNumber: {},
+      products: [
+        { id: 0, vendorId: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""},
+      ],
       name: "",
       description: "",
       productBrand: "",
@@ -416,6 +417,8 @@ export default
   },
   mounted: function() {
     this.read_vendors();
+    this.read_products();
+
   },
   methods: 
   {
@@ -509,6 +512,10 @@ export default
   backface-visibility: hidden;
   will-change: transform;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.75) !important;
+}
+
+h3, p {
+  color: black !important;
 }
 
 .card:hover::after {

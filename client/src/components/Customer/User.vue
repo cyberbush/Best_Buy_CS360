@@ -59,7 +59,7 @@
             <!-- Avatar -->
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle border border-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ users.firstName }}
+                {{ currentUser.firstName }}
               </button>
               <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item bg-primary" href="#">Settings</a>
