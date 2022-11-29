@@ -152,14 +152,58 @@
           <h4 class="my-4">More Products:</h4>
           <!--Working for david 11/28/2022 -->
 
-          <div id="productTable" class="productTable text-dark bg-light">
+          <!--
+        <div id="productTable" class="productTable text-dark bg-light">
             <ul>
                 <li v-for="product in products" :key="product.id"> 
                 {{ product.name + " | $" + product.price + " | " + product.size + " | " + product.description + " | " + product.category + " | " + product.brand }}<button class="btn btn-primary">Bid</button>
                 </li>
             </ul>
         </div>
-
+        -->
+        <section class="grid-cards">
+        <div v-for="product in products" :key="product.id">
+          <div class="card">
+            <img
+                src="https://imgur.com/SKZolYE.png"
+              >
+            <div class="d-flex flex-row justify-content-between mb-0 px-3">
+              <small class="text-muted mt-1">PRODUCT NAME:</small>
+              <h6> {{ product.name }} </h6>
+            </div>
+            <div class="d-flex flex-row justify-content-between mb-0 px-3">
+              <small class="text-muted mt-1">PRODUCT BRAND:</small>
+              <h6>{{ product.brand }}</h6>
+            </div>
+            <div class="d-flex flex-row justify-content-between mb-0 px-3">
+              <small class="text-muted mt-1">PRICE:</small>
+              <h6>&dollar; {{ product.price }}</h6>
+            </div>
+            <hr class="mt-2 mx-3" />
+            <div class="d-flex flex-row justify-content-between px-3 pb-3">
+              <div class="d-flex flex-column">
+                <span class="text-muted">Description:</span>
+                <small>{{ product.description }}</small>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-between px-3 pb-3">
+              <div class="d-flex flex-column">
+                <span class="text-muted">Size Details:</span>
+                <small>{{ product.size }} inch</small>
+              </div>
+            </div>
+            <small class="text-muted key pl-3">{{ product.category }}</small>
+            <div class="mx-3 mt-3 mb-2">
+              <button
+                type="button"
+                class="btn btn-primary btn-block"
+              >
+                <small>EDIT</small>
+              </button>
+            </div>
+          </div>
+        </div>
+        </section>
 
         </div>
       </div>
@@ -241,6 +285,7 @@ export default {
 </script>
 
 <style>
+
 .gradient-custom-HomePage {
   /* fallback for old browsers */
   background: #4F91FC;
@@ -271,5 +316,71 @@ export default {
     border: 6px solid #0AF;
     padding: 50px;
     text-align: center;
+}
+.card {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.card::after {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card:hover {
+  transform: scale(1.02, 1.02);
+  -webkit-transform: scale(1.02, 1.02);
+  backface-visibility: hidden;
+  will-change: transform;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.75) !important;
+}
+
+h3, p {
+  color: black !important;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.card:hover .btn-outline-primary {
+  color: white;
+  background: #007bff;
+}
+
+.px-2 {
+  padding-left: ($spacer * 0.45) !important;
+  padding-right: ($spacer * 0.45) !important;
+}
+
+
+/* Cards */
+.grid-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 24px;
+  row-gap: 36px;
+  margin: 36px 36px;
+
+}
+
+.card p {
+  color: black;
 }
 </style>
