@@ -49,12 +49,12 @@
         </div>
 <br>
 
-<section class="grid">
+  <div v-for="offer in offers" :key="offer.id">
     <div class="card2" >
       
-        <h2 style="color:black; line-height: 20px;" > Offer: From Company </h2>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
+        <h2 style="color:black; line-height: 20px;" > Offer: From {{offer.vendorId}} </h2>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> Product ID: <small> {{offer.productId}} </small> </h4>
         <div class="ui buttons big">
           <button
             class="btn btn-success"
@@ -66,33 +66,8 @@
             :class="[!acceptDecline ? 'active' : '']">Decline</button>
         </div>
     </div>
+</div>
 
-    <div class="card2" v-for="offer in offers" :key="offer.id"> 
-        <h2 style="color:black; line-height: 20px;" > Offer: From Company </h2>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> {{offers.id}} </small> </h4>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> hi hi hi: <small> hhhh </small> </h4>
-        <div class="ui buttons big">
-          <button
-            class="btn btn-success"
-            @click="toggle"
-            :class="[acceptDecline ? 'active' : '']">Accept</button>
-          <button
-            class="btn btn-danger"
-            @click="toggle"
-            :class="[!acceptDecline ? 'active' : '']">Decline</button>
-        </div>
-    </div>
-    <br>
-
-</section>
-
-<div id="productTable" class="productTable text-dark bg-light">
-    <ul>
-      <li v-for="offer in offers" :key="offer.id"> 
-        {{ offer.penalty + " | $" + offer.productId + " | " + offer.userId + " | " + offer.userAccept + " | " + offer.vendorAccept + " | " + offer.vendorId }}
-      </li>
-    </ul>
-</div> 
 
     </body>
 </template>
