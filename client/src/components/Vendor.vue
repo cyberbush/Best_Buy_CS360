@@ -37,7 +37,7 @@
                   </a>
                   <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-justify" href="/">Home </a>
-                    <a class="dropdown-item text-justify" href="ProductDisplay">Product Display </a>
+                    <a class="dropdown-item text-justify" href="VendorOffers">Offers </a>
                     <a class="dropdown-item text-justify" href="vendor">Vendors </a>
                   </div>
                 </li>
