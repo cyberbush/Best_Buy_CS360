@@ -11,6 +11,8 @@ import Dashboard from "../components/dashboard.vue";
 import VendorOffers from "../components/VendorOffers.vue";
 import LoginVendor from "../components/LoginVendor.vue";
 import SignupVendor from "../components/SignupVendor.vue";
+import UserBid from "../components/Customer/UserBid.vue";
+import UserSearch from "../components/Customer/UserSearch.vue";
 
 Vue.use(Router);
 
@@ -69,6 +71,16 @@ const routes = [
     path: "/SignupVendor",
     name: "SignupVendor",
     component: SignupVendor,
+  },
+  {
+    path: "/UserBid",
+    name: "UserBid",
+    component: UserBid,
+  },
+  {
+    path: "/UserSearch",
+    name: "UserSearch",
+    component: UserSearch,
   },
 ];
 

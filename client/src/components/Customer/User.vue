@@ -52,19 +52,16 @@
           <!-- Right elements -->
           <div class="d-flex align-items-center">
             <!-- Icon -->
-            <a class="link-secondary me-3" href="#">
-              <i class="fas fa-shopping-cart"></i>
-            </a>
-
+            <span id="boot-icon" class="bi bi-cart" style="font-size: 50px; color: rgb(0, 0, 0); opacity: 1; -webkit-text-stroke-width: 0px;"></span>
             <!-- Avatar -->
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle border border-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="btn-group dropleft">
+              <button class="btn btn-secondary dropdown-toggle border border-dark mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ currentUser.firstName }}
               </button>
-              <div class="dropdown-menu bg-primary border border-dark" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item bg-primary border border-dark" href="#">Settings</a>
-                <a class="dropdown-item bg-primary border border-dark" href="#">Edit Profile</a>
-                <a class="dropdown-item bg-primary border border-dark" href="/">Logout!</a>
+              <div class="dropdown-menu bg-primary border border-dark text-justified" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item bg-primary" href="UserSearch">Search for Products!</a>
+                <a class="dropdown-item bg-primary" href="UserBid">View Bids!</a>
+                <a class="dropdown-item bg-primary" href="/">Logout!</a>
               </div>
             </div>
           </div>
@@ -90,7 +87,7 @@
         <!--Main layout-->
   <main>
     <h3 class="text-left ml-5"> Featured Product:</h3>
-    <div class="container-fluid dark-grey-text">
+    <div class="container-fluid dark-grey-text ">
 
       <!--Grid row-->
       <div class="row wow fadeIn border bg-white">
@@ -126,7 +123,7 @@
 
             <form class="d-flex justify-content-left mt-12">
               <!-- Default input -->
-              <button class="btn btn-primary btn-md my-5 p" type="submit">Bid NOW!
+              <button class="btn btn-primary btn-md my-5 p" href="#" type="submit">Bid NOW!
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
 
@@ -144,13 +141,12 @@
       <hr>
 
       <!--Grid row-->
-      <div class="row d-flex justify-content-center wow fadeIn">
+      <div class="row d-flex justify-content-left wow fadeIn">
 
         <!--Grid column-->
-        <div class="col-md-6 text-center mb-3">
+        <div class="col-md-6 text-left ml-5 mb-3">
 
           <h4 class="my-4">More Products:</h4>
-          <!--Working for david 11/28/2022 -->
 
           <!--
         <div id="productTable" class="productTable text-dark bg-light">
@@ -363,12 +359,6 @@ h3, p {
   color: white;
   background: #007bff;
 }
-
-.px-2 {
-  padding-left: ($spacer * 0.45) !important;
-  padding-right: ($spacer * 0.45) !important;
-}
-
 
 /* Cards */
 .grid-cards {
