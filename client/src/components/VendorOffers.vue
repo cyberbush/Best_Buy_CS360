@@ -62,7 +62,7 @@
                 <!-- Avatar -->
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle border border-dark mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ currentVendor.firstName }}
+                  Vendor
                   </button>
                   <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item bg-primary" href="#">Settings</a>
