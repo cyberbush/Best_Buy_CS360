@@ -33,14 +33,6 @@
                       <label class="form-label text-dark" for="form3Example4cdg">Repeat your password</label>
                       <input type="password" id="form3Example4cdg" class="form-control form-control" v-model="password_confirm" placeholder="Confirm Password" />
                     </div>
-                    <div class="form-check d-flex justify-content-center mb-3">
-                      
-                      <label class="form-check-label text-dark mb-2" for="">
-                        I am associated with a service company: <a href="help" class="text-body"></a>
-                      </label>
-                      <br>
-                      <input class="form-check-input mb-2" type="checkbox" value="" id="form2Example3cg" />
-                    </div>
                   </form>
 
                     <div class="d-flex justify-content-center mb-3">
