@@ -55,12 +55,12 @@
             <span id="boot-icon" class="bi bi-cart" style="font-size: 50px; color: rgb(0, 0, 0); opacity: 1; -webkit-text-stroke-width: 0px;"></span>
             <!-- Avatar -->
             <div class="btn-group dropleft">
-              <button class="btn btn-secondary dropdown-toggle border border-dark mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn btn-secondary dropdown-toggle border border-dark mr-2 font-weight-bolder" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ currentUser.firstName }}
               </button>
               <div class="dropdown-menu bg-primary border border-dark text-justified" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item bg-primary" href="UserSearch">Search for Products!</a>
-                <a class="dropdown-item bg-primary" href="UserBid">View Bids!</a>
+                <a type="button" class="dropdown-item bg-primary"  data-toggle="modal" data-target="#SearchModal">Search for Products!</a>
+                <a type="button" class="dropdown-item bg-primary"  data-toggle="modal" data-target="#BidModal">View Bids!</a>
                 <a class="dropdown-item bg-primary" href="/">Logout!</a>
               </div>
             </div>
@@ -72,22 +72,11 @@
   <!-- Navbar -->
 
     </header>
-      
-        <!--BANNER SECTION-->
-        <!--END BANNER SECTION-->
-        <!--main body columns and rows-->
-
-        <!--This area is the base for the many products that will show up, and as we add/ subtract items from the DB
-        we will see it grow and shrink... doing test run with arrays at this time to make sure using base level scripts 
-        in page... TJR 11/10/2022
-      
-        UPDATE 11/11/2022: redesign in process, linking products database to system, will have cards... looking for good ecommerse page layout
-        as well =) DONT PANIC... and dont forget a towel!--> 
 
         <!--Main layout-->
   <main>
-    <h3 class="text-left ml-5"> Featured Product:</h3>
-    <div class="container-fluid dark-grey-text ">
+    <h3 class="text-left ml-5 text-light font-weight-bolder"> Featured Product:</h3>
+    <div class="container-fluid dark-grey-text">
 
       <!--Grid row-->
       <div class="row wow fadeIn border bg-white">
@@ -95,13 +84,13 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="../Images/LG_OLED.jpg" class="img-fluid" alt="">
+          <img src="../Images/LG_OLED.jpg" class="img-fluid my-4" alt="">
 
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 my-4 bg-light border border-dark">
 
           <!--Content-->
           <div class="p-4">
@@ -111,23 +100,29 @@
                 <h3 class=" text-dark font-weight-bolder">LG - 65" Class C2 Series OLED evo 4K UHD Smart webOS TV </h3>
               </a>
             </div>
+            <div class="container ml-4">
+              <p class="lead">
+                <div class="container">
+                  <span class="text-dark font-weight-bolder">Currently:</span>
+                    <span class="text-success font-weight-bold my-2">  $1699</span>
+                </div>
+                <br>
+                <div class="container">
+                  <span class="text-dark font-weight-bolder">Was:</span>
+                    <span class="text-danger font-weight-bold my-2">  $2,099.99</span>
+                </div>
+              </p>
+              <form class="d-flex justify-content-left mt-12">
+                <!-- Default input -->
+                <button class="btn btn-primary btn-md my-5 font-weight-bolder" href="#" type="submit">Bid NOW!
+                  <i class="fas fa-shopping-cart ml-1"></i>
+                </button>
 
-            <p class="lead">
-              <span class="text-dark font-weight-bolder"> $1699
-              </span>
-               <br>
-               <br>
-               <br>
-              <span class="text-danger"> Dropped from: $2,099.99</span>
-            </p>
+              </form>
+            </div>
+              
 
-            <form class="d-flex justify-content-left mt-12">
-              <!-- Default input -->
-              <button class="btn btn-primary btn-md my-5 p" href="#" type="submit">Bid NOW!
-                <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
-
-            </form>
+            
 
           </div>
           <!--Content-->
@@ -146,7 +141,7 @@
         <!--Grid column-->
         <div class="col-md-6 text-left ml-5 mb-3">
 
-          <h4 class="my-4">More Products:</h4>
+          <h4 class="my-4 font-weight-bolder">More Products:</h4>
 
           <!--
         <div id="productTable" class="productTable text-dark bg-light">
@@ -157,12 +152,10 @@
             </ul>
         </div>
         -->
-        <section class="grid-cards">
+      <section class="grid-cards">
         <div v-for="product in products" :key="product.id">
-          <div class="card">
-            <img
-                src="https://imgur.com/SKZolYE.png"
-              >
+            <div class="card">
+              <img src="https://imgur.com/SKZolYE.png">
             <div class="d-flex flex-row justify-content-between mb-0 px-3">
               <small class="text-muted mt-1">PRODUCT NAME:</small>
               <h6> {{ product.name }} </h6>
@@ -190,17 +183,115 @@
             </div>
             <small class="text-muted key pl-3">{{ product.category }}</small>
             <div class="mx-3 mt-3 mb-2">
-              <button
-                type="button"
-                class="btn btn-primary btn-block"
-              >
+              <button type="button" class="btn btn-primary btn-block">
                 <small>BID</small>
               </button>
             </div>
           </div>
         </div>
-        </section>
-
+      </section>
+        <!-- BID Modal -->
+        <div class="modal fade gradient-custom-HomePage border border-dark" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
+          <div class="modal-dialog border border-dark" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-primary text-light">
+                <h5 class="modal-title" id="exampleModalLabel">Current Bids!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-center">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">BID ID:</th>
+                      <th scope="col">Product Name</th>
+                      <th scope="col">Product Type</th>
+                      <th scope="col">Current Bid amount</th>
+                      <th scope="col"> Change Bid Amt</th>
+                      <th scope="col">Delete Bid</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                        <th scope="row">BID ID</th>
+                        <td>Product Name</td>
+                        <td>product type</td>
+                        <td>Curr $$</td>
+                        <td><input type="NewBid" class="form-control" id="exampleInputNewBid" aria-describedby="bidHelp" placeholder="$$"></td>
+                        <td><button class="btn btn-danger">Delete Bid</button></td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer bg-primary">
+                <button type="button" class="btn btn-secondary border border-dark" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary border border-dark">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---END BID MODAL-->
+        <!-- SEARCH Modal -->
+        <div class="modal fade gradient-custom-HomePage border border-dark" id="SearchModal" tabindex="-1" role="dialog" aria-labelledby="SearchModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-primary text-light">
+                <h5 class="modal-title" id="exampleModalLabel">Search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group align-content-center">
+                  <label class="text-dark" for="inputState">Product Category</label>
+                  <select id="inputState" class="form-control bg-secondary text-light border border-dark" v-model="category">
+                    <option selected>Choose...</option>
+                    <option>Electronics</option>
+                    <option>TV & Video</option>
+                    <option>Home Audio & Theater</option>
+                    <option>Portable Audio</option>
+                    <option>Computers</option>
+                    <option>Tablets</option>
+                    <option>Cell Phones</option>
+                    <option>Wearable Technology</option>
+                    <option>Cameras, Camcorders, & Drones</option>
+                    <option>Video Games</option>
+                    <option>Auto Electronics</option>
+                  </select>
+                </div>
+                <div class="form-group align-content-center">
+                  <label  class="text-dark" for="inputState">Screen Size</label>
+                  <select id="inputState" class="form-control bg-secondary text-light border border-dark" v-model="category">
+                    <option selected>Choose...</option>
+                    <option>less than 24 in. display</option>
+                    <option>32 in. display</option>
+                    <option>43 in. display</option>
+                    <option>55 in. display</option>
+                    <option>65 in. display</option>
+                    <option>75 in. display</option>
+                    <option>Greater than 75 in. display</option>
+                  </select>
+                </div>
+                <div class="form-group align-content-center">
+                  <label class="text-dark" for="inputState"> # of Ports</label>
+                  <select id="inputState" class="form-control bg-secondary text-light border border-dark" v-model="category">
+                    <option>1 port</option>
+                    <option>2 ports</option>
+                    <option>3 ports</option>
+                    <option>4 ports</option>
+                    <option>> 4 ports</option>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer bg-primary">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" href="UserSearch">Search!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---END SEARCH MODAL-->
         </div>
       </div>
     </div>
@@ -211,17 +302,14 @@
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
     <!--Copyright-->
-    <div class="footer-copyright py-3">
-      Product not final! CS360 Best Buy! Holly Keir, David Bush, Tracy Rountree 2022 
+    <div class="footer-copyright py-3 text-light">
+        CS360 Best Buy! Holly Keir, David Bush, Tracy Rountree 2022 
       <a href="/" target="_blank">  </a>
     </div>
     <!--/.Copyright-->
 
   </footer>
   </body>
-    
-
-
 </template>
 
 <script>
@@ -232,6 +320,7 @@ export default {
         show: false,
         users: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
         products: [ { id: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""}, ],
+        offers: [ { id: 2, penalty: 0.0, productId: 1, userId: 1, userAccept: false, vendorAccept: false, vendorId: 1},],
         currentUser: null,
     }
   },
@@ -274,7 +363,23 @@ export default {
         .catch(error => { console.log(error.response) });
     },
     //!PRODUCT FUNCTIONS===========================================================
+    //BIDDING FUNCTIONS================================================================
 
+  mounted: function() {
+    this.read_offers();
+  },
+  methods: {
+    toggle() {
+      this.acceptDecline = !this.acceptDecline;
+    },
+    read_offers: function() {
+      this.axios
+        .get("http://localhost:5000/api/offers")
+        .then(response => (this.offers = response.data))
+        .catch(error => { console.log(error.response) });
+    },
+  },
+    //!BIDDING FUNCTIONS================================================================
   }
 };
 
