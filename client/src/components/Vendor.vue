@@ -98,202 +98,12 @@
     <br>
   <!-- END OF VENDOR HEADER-->
   
-
-<!-- <div class="row">
-  <div class="column">
-    <div class="card">
-      <h3>Card 1</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <h3>Card 2</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-  
-  <div class="column">
-    <div class="card">
-      <h3>Card 3</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-  
-  <div class="column">
-    <div class="card">
-      <h3>Card 4</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="column">
-    <div class="card">
-      <h3>Card 1</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <h3>Card 2</h3>
-      <p>Some text</p>
-      <p>Some text</p>
-    </div>
-  </div>
-</div> -->
-
 <section class="grid-cards">
-  <!--
-  <div class="card">
-    <img
-        src="https://imgur.com/SKZolYE.png"
-      >
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRODUCT NAME:</small>
-      <h6> product.name </h6>
-    </div>
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRODUCT BRAND:</small>
-      <h6>Apple</h6>
-    </div>
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRICE:</small>
-      <h6>&dollar;869</h6>
-    </div>
-    <hr class="mt-2 mx-3" />
-    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-      <div class="d-flex flex-column">
-        <span class="text-muted">Description:</span>
-        <small>This is the description of the product being offered</small>
-      </div>
-    </div>
-    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-      <div class="d-flex flex-column">
-        <span class="text-muted">Size Details:</span>
-        <small>75 inch</small>
-      </div>
-    </div>
-    <small class="text-muted key pl-3">Cell Phones category</small>
-    <div class="mx-3 mt-3 mb-2">
-      <button
-        type="button"
-        class="btn btn-primary btn-block"
-      >
-        <small>EDIT</small>
-      </button>
-    </div>
-  </div>
-
-  
-  <div id="productTable" class="productTable text-dark bg-light">
-    <ul>
-      <li v-for="product in products" :key="product.id"> 
-        {{ product.name + " | $" + product.price + " | " + product.size + " | " + product.description + " | " + product.category + " | " + product.brand }}
-      </li>
-    </ul>
-  </div> 
-    
-
-  <div class="card">
-    <img
-        src="https://imgur.com/SKZolYE.png"
-      >
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRODUCT NAME:</small>
-        <li v-for="product in products" :key="product.id"> 
-          {{ product.name}}
-          <h6> hi </h6>
-          {{ product.id }}
-        </li>            
-    </div>
-
-
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRODUCT BRAND:</small>
-      <h6> apple </h6>
-    </div>
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRICE:</small>
-      <h6>&dollar;869</h6>
-    </div>
-    <hr class="mt-2 mx-3" />
-    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-      <div class="d-flex flex-column">
-        <span class="text-muted">Description:</span>
-        <small>This is the description of the product being offered</small>
-      </div>
-    </div>
-    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-      <div class="d-flex flex-column">
-        <span class="text-muted">Size Details:</span>
-        <small>75 inch</small>
-      </div>
-    </div>
-    <small class="text-muted key pl-3">Cell Phones category</small>
-    <div class="mx-3 mt-3 mb-2">
-      <button
-        type="button"
-        class="btn btn-primary btn-block"
-      >
-        <small>EDIT</small>
-      </button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img
-        src="https://imgur.com/SKZolYE.png"
-      >
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRODUCT NAME:</small>
-      <h6>iPhone 10</h6>
-    </div>
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRODUCT BRAND:</small>
-      <h6>Apple</h6>
-    </div>
-    <div class="d-flex flex-row justify-content-between mb-0 px-3">
-      <small class="text-muted mt-1">PRICE:</small>
-      <h6>&dollar;869</h6>
-    </div>
-    <hr class="mt-2 mx-3" />
-    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-      <div class="d-flex flex-column">
-        <span class="text-muted">Description:</span>
-        <small>This is the description of the product being offered</small>
-      </div>
-    </div>
-    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-      <div class="d-flex flex-column">
-        <span class="text-muted">Size Details:</span>
-        <small>75 inch</small>
-      </div>
-    </div>
-    <small class="text-muted key pl-3">Cell Phones category</small>
-    <div class="mx-3 mt-3 mb-2">
-      <button
-        type="button"
-        class="btn btn-primary btn-block"
-      >
-        <small>EDIT</small>
-      </button>
-    </div>
-  </div>
-  -->
   <div v-for="product in products" :key="product.id">
     <div class="card">
-      <img
-          src="https://imgur.com/SKZolYE.png"
-        >
+      <img 
+        :src="require(`../components/product_photos/product${product_types[product.category]}.jpg`)"
+        />
       <div class="d-flex flex-row justify-content-between mb-0 px-3">
         <small class="text-muted mt-1">PRODUCT NAME:</small>
         <h6> {{ product.name }} </h6>
@@ -335,7 +145,6 @@
 </section>
 
     <div class="container_page rounded-5">
-      <form>
         <h1><center>Product Regristration Form</center></h1>
         <div class="container_page rounded-5">
           <div class="row">
@@ -425,13 +234,12 @@
                 -->
               </div>
 
-              <button type="submit" class="btn btn-primary" @click="product_upload(id=-1, name=name, price=price, size=size, description=description, category=category, brand=productBrand, delete_=false)">
+              <button class="btn btn-primary" @click="product_upload(id=-1, name=name, price=price, size=size, description=description, category=category, brand=productBrand, delete_=false)">
                 Enter Product
               </button>
             </div>
           </div>
         </div>
-      </form>
     </div>
   </body>
 </template>
@@ -449,6 +257,7 @@ export default
       products: [
         { id: 0, vendorId: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""},
       ],
+      product_types: {'Electronics': 0, 'TV & Video': 1, 'Home Audio & Theater': 2, 'Portable Audio': 3, 'Computers': 4, 'Tablets': 5, 'Cell Phones': 6, 'Wearable Technology': 7, 'Cameras, Camcorders, & Drones': 8, 'Video Games': 9, 'Auto Electronics': 10},
       name: "",
       description: "",
       productBrand: "",
@@ -494,7 +303,6 @@ export default
         price: price,
         category: category,
       };
-      
       console.log(data);
       this.axios
         .post("http://localhost:5000/api/products", data)
