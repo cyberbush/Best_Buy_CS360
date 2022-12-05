@@ -155,7 +155,9 @@
       <section class="grid-cards">
         <div v-for="product in products" :key="product.id">
             <div class="card">
-              <img src="https://imgur.com/SKZolYE.png">
+              <img 
+                :src="require(`../../components/product_photos/product${product_types[product.category]}.jpg`)"
+              >
             <div class="d-flex flex-row justify-content-between mb-0 px-3">
               <small class="text-muted mt-1">PRODUCT NAME:</small>
               <h6> {{ product.name }} </h6>
@@ -183,7 +185,7 @@
             </div>
             <small class="text-muted key pl-3">{{ product.category }}</small>
             <div class="mx-3 mt-3 mb-2">
-              <button type="button" class="btn btn-primary btn-block">
+              <button type="button" class="btn btn-primary btn-block" @click="create_bid(product.id)">
                 <small>BID</small>
               </button>
             </div>
@@ -208,19 +210,29 @@
                       <th scope="col">Product Name</th>
                       <th scope="col">Product Type</th>
                       <th scope="col">Current Bid amount</th>
-                      <th scope="col"> Change Bid Amt</th>
+                      <th scope="col">Change Bid Amt</th>
                       <th scope="col">Delete Bid</th>
                     </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                        <th scope="row">BID ID</th>
-                        <td>Product Name</td>
-                        <td>product type</td>
-                        <td>Curr $$</td>
+                     <!-- <tr>
+                        <th scope="row"> Test id </th>
+                        <td>Test </td>
+                        <td>Test</td>
+                        <td>Test</td>
                         <td><input type="NewBid" class="form-control" id="exampleInputNewBid" aria-describedby="bidHelp" placeholder="$$"></td>
                         <td><button class="btn btn-danger">Delete Bid</button></td>
+                      </tr> -->
+                    <div v-for="offer in offers" :key="offer.id">
+                      <tr>
+                        <th scope="row">{{ offer.id }}</th>
+                        <td>{{ offer.product.name }}</td>
+                        <td>{{ offer.product.category }}</td>
+                        <td>{{ offer.product.price }}</td>
+                        <td><input type="NewBid" class="form-control" id="exampleInputNewBid" aria-describedby="bidHelp" placeholder="$$"></td>
+                        <td><button class="btn btn-danger" @click="remove_bid(offer.id)">Delete Bid</button></td>
                       </tr>
+                    </div>
                   </tbody>
                 </table>
               </div>
@@ -318,15 +330,18 @@ export default {
   data() {
     return {
         show: false,
+        currentUser: null,
         users: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
         products: [ { id: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""}, ],
-        offers: [ { id: 2, penalty: 0.0, productId: 1, userId: 1, userAccept: false, vendorAccept: false, vendorId: 1},],
-        currentUser: null,
-    }
+        product_types: {'Electronics': 0, 'TV & Video': 1, 'Home Audio & Theater': 2, 'Portable Audio': 3, 'Computers': 4, 'Tablets': 5, 'Cell Phones': 6, 'Wearable Technology': 7, 'Cameras, Camcorders, & Drones': 8, 'Video Games': 9, 'Auto Electronics': 10},
+        offers: [ { id: 2, penalty: 0.0, product: null, user: null, userAccept: false, vendorAccept: false, vendor: null},],
+        category: "",
+      }
   },
   mounted: function() {
     this.read_users();
     this.read_products();
+    this.read_offers();
   },
   methods: {
     //USERS FUNCTIONS===========================================================
@@ -362,25 +377,44 @@ export default {
         .then(response => (this.products = response.data))
         .catch(error => { console.log(error.response) });
     },
+    find_product: function(id) {
+      product = null;
+      this.axios
+        .get(`http://localhost:5000/api/products?productId=${id}`)
+        .then(response => (product = response.data))
+        .catch(error => { console.log(error.response) });
+      return product
+    },
     //!PRODUCT FUNCTIONS===========================================================
-    //BIDDING FUNCTIONS================================================================
 
-  mounted: function() {
-    this.read_offers();
-  },
-  methods: {
-    toggle() {
+  //BIDDING FUNCTIONS================================================================
+    toggle: function() {
       this.acceptDecline = !this.acceptDecline;
     },
     read_offers: function() {
       this.axios
         .get("http://localhost:5000/api/offers")
-        .then(response => (this.offers = response.data))
+        .then(response => {
+          this.offers = response.data;
+        })
+        .catch(error => { console.log(error.response) });
+    },
+    create_bid: function(productId) {
+      var data = { userId: this.currentUser.id, productId: productId };
+      this.axios
+        .post("http://localhost:5000/api/offers", data)
+        .then(response => (status  = response.data))
+        .catch(error => { console.log(error.response) });
+    },
+    remove_bid: function(offerId) {
+      var data = { id: offerId, delete: true }
+      this.axios
+        .post("http://localhost:5000/api/offers", data)
+        .then(response => (status  = response.data))
         .catch(error => { console.log(error.response) });
     },
   },
     //!BIDDING FUNCTIONS================================================================
-  }
 };
 
 </script>

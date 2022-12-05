@@ -83,9 +83,9 @@ class ProductsSchema(ma.SQLAlchemyAutoSchema):
 class Offers(db.Model):
     # Use Column to define a column. 
     id = db.Column(db.Integer, primary_key=True)
-    vendorId = db.Column(db.Integer, nullable=False)
-    userId = db.Column(db.Integer, nullable=False)
-    productId = db.Column(db.Integer, nullable=False)
+    vendor = db.Column(db.JSON, nullable=False)
+    user = db.Column(db.JSON, nullable=False)
+    product = db.Column(db.JSON, nullable=False)
     penalty = db.Column(db.Float, nullable=False)
     vendorAccept = db.Column(db.Boolean, nullable=False, default=False)
     userAccept = db.Column(db.Boolean, nullable=False, default=True)
@@ -114,12 +114,13 @@ def initialize_database():
         vendor1 = Vendor(firstName='Vendor1', lastName='V', email='vendor1@gmail.com', password='123')
         db.session.add(vendor1)  
         # Add initial products
-        product1 = Products(vendorId=1, name='product1', price=0.0, description='productDescription1', brand='productBrand1', category='category1', size=0.0)
-        product2 = Products(vendorId=2, name='product2', price=0.0, description='productDescription2', brand='productBrand2', category='category2', size=0.0)
+        product1 = Products(vendorId=1, name='product1', price=0.0, description='productDescription1', brand='productBrand1', category='Electronics', size=0.0)
+        product2 = Products(vendorId=2, name='product2', price=0.0, description='productDescription2', brand='productBrand2', category='Electronics', size=0.0)
         db.session.add(product1)
         db.session.add(product2)
+        db.session.commit()
         # Add initial offer
-        offer1 = Offers(vendorId=1, userId=1, productId=1, penalty=50)
+        offer1 = Offers(vendor=VendorSchema().dump(vendor1), user=UserSchema().dump(user1), product=ProductsSchema().dump(product1), penalty=50)
         db.session.add(offer1)  
         # add and then commit to apply changes
         db.session.commit()
@@ -131,6 +132,11 @@ def query_users():
     output = users_schema.dump(users)
     return output
 
+def find_user(id):
+    user = User.query.get(id)
+    user_out = UserSchema().dump(user)
+    return user_out    
+
 def query_vendors():
     vendors = Vendor.query.all()
     vendors_schema = VendorSchema(many=True)
@@ -138,12 +144,23 @@ def query_vendors():
     output = vendors_schema.dump(vendors)
     return output
 
+def find_vendor(id):
+    vendor = Vendor.query.get(id)
+    vendor_out = VendorSchema().dump(vendor)
+    return vendor_out    
+
 def query_products():
     products = Products.query.all()
     products_schema = ProductsSchema(many=True)
     # convert the sql result into python dictionary that can be jsonify
     output = products_schema.dump(products)
     return output
+
+def find_product(id):
+    product = Products.query.get(id)
+    product_out = ProductsSchema().dump(product)
+    # print('Product: ', product_out)
+    return product_out
 
 def query_offers():
     offers = Offers.query.all()
@@ -216,12 +233,15 @@ def modify_products( id=-1, vendorId=0, name='', price=0.0, size=0.0, descriptio
     # apply changes
     db.session.commit()
 
-def modify_offers(id=0, vendorId=0, userId=0, productId=0, penalty=0.0, vendorAccept=False, userAccept=False, delete=False):
+def modify_offers(id=0, userId=0, productId=0, penalty=0.0, vendorAccept=False, userAccept=False, delete=False):
     if delete == True:
         existing_offer = Offers.query.get(id)
         db.session.delete(existing_offer)
     else:
-        new_offer = Offers( vendorId=vendorId, userId=userId, productId=productId, penalty=penalty, vendorAccept=vendorAccept, userAccept=userAccept)
+        user = find_user(userId)
+        product = find_product(productId)
+        vendor = find_vendor(product['vendorId'])
+        new_offer = Offers( vendor=vendor, user=user, product=product, penalty=penalty, vendorAccept=vendorAccept, userAccept=userAccept)
         db.session.add(new_offer)
     # apply changes
     db.session.commit()
@@ -281,8 +301,16 @@ def loginVendor():
 @app.route('/api/products', methods = ['GET', 'POST'])
 def products():
     if request.method == 'GET': 
-        output = query_products()
-        return jsonify(output)
+        args = request.args
+        # print(args)
+        if args: # return single product
+            product_Id = args.get('productId')
+            # print(product_Id)
+            product = find_product(product_Id)
+            return product
+        else: # return all products
+            output = query_products()
+            return jsonify(output)
     elif request.method == 'POST':
         products_args = request.get_json()
         # print(products_args)
