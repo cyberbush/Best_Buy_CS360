@@ -36,12 +36,7 @@ class User(db.Model):
     lastName = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    # password_hash = db.Column(db.String(128))
-    # def hash_password(self, password):
-    #     self.password_hash = pwd_context.encrypt(password)
-
-    # def verify_password(self, password):
-    #     return pwd_context.verify(password, self.password_hash)
+    options = db.Column(db.JSON, nullable=False)
 # Setup User Schema
 class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
@@ -108,7 +103,8 @@ def initialize_database():
     except:
         db.create_all()
         # Add initial user
-        user1 = User(firstName='Joe', lastName='Vandal', email='joe@vandal.com', password='123')
+        option1 = {'category': False, 'price': False, 'description': False, 'brand': False, 'size': False}
+        user1 = User(firstName='Joe', lastName='Vandal', email='joe@vandal.com', password='123', options=option1)
         db.session.add(user1)        
         # Add initial vendor
         vendor1 = Vendor(firstName='Vendor1', lastName='V', email='vendor1@gmail.com', password='123')
@@ -169,20 +165,23 @@ def query_offers():
     output = offers_schema.dump(offers)
     return output
 
-def modify_users( id=-1, email='', firstName='', lastName='', password='', delete=False):
+def modify_users( id=-1, email='', firstName='', lastName='', password='', options=None, delete=False):
     if id == -1:
         # if the id is not specified, then we add a new user
         if email is None or password is None:
             os.abort(400) # missing arguments
         if User.query.filter_by(email = email).first() is not None:
             os.abort(400) # existing user
-        new_user = User(email = email, firstName=firstName, lastName=lastName, password=password)
+        option = {'category': False, 'price': False, 'description': False, 'brand': False, 'size': False}
+        new_user = User(email = email, firstName=firstName, lastName=lastName, password=password, options=option)
         db.session.add(new_user)
     else:
         # if the id already exist, then modify the existing item
         existing_user = User.query.get(id)
         if delete == True:
             db.session.delete(existing_user)
+        elif options: # add preferences
+            existing_user.options = options
         else:
             existing_user.firstName = firstName
             existing_user.lastName = lastName
@@ -245,6 +244,32 @@ def modify_offers(id=0, userId=0, productId=0, penalty=0.0, vendorAccept=False, 
         db.session.add(new_offer)
     # apply changes
     db.session.commit()
+
+def calculate_matches(id=-1):
+    if id == -1: # Error
+        return jsonify(status='Error no user found')
+    else:
+        exactProd = {'id': 0, 'score': 0}
+        user = find_user(id)
+        options = user['options']
+        products = query_products()
+        for product in products: # go through all products
+            exactScore = 0
+            for option in options: # go through options and check if they match product
+                opt_val = options[option]
+                prod_val = product[option]
+                if opt_val: # if option is set 
+                    if option == 'price' and prod_val <= opt_val: # price of product less or equal to price of option
+                        exactScore += 1                        
+                    elif option == 'description' and opt_val in prod_val: # option description substring of product description
+                        exactScore += 1
+                    elif product[option] == options[option]: # if product and option match
+                        exactScore += 1
+            if exactScore >= exactProd['score']: # check and update exact product
+                exactProd['id'] = product['id']
+                exactProd['score'] = exactScore
+        exactMatch = find_product(exactProd['id'])
+        return exactMatch
 
 #-------------------------------------------
 #---------- End Utility Functions ----------
@@ -327,6 +352,13 @@ def offers():
         # print(offers_args)
         modify_offers(**offers_args)
         return jsonify(status='modify success')
+
+@app.route('/api/match', methods = ['POST'])
+def match():
+    match_args = request.get_json()
+    # print(offers_args)
+    matched_products = calculate_matches(**match_args)
+    return jsonify(matched_products)
 
 #-------------------------------------------
 #---------------- End APIs -----------------

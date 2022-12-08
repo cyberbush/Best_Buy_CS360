@@ -156,7 +156,7 @@
         <div v-for="product in products" :key="product.id">
             <div class="card">
               <img 
-                :src="require(`../../components/product_photos/product${product_types[product.category]}.jpg`)"
+                :src="require(`../../components/product_photos/product${productTypes[product.category]}.jpg`)"
               >
             <div class="d-flex flex-row justify-content-between mb-0 px-3">
               <small class="text-muted mt-1">PRODUCT NAME:</small>
@@ -333,9 +333,14 @@ export default {
         currentUser: null,
         users: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
         products: [ { id: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""}, ],
-        product_types: {'Electronics': 0, 'TV & Video': 1, 'Home Audio & Theater': 2, 'Portable Audio': 3, 'Computers': 4, 'Tablets': 5, 'Cell Phones': 6, 'Wearable Technology': 7, 'Cameras, Camcorders, & Drones': 8, 'Video Games': 9, 'Auto Electronics': 10},
+        productTypes: {'Electronics': 0, 'TV & Video': 1, 'Home Audio & Theater': 2, 'Portable Audio': 3, 'Computers': 4, 'Tablets': 5, 'Cell Phones': 6, 'Wearable Technology': 7, 'Cameras, Camcorders, & Drones': 8, 'Video Games': 9, 'Auto Electronics': 10},
+        matchedProducts: null,
         offers: [ { id: 2, penalty: 0.0, product: null, user: null, userAccept: false, vendorAccept: false, vendor: null},],
-        category: "",
+        category: false,
+        brand: false,
+        description: false,
+        size: false,
+        price: false,
       }
   },
   mounted: function() {
@@ -361,11 +366,19 @@ export default {
         })
         .catch(error => { console.log(error.response) });
     },
+    update_user: function(id) {
+      var options = {category: this.category , price: this.price, description: this.description, brand: this.brand, size: this.size};
+      var data = { id: id, options: options };
+      this.axios
+        .post("http://localhost:5000/api/users", data)
+        .then(response => (status = response.data))
+        .catch(error => { console.log(error.response) });
+    },
     delete_user: function(id) {
       var data = {'delete': true, 'id': id };
       this.axios
         .post("http://localhost:5000/api/users", data)
-        .then(response => (this.users = response.data))
+        .then(response => (status = response.data))
         .catch(error => { console.log(error.response) });
     },
     //!USERS FUNCTIONS===========================================================
@@ -378,12 +391,19 @@ export default {
         .catch(error => { console.log(error.response) });
     },
     find_product: function(id) {
-      product = null;
+      var product = null;
       this.axios
         .get(`http://localhost:5000/api/products?productId=${id}`)
         .then(response => (product = response.data))
         .catch(error => { console.log(error.response) });
       return product
+    },
+    match_product: function(userId) {
+      var data = { id: userId };
+      this.axios
+        .post(`http://localhost:5000/api/match`, data)
+        .then(response => (this.matchedProducts = response.data))
+        .catch(error => { console.log(error.response) })
     },
     //!PRODUCT FUNCTIONS===========================================================
 
