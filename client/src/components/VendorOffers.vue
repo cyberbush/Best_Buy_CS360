@@ -106,23 +106,22 @@
 
   <div v-for="offer in offers" :key="offer.id">
     <div class="card2" >
-      
-        <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.firstName + " " + offer.lastName}} </small> </h4>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{products.name + "(" + offer.productId + ")"}} </small> </h4>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + products.price}} </small> </h4>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
-        <div class="ui buttons big">
-          <button
-            class="btn btn-success"
-            @click="accept_offers(offer.id)" 
-            :class="[acceptDecline ? 'active' : '']">Accept</button>
-          <button
-            class="btn btn-danger"
-            @click="remove_offers(offer.id)"
-            :class="[!acceptDecline ? 'active' : '']">Decline</button>
-        </div>
+      <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.firstName + " " + offer.lastName}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{products.name + "(" + offer.productId + ")"}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + products.price}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
+      <div class="ui buttons big">
+        <button
+          class="btn btn-success"
+          @click="accept_offers(offer.id)" 
+          :class="[!acceptDecline ? 'active' : '']">Accept</button>
+        <button
+          class="btn btn-danger"
+          @click="remove_offers(offer.id)"
+          :class="[!acceptDecline ? 'active' : '']">Decline</button>
+      </div>
     </div>
-</div>
+  </div>
 
 
     </body>

@@ -65,8 +65,7 @@
                   {{ currentVendor.firstName }}
                   </button>
                   <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item bg-primary" href="#">Settings</a>
-                    <a class="dropdown-item bg-primary" href="#">Offers</a>
+                    <a type="button" class="dropdown-item bg-primary"  data-toggle="modal" data-target="#BidModal">View Offers</a>
                     <a class="dropdown-item bg-primary" href="/">Logout!</a>
                   </div>
                 </div>
@@ -238,6 +237,61 @@
           </div>
         </div>
     </div>
+  
+  <!-- BID Modal -->
+  <div class="modal fade gradient-custom-HomePage border border-dark" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
+    <div class="modal-dialog border border-dark" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-light">
+          <h5 class="modal-title" id="exampleModalLabel">Offers!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div v-for="offer in offers" :key="offer.id">
+            <div class="card2" >
+              <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.firstName + " " + offer.lastName}} </small> </h4>
+              <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{products.name + "(" + offer.productId + ")"}} </small> </h4>
+              <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + products.price}} </small> </h4>
+              <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
+              <div class="ui buttons big">
+                <button
+                  class="btn btn-success"
+                  @click="accept_offers(offer.id)" 
+                  :class="[acceptDecline ? 'active' : '']">Accept</button>
+                <button
+                  class="btn btn-danger"
+                  @click="remove_offers(offer.id)"
+                  :class="[!acceptDecline ? 'active' : '']">Decline</button>
+              </div>
+           </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- END of Modal -->
+
+  <div v-for="offer in offers" :key="offer.id">
+    <div class="card2" >
+      <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.firstName + " " + offer.lastName}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{products.name + "(" + offer.productId + ")"}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + products.price}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
+      <div class="ui buttons big">
+        <button
+          class="btn btn-success"
+          @click="accept_offers(offer.id)" 
+          :class="[acceptDecline ? 'active' : '']">Accept</button>
+        <button
+          class="btn btn-danger"
+          @click="remove_offers(offer.id)"
+          :class="[!acceptDecline ? 'active' : '']">Decline</button>
+      </div>
+    </div>
+  </div>
+  
   </body>
 </template>
 
@@ -255,6 +309,7 @@ export default
         { id: 0, vendorId: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""},
       ],
       product_types: {'Electronics': 0, 'TV & Video': 1, 'Home Audio & Theater': 2, 'Portable Audio': 3, 'Computers': 4, 'Tablets': 5, 'Cell Phones': 6, 'Wearable Technology': 7, 'Cameras, Camcorders, & Drones': 8, 'Video Games': 9, 'Auto Electronics': 10},
+      offers: [ { id: 2, penalty: 0.0, product: null, user: null, userAccept: false, vendorAccept: false, vendor: null},],
       name: "",
       description: "",
       productBrand: "",
@@ -266,6 +321,7 @@ export default
   mounted: function() {
     this.read_vendors();
     this.read_products();
+    this.read_offers();
 
   },
   methods: 
@@ -323,6 +379,26 @@ export default
         .then(response => (status  = response.data))
         .catch(error => { console.log(error.response) });
     },
+    read_offers: function() {
+      this.axios
+        .get("http://localhost:5000/api/offers")
+        .then(response => (this.offers = response.data))
+        .catch(error => { console.log(error.response) });
+    },
+    remove_offers: function(id) {
+      var data = { id: id, delete: true }
+      this.axios
+        .post("http://localhost:5000/api/offers", data)
+        .then(response => (status  = response.data))
+        .catch(error => { console.log(error.response) });
+    },
+    accept_offers: function(id){
+      var data = {id: id, vendorAccept: true}
+      this.axios 
+        .post("http://localhost:5000/api/offers", data)
+        .then(response => (status  = response.data))
+        .catch(error => { console.log(error.response) });
+    }
 
   },
 };
@@ -388,6 +464,45 @@ h3, p {
   padding-left: ($spacer * 0.45) !important;
   padding-right: ($spacer * 0.45) !important;
 }
+
+    .card2 {
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+      background-color: #f1f1f1;
+      border:none;
+      text-align: center;
+      padding: 20px, 20px;
+      padding-top: 30px;
+      width: 860px;
+      height: 270px;
+      margin: 10px auto;
+    }
+
+    .card2::after {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .card2:hover {
+
+
+      transform: scale(1.02, 1.02);
+      -webkit-transform: scale(1.02, 1.02);
+      backface-visibility: hidden; 
+      will-change: transform;
+      box-shadow: 0 1rem 3rem rgba(0,0,0,.75) !important;
+    }
+
+    .card2:hover::after {
+      opacity: 1;
+    }
+
+    .card2:hover .btn-outline-primary{
+      color:white;
+      background:#007bff;
+    }
 
 
 /* Cards */
