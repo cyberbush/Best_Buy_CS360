@@ -239,7 +239,7 @@
     </div>
   
   <!-- BID Modal -->
-  <div class="modal fade gradient-custom-HomePage border border-dark" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade gradient-custom-HomePage border border-dark" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
     <div class="modal-dialog border border-dark" role="document">
       <div class="modal-content">
         <div class="modal-header bg-primary text-light">
@@ -269,15 +269,15 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 <!-- END of Modal -->
 
   <div v-for="offer in offers" :key="offer.id">
     <div class="card2" >
-      <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.firstName + " " + offer.lastName}} </small> </h4>
-      <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{products.name + "(" + offer.productId + ")"}} </small> </h4>
-      <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + products.price}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.user.firstName + " " + offer.user.lastName}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{offer.product.name + " (" + offer.product.id + ")"}} </small> </h4>
+      <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + offer.product.price}} </small> </h4>
       <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
       <div class="ui buttons big">
         <button
@@ -305,6 +305,7 @@ export default
       currentVendor: null, // Keep track of the logged in Vendor
       vendors: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
       productNumber: {},
+      acceptDecline: true,
       products: [
         { id: 0, vendorId: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""},
       ],
@@ -318,9 +319,11 @@ export default
       category: "",
     };
   },
-  mounted: function() {
+  mounted: async function() {
     this.read_vendors();
+    await this.sleep(1000); // add small delay
     this.read_products();
+    await this.sleep(1000); // add small delay
     this.read_offers();
 
   },
@@ -333,7 +336,7 @@ export default
         }
       })
     },
-    read_vendors: function() {
+    read_vendors: async function() {
       this.axios
         .get("http://localhost:5000/api/vendors")
         .then(response => {
@@ -364,11 +367,23 @@ export default
           console.log(error.response);
         });
     },
+    load_products: function() {
+      var currProducts = [];
+      this.products.forEach( product => {
+        if (product.vendorId == this.currentVendor.id) {
+          currProducts.push(product);
+        }
+      })
+      this.products = currProducts;
+    },
     read_products: function() {
       this.axios
       //go through all products and just get those of that vendor id... load vendor and save those to list instead
         .get("http://localhost:5000/api/products")
-        .then(response => (this.products = response.data))
+        .then(response => {
+          this.products = response.data;
+          this.load_products();
+          })
         .catch(error => { console.log(error.response) });
     },
     
@@ -379,10 +394,22 @@ export default
         .then(response => (status  = response.data))
         .catch(error => { console.log(error.response) });
     },
+    load_offers: function() {
+      var currOffers = [];
+      this.offers.forEach( offer => {
+        if (offer.vendor.id == this.currentVendor.id) {
+          currOffers.push(offer);
+        }
+      })
+      this.offers = currOffers;
+    },
     read_offers: function() {
       this.axios
         .get("http://localhost:5000/api/offers")
-        .then(response => (this.offers = response.data))
+        .then(response => {
+          this.offers = response.data;
+          this.load_offers();
+          })
         .catch(error => { console.log(error.response) });
     },
     remove_offers: function(id) {

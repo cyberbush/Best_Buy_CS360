@@ -420,7 +420,7 @@ export default {
         .catch(error => { console.log(error.response) });
     },
     create_bid: function(productId) {
-      var data = { userId: this.currentUser.id, productId: productId };
+      var data = { userId: this.currentUser.id, productId: productId, userAccept: true };
       this.axios
         .post("http://localhost:5000/api/offers", data)
         .then(response => (status  = response.data))

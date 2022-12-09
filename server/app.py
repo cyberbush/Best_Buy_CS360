@@ -232,10 +232,13 @@ def modify_products( id=-1, vendorId=0, name='', price=0.0, size=0.0, descriptio
     # apply changes
     db.session.commit()
 
-def modify_offers(id=0, userId=0, productId=0, penalty=0.0, vendorAccept=False, userAccept=False, delete=False):
+def modify_offers(id=-1, userId=0, productId=0, penalty=0.0, vendorAccept=False, userAccept=True, delete=False):
     if delete == True:
         existing_offer = Offers.query.get(id)
         db.session.delete(existing_offer)
+    elif id != -1:
+        existing_offer = Offers.query.get(id)
+        existing_offer.vendorAccept = vendorAccept
     else:
         user = find_user(userId)
         product = find_product(productId)
