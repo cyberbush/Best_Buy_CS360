@@ -37,7 +37,7 @@
                   </a>
                   <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-justify" href="/">Home </a>
-                    <a class="dropdown-item text-justify" href="VendorOffers">Offers </a>
+                    <a class="dropdown-item text-justify" href="/VendorOffers">Offers </a>
                     <a class="dropdown-item text-justify" href="vendor">Vendors </a>
                   </div>
                 </li>
@@ -66,7 +66,7 @@
                   </button>
                   <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item bg-primary" href="#">Settings</a>
-                    <a class="dropdown-item bg-primary" href="#">Edit Profile</a>
+                    <a class="dropdown-item bg-primary" href="#">Offers</a>
                     <a class="dropdown-item bg-primary" href="/">Logout!</a>
                   </div>
                 </div>
@@ -131,11 +131,8 @@
       </div>
       <small class="text-muted key pl-3">{{ product.category }}</small>
       <div class="mx-3 mt-3 mb-2">
-        <button
-          type="button"
-          class="btn btn-primary btn-block"
-        >
-          <small>EDIT</small>
+        <button type="button" class="btn btn-primary btn-block" @click="remove_products(product.id)">
+          <small>DELETE</small>
         </button>
       </div>
     </div>
@@ -313,10 +310,20 @@ export default
     },
     read_products: function() {
       this.axios
+      //go through all products and just get those of that vendor id... load vendor and save those to list instead
         .get("http://localhost:5000/api/products")
         .then(response => (this.products = response.data))
         .catch(error => { console.log(error.response) });
     },
+    
+    remove_products: function(id) {
+      var data = { id: id, delete: true }
+      this.axios
+        .post("http://localhost:5000/api/products", data)
+        .then(response => (status  = response.data))
+        .catch(error => { console.log(error.response) });
+    },
+
   },
 };
 </script>

@@ -37,7 +37,7 @@
                   </a>
                   <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-justify" href="/">Home </a>
-                    <a class="dropdown-item text-justify" href="VendorOffers">Offers </a>
+                    <a class="dropdown-item text-justify" href="/VendorOffers">Offers </a>
                     <a class="dropdown-item text-justify" href="vendor">Vendors </a>
                   </div>
                 </li>
@@ -96,20 +96,29 @@
         </div>
 <br>
 
+<div class="container_page rounded-5">
+  <div class="col-7 text-center mx-auto container-fluid">
+    <div class="row bg-primary text-lg-center font-weight-bolder">
+      <h2_User> Offers </h2_User>
+    </div>
+  </div>
+</div>
+
   <div v-for="offer in offers" :key="offer.id">
     <div class="card2" >
       
-        <h2 style="color:black; line-height: 20px;" > Offer: From {{offer.vendorId}} </h2>
+        <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.firstName + " " + offer.lastName}} </small> </h4>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{products.name + "(" + offer.productId + ")"}} </small> </h4>
+        <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + products.price}} </small> </h4>
         <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
-        <h4 style="color:black; text-align: left; line-height: 2px;"> Product ID: <small> {{offer.productId}} </small> </h4>
         <div class="ui buttons big">
           <button
             class="btn btn-success"
-            @click="toggle"
+            @click="accept_offers(offer.id)" 
             :class="[acceptDecline ? 'active' : '']">Accept</button>
           <button
             class="btn btn-danger"
-            @click="toggle"
+            @click="remove_offers(offer.id)"
             :class="[!acceptDecline ? 'active' : '']">Decline</button>
         </div>
     </div>
@@ -124,7 +133,14 @@ export default {
   data() {
     return {
       // acceptDecline: true,
-      offers: [ { id: 2, penalty: 0.0, productId: 1, userId: 1, userAccept: false, vendorAccept: false, vendorId: 1}, ],
+      show: false,
+      currentUser: null,
+      users: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
+      offers: [ { id: 2, penalty: 0.0, product: null, user: null, userAccept: false, vendorAccept: false, vendor: null},],
+      products: [ { id: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""}, ],
+
+    
+
     };
   },
   mounted: function() {
@@ -134,12 +150,27 @@ export default {
     toggle() {
       this.acceptDecline = !this.acceptDecline;
     },
+    
     read_offers: function() {
       this.axios
         .get("http://localhost:5000/api/offers")
         .then(response => (this.offers = response.data))
         .catch(error => { console.log(error.response) });
     },
+    remove_offers: function(id) {
+      var data = { id: id, delete: true }
+      this.axios
+        .post("http://localhost:5000/api/offers", data)
+        .then(response => (status  = response.data))
+        .catch(error => { console.log(error.response) });
+    },
+    accept_offers: function(id){
+      var data = {id: id, vendorAccept: true}
+      this.axios 
+        .post("http://localhost:5000/api/offers", data)
+        .then(response => (status  = response.data))
+        .catch(error => { console.log(error.response) });
+    }
   },
 };
 
@@ -156,8 +187,8 @@ export default {
       padding: 20px, 20px;
       padding-top: 30px;
       width: 860px;
-      height: 250px;
-      margin: 0 auto;
+      height: 270px;
+      margin: 10px auto;
     }
 
     .card2::after {
