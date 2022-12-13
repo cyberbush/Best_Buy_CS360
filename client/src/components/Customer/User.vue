@@ -134,7 +134,58 @@
       <!--Grid row-->
 
       <hr>
-
+      <!-- ***Just added this for now should be updated -->
+      <div class="container">
+        <button type="button" class="btn btn-primary btn-block" @click="match_product(currentUser.id)">
+          <h5>MATCH</h5>
+        </button>
+      </div>
+      <!-- Here are the MATCHED Products -->
+      <section v-if="matched" class="grid-cards">
+        <div v-for="(index, product) in matchedProducts" :key="product.id">
+            <div class="card">
+              <img 
+                :src="require(`../../components/product_photos/product${productTypes[product.category]}.jpg`)"
+              >
+            <div class="d-flex flex-row justify-content-between mb-0 px-3">
+              <h4 v-if="index==0" class="text-muted mt-1">Exact Match</h4>
+              <h4 v-if="index==1" class="text-muted mt-1">Best Match</h4>
+              <h4 v-if="index==2" class="text-muted mt-1">Lowest Match</h4>
+            </div>
+            <div class="d-flex flex-row justify-content-between mb-0 px-3">
+              <small class="text-muted mt-1">PRODUCT NAME:</small>
+              <h6> {{ product.name }} </h6>
+            </div>
+            <div class="d-flex flex-row justify-content-between mb-0 px-3">
+              <small class="text-muted mt-1">PRODUCT BRAND:</small>
+              <h6>{{ product.brand }}</h6>
+            </div>
+            <div class="d-flex flex-row justify-content-between mb-0 px-3">
+              <small class="text-muted mt-1">PRICE:</small>
+              <h6>&dollar; {{ product.price }}</h6>
+            </div>
+            <hr class="mt-2 mx-3" />
+            <div class="d-flex flex-row justify-content-between px-3 pb-3">
+              <div class="d-flex flex-column">
+                <span class="text-muted">Description:</span>
+                <small>{{ product.description }}</small>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-between px-3 pb-3">
+              <div class="d-flex flex-column">
+                <span class="text-muted">Size Details:</span>
+                <small>{{ product.size }} inch</small>
+              </div>
+            </div>
+            <small class="text-muted key pl-3">{{ product.category }}</small>
+            <div class="mx-3 mt-3 mb-2">
+              <button type="button" class="btn btn-primary btn-block" @click="create_bid(product.id)">
+                <small>BID</small>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
       <!--Grid row-->
       <div class="row d-flex justify-content-left wow fadeIn">
 
@@ -153,7 +204,7 @@
         </div>
         -->
       <section class="grid-cards">
-        <div v-for="product in products" :key="product.id">
+        <div v-for="(product, index) in paginated" :key="product.id">
             <div class="card">
               <img 
                 :src="require(`../../components/product_photos/product${productTypes[product.category]}.jpg`)"
@@ -191,6 +242,22 @@
             </div>
           </div>
         </div>
+        <!-- ***Just added this for now should be updated -->
+        <ul class="pagination-list">
+          <li>
+            <a @click="prev()"> Prev </a>
+          </li>
+          <li>
+            <span
+              class="pagination-link go-to has-text-orange"
+              aria-label="Goto page 1"
+              >{{ current }}</span
+            >
+          </li>
+          <li>
+            <a @click="next()"> Next </a>
+          </li>
+        </ul>
       </section>
         <!-- BID Modal -->
         <div class="modal fade gradient-custom-HomePage border border-dark" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
@@ -281,22 +348,22 @@
                   </select>
                 </div>
                 <div class="form-group align-content-center">
-                  <h4 class="text-dark">Low Price:</h4>
-                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="$" aria-label="$"></input>
+                  <!-- <h4 class="text-dark">Low Price:</h4> -->
+                  <!-- <input class="form-control form-control-sm border border-dark" type="text" placeholder="$" aria-label="$"></input> -->
                   <h4 class="text-dark">High Price:</h4>
-                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="$$$$$$$" aria-label="$$$$$$$"></input>
+                  <input class="form-control form-control-sm border border-dark" type="number" placeholder="$$$$$$$" aria-label="$$$$$$$" v-model="price"></input>
                   <h4 class="text-dark">Discription:</h4>
-                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="Desctption of product you are looking for:" aria-label="Desctption of product you are looking for:"></input>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="Desctption of product you are looking for:" aria-label="Desctption of product you are looking for:" v-model="description"></input>
                   <h4 class="text-dark">Brand:</h4>
-                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="LG/VIZIO/PANASNIC/SONY/etc..." aria-label="LG/VIZIO/PANASNIC/SONY/etc..."></input>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="LG/VIZIO/PANASNIC/SONY/etc..." aria-label="LG/VIZIO/PANASNIC/SONY/etc..." v-model="brand"></input>
                   <h4 class="text-dark">Size Dimensions:</h4>
-                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="32 in./60 in./72 in." aria-label="32 in./60 in./72 in."></input>
+                  <input class="form-control form-control-sm border border-dark" type="number" placeholder="32 in./60 in./72 in." aria-label="32 in./60 in./72 in." v-model="size"></input>
                 </div>
               </div>
               
               <div class="modal-footer bg-primary">
                 <button type="button" class="btn btn-secondary border border-dark" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success border border-dark" href="UserSearch">Save Settings</button>
+                <button type="button" class="btn btn-success border border-dark" href="UserSearch" @click="update_user(currentUser.id)">Save Settings</button>
               </div>
             </div>
           </div>
@@ -325,15 +392,29 @@
 <script>
 export default {
   name: 'Register',
+  computed: {
+    indexStart() {
+      return (this.currentPage - 1) * this.pageSize;
+    },
+    indexEnd() {
+      return this.indexStart + this.pageSize;
+    },
+    paginated() {
+      return this.products.slice(this.indexStart, this.indexEnd);
+    },
+  },
   data() {
     return {
         show: false,
         currentUser: null,
+        matched: false,
         users: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
         products: [ { id: 0, name: "", price: 0.00, size: 0.00, description: "", category: "", brand: ""}, ],
         productTypes: {'Electronics': 0, 'TV & Video': 1, 'Home Audio & Theater': 2, 'Portable Audio': 3, 'Computers': 4, 'Tablets': 5, 'Cell Phones': 6, 'Wearable Technology': 7, 'Cameras, Camcorders, & Drones': 8, 'Video Games': 9, 'Auto Electronics': 10},
         matchedProducts: null,
         offers: [ { id: 2, penalty: 0.0, product: null, user: null, userAccept: false, vendorAccept: false, vendor: null},],
+        pageSize: 21,
+        currentPage: 1,
         category: false,
         brand: false,
         description: false,
@@ -347,6 +428,12 @@ export default {
     this.read_offers();
   },
   methods: {
+    prev: function() {
+      this.currentPage--;
+    },
+    next: function() {
+      this.currentPage++;
+    },
     //USERS FUNCTIONS===========================================================
     load_user: function() {
       this.users.forEach( user => {
@@ -365,7 +452,7 @@ export default {
         .catch(error => { console.log(error.response) });
     },
     update_user: function(id) {
-      var options = {category: this.category , price: this.price, description: this.description, brand: this.brand, size: this.size};
+      var options = {category: this.category , price: float(this.price), description: this.description, brand: this.brand, size: float(this.size)};
       var data = { id: id, options: options };
       this.axios
         .post("http://localhost:5000/api/users", data)
@@ -404,7 +491,8 @@ export default {
       this.axios
         .post(`http://localhost:5000/api/match`, data)
         .then(response => (this.matchedProducts = response.data))
-        .catch(error => { console.log(error.response) })
+        .catch(error => { console.log(error.response) });
+      this.matched = true;
     },
     //!PRODUCT FUNCTIONS===========================================================
 
