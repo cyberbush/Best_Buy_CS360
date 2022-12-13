@@ -142,7 +142,7 @@
       </div>
       <!-- Here are the MATCHED Products -->
       <section v-if="matched" class="grid-cards">
-        <div v-for="(index, product) in matchedProducts" :key="product.id">
+        <div v-for="(product, index) in matchedProducts" :key="product.id">
             <div class="card">
               <img 
                 :src="require(`../../components/product_photos/product${productTypes[product.category]}.jpg`)"
@@ -251,7 +251,7 @@
             <span
               class="pagination-link go-to has-text-orange"
               aria-label="Goto page 1"
-              >{{ current }}</span
+              >{{ currentPage }}</span
             >
           </li>
           <li>
@@ -434,6 +434,9 @@ export default {
     next: function() {
       this.currentPage++;
     },
+    sleep: function (ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    },
     //USERS FUNCTIONS===========================================================
     load_user: function() {
       this.users.forEach( user => {
@@ -486,13 +489,16 @@ export default {
         .catch(error => { console.log(error.response) });
       return product
     },
-    match_product: function(userId) {
+    match_product: async function(userId) {
       var data = { id: userId };
       this.axios
         .post(`http://localhost:5000/api/match`, data)
-        .then(response => (this.matchedProducts = response.data))
+        .then(response => {
+          this.matchedProducts = response.data;
+          })
         .catch(error => { console.log(error.response) });
-      this.matched = true;
+        await this.sleep(4000); // add small delay
+        this.matched = true;
     },
     //!PRODUCT FUNCTIONS===========================================================
 
