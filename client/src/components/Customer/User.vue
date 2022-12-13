@@ -37,7 +37,7 @@
               class="pr-3"
               alt="Best Buy! Logo"
               loading="lazy"
-            />Welcome Customer!
+            />Welcome Shopper!
           </a>            
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -59,7 +59,7 @@
                 {{ currentUser.firstName }}
               </button>
               <div class="dropdown-menu bg-primary border border-dark text-justified" aria-labelledby="dropdownMenuButton">
-                <a type="button" class="dropdown-item bg-primary"  data-toggle="modal" data-target="#SearchModal">Search for Products!</a>
+                <a type="button" class="dropdown-item bg-primary"  data-toggle="modal" data-target="#SearchModal">User Settings</a>
                 <a type="button" class="dropdown-item bg-primary"  data-toggle="modal" data-target="#BidModal">View Bids!</a>
                 <a class="dropdown-item bg-primary" href="/">Logout!</a>
               </div>
@@ -194,7 +194,7 @@
       </section>
         <!-- BID Modal -->
         <div class="modal fade gradient-custom-HomePage border border-dark" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
-          <div class="modal-dialog border border-dark" role="document">
+          <div class="modal-dialog modal-lg border border-dark" role="document">
             <div class="modal-content">
               <div class="modal-header bg-primary text-light">
                 <h5 class="modal-title" id="exampleModalLabel">Current Bids!</h5>
@@ -211,7 +211,8 @@
                       <th scope="col">Product Type</th>
                       <th scope="col">Current Bid amount</th>
                       <th scope="col">Change Bid Amt</th>
-                      <th scope="col">Delete Bid</th>
+                      <th scope="col">Accept Bid</th>
+                      <th scope="col">Decline Bid</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -223,41 +224,48 @@
                         <td><input type="NewBid" class="form-control" id="exampleInputNewBid" aria-describedby="bidHelp" placeholder="$$"></td>
                         <td><button class="btn btn-danger">Delete Bid</button></td>
                       </tr> -->
-                    <div v-for="offer in offers" :key="offer.id">
-                      <tr>
+                    <tr v-for="offer in offers" :key="offer.id">
                         <th scope="row">{{ offer.id }}</th>
                         <td>{{ offer.product.name }}</td>
                         <td>{{ offer.product.category }}</td>
                         <td>{{ offer.product.price }}</td>
                         <td><input type="NewBid" class="form-control" id="exampleInputNewBid" aria-describedby="bidHelp" placeholder="$$"></td>
-                        <td><button class="btn btn-danger" @click="remove_bid(offer.id)">Delete Bid</button></td>
-                      </tr>
-                    </div>
+                        <td><button class="btn btn-success" @click="accept_bid(offer.id)" data-dismiss="modal">Accept Bid</button></td>
+                        <td><button class="btn btn-danger" @click="remove_bid(offer.id)" data-dismiss="modal">Decline Bid</button></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
               <div class="modal-footer bg-primary">
                 <button type="button" class="btn btn-secondary border border-dark" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary border border-dark">Save changes</button>
               </div>
             </div>
           </div>
         </div>
         <!---END BID MODAL-->
-        <!-- SEARCH Modal -->
+        <!-- SETTTINGS Modal -->
         <div class="modal fade gradient-custom-HomePage border border-dark" id="SearchModal" tabindex="-1" role="dialog" aria-labelledby="SearchModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-5">
               <div class="modal-header bg-primary text-light">
-                <h5 class="modal-title" id="exampleModalLabel">Search</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ currentUser.firstName }}'s Settings</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+              <div class="modal-header font-weight-bolder">
+                <h3>User Settings:</h3>
+              </div>
+              <div class="modal-body">
+                  This is where the User Settings will go!
+              </div>
+              <div class="modal-header font-weight-bolder">
+                <h3>Shopping Experience Settings:</h3>
+              </div>
               <div class="modal-body">
                 <div class="form-group align-content-center">
                   <label class="text-dark" for="inputState">Product Category</label>
-                  <select id="inputState" class="form-control bg-secondary text-light border border-dark" v-model="category">
+                  <select id="inputState" class="form-control border border-dark" v-model="category">
                     <option selected>Choose...</option>
                     <option>Electronics</option>
                     <option>TV & Video</option>
@@ -273,32 +281,22 @@
                   </select>
                 </div>
                 <div class="form-group align-content-center">
-                  <label  class="text-dark" for="inputState">Screen Size</label>
-                  <select id="inputState" class="form-control bg-secondary text-light border border-dark" v-model="category">
-                    <option selected>Choose...</option>
-                    <option>less than 24 in. display</option>
-                    <option>32 in. display</option>
-                    <option>43 in. display</option>
-                    <option>55 in. display</option>
-                    <option>65 in. display</option>
-                    <option>75 in. display</option>
-                    <option>Greater than 75 in. display</option>
-                  </select>
-                </div>
-                <div class="form-group align-content-center">
-                  <label class="text-dark" for="inputState"> # of Ports</label>
-                  <select id="inputState" class="form-control bg-secondary text-light border border-dark" v-model="category">
-                    <option>1 port</option>
-                    <option>2 ports</option>
-                    <option>3 ports</option>
-                    <option>4 ports</option>
-                    <option>> 4 ports</option>
-                  </select>
+                  <h4 class="text-dark">Low Price:</h4>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="$" aria-label="$"></input>
+                  <h4 class="text-dark">High Price:</h4>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="$$$$$$$" aria-label="$$$$$$$"></input>
+                  <h4 class="text-dark">Discription:</h4>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="Desctption of product you are looking for:" aria-label="Desctption of product you are looking for:"></input>
+                  <h4 class="text-dark">Brand:</h4>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="LG/VIZIO/PANASNIC/SONY/etc..." aria-label="LG/VIZIO/PANASNIC/SONY/etc..."></input>
+                  <h4 class="text-dark">Size Dimensions:</h4>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="32 in./60 in./72 in." aria-label="32 in./60 in./72 in."></input>
                 </div>
               </div>
+              
               <div class="modal-footer bg-primary">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" href="UserSearch">Search!</button>
+                <button type="button" class="btn btn-secondary border border-dark" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success border border-dark" href="UserSearch">Save Settings</button>
               </div>
             </div>
           </div>
@@ -381,6 +379,9 @@ export default {
         .then(response => (status = response.data))
         .catch(error => { console.log(error.response) });
     },
+    //save_user_settings: function(){
+
+    //}
     //!USERS FUNCTIONS===========================================================
     
     //PRODUCT FUNCTIONS===========================================================
@@ -433,6 +434,14 @@ export default {
         .then(response => (status  = response.data))
         .catch(error => { console.log(error.response) });
     },
+    //DAVID HALLLPPPP=============================
+    accept_bid: function(offerId){
+      var data = { id: offerId, delete: false }
+      this.axios
+        .post("http://localhost:5000/api/offers", data)
+        .then(response => (status  = response.data))
+        .catch(error => { console.log(error.response) });
+    }
   },
     //!BIDDING FUNCTIONS================================================================
 };
