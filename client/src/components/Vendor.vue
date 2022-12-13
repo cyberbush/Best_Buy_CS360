@@ -98,7 +98,7 @@
   <!-- END OF VENDOR HEADER-->
   
 <section class="grid-cards">
-  <div v-for="product in products" :key="product.id">
+  <div v-for="(product, index) in paginated" :key="product.id">
     <div class="card">
       <img 
         :src="require(`../components/product_photos/product${product_types[product.category]}.jpg`)"
@@ -136,7 +136,21 @@
       </div>
     </div>
   </div>
-
+  <ul class="pagination-list">
+      <li>
+        <a @click="prev()"> Prev </a>
+      </li>
+      <li>
+        <span
+          class="pagination-link go-to has-text-orange"
+          aria-label="Goto page 1"
+          >{{ currentPage }}</span
+        >
+      </li>
+      <li>
+        <a @click="next()"> Next </a>
+      </li>
+    </ul>
 
 </section>
 
@@ -299,10 +313,23 @@
 export default 
 {
   name: "Products",
+  computed: {
+    indexStart() {
+      return (this.currentPage - 1) * this.pageSize;
+    },
+    indexEnd() {
+      return this.indexStart + this.pageSize;
+    },
+    paginated() {
+      return this.products.slice(this.indexStart, this.indexEnd);
+    },
+  },
   data() 
   {
     return {
       currentVendor: null, // Keep track of the logged in Vendor
+      pageSize: 21,
+      currentPage: 1,
       vendors: [ { id: 0, firstName: "", lastName: "", email: "", password: ""}, ],
       productNumber: {},
       acceptDecline: true,
@@ -348,7 +375,12 @@ export default
     sleep: function (ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
-    
+    prev: function() {
+      this.currentPage--;
+    },
+    next: function() {
+      this.currentPage++;
+    },
     product_upload: async function (id = -1, name = "", price = 0.00, size = 0.00, description = "", category= "", brand = "", delete_ = false) {
       var data = {
         vendorId: this.currentVendor.id,

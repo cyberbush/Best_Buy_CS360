@@ -75,24 +75,20 @@
 
         <!--Main layout-->
   <main>
-    <h3 class="text-left ml-5 text-light font-weight-bolder"> Featured Product:</h3>
+    <h3 class="text-left ml-5 text-light font-weight-bolder"> Featured Products:</h3>
+    <!--
     <div class="container-fluid dark-grey-text">
 
-      <!--Grid row-->
       <div class="row wow fadeIn border bg-white">
 
-        <!--Grid column-->
         <div class="col-md-6 mb-4">
 
           <img src="../Images/LG_OLED.jpg" class="img-fluid my-4" alt="">
 
         </div>
-        <!--Grid column-->
 
-        <!--Grid column-->
         <div class="col-md-6 my-4 bg-light border border-dark">
 
-          <!--Content-->
           <div class="p-4">
 
             <div class="mb-3">
@@ -113,7 +109,6 @@
                 </div>
               </p>
               <form class="d-flex justify-content-left mt-12">
-                <!-- Default input -->
                 <button class="btn btn-primary btn-md my-5 font-weight-bolder" href="#" type="submit">Bid NOW!
                   <i class="fas fa-shopping-cart ml-1"></i>
                 </button>
@@ -125,14 +120,11 @@
             
 
           </div>
-          <!--Content-->
 
         </div>
-        <!--Grid column-->
 
       </div>
-      <!--Grid row-->
-
+      -->
       <hr>
       <!-- ***Just added this for now should be updated -->
       <div class="container">
@@ -352,7 +344,7 @@
                   <!-- <input class="form-control form-control-sm border border-dark" type="text" placeholder="$" aria-label="$"></input> -->
                   <h4 class="text-dark">High Price:</h4>
                   <input class="form-control form-control-sm border border-dark" type="number" placeholder="$$$$$$$" aria-label="$$$$$$$" v-model="price"></input>
-                  <h4 class="text-dark">Discription:</h4>
+                  <h4 class="text-dark">Description:</h4>
                   <input class="form-control form-control-sm border border-dark" type="text" placeholder="Desctption of product you are looking for:" aria-label="Desctption of product you are looking for:" v-model="description"></input>
                   <h4 class="text-dark">Brand:</h4>
                   <input class="form-control form-control-sm border border-dark" type="text" placeholder="LG/VIZIO/PANASNIC/SONY/etc..." aria-label="LG/VIZIO/PANASNIC/SONY/etc..." v-model="brand"></input>
@@ -422,9 +414,11 @@ export default {
         price: false,
       }
   },
-  mounted: function() {
+  mounted: async function() {
     this.read_users();
+    await this.sleep(1000); // add small delay
     this.read_products();
+    await this.sleep(1000); // add small delay
     this.read_offers();
   },
   methods: {
@@ -455,7 +449,7 @@ export default {
         .catch(error => { console.log(error.response) });
     },
     update_user: function(id) {
-      var options = {category: this.category , price: float(this.price), description: this.description, brand: this.brand, size: float(this.size)};
+      var options = {category: this.category , price: this.price, description: this.description, brand: this.brand, size: this.size};
       var data = { id: id, options: options };
       this.axios
         .post("http://localhost:5000/api/users", data)
@@ -506,11 +500,21 @@ export default {
     toggle: function() {
       this.acceptDecline = !this.acceptDecline;
     },
+    load_offers: function() {
+      var currOffers = [];
+      this.offers.forEach( offer => {
+        if (offer.user.id == this.currentUser.id) {
+          currOffers.push(offer);
+        }
+      })
+      this.offers = currOffers;
+    },
     read_offers: function() {
       this.axios
         .get("http://localhost:5000/api/offers")
         .then(response => {
           this.offers = response.data;
+          this.load_offers();
         })
         .catch(error => { console.log(error.response) });
     },
