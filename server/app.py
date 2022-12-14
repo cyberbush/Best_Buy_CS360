@@ -5,8 +5,15 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 from flask_marshmallow import Marshmallow
 from datetime import datetime
-# from passlib.apps import custom_app_context as pwd_context
+from faker import Faker
+import random
 import os
+
+# SET NUMBER OF USERS, VENDORS, PRODUCTS, OFFERS
+NUM_USERS = 20
+NUM_VENDORS = 20
+NUM_PRODUCTS = 10000
+NUM_OFFERS = 50 
 
 #-------------------------------------------
 #------------------ Setup ------------------
@@ -21,6 +28,8 @@ api = Api(app)
 db = SQLAlchemy(app)
 # marshmallow converting complex datatypes, such as objects, to and from native Python datatypes
 ma = Marshmallow(app)
+# used for generating fake data
+fake = Faker()
 #-------------------------------------------
 #---------------- End Setup ----------------
 #-------------------------------------------
@@ -94,32 +103,142 @@ class OffersSchema(ma.SQLAlchemyAutoSchema):
 #-------------------------------------------
 
 #-------------------------------------------
+#------------- Generating Data -------------
+#-------------------------------------------
+def generateUsers():
+    categories = ['Electronics', 'TV & Video', 'Home Audio & Theater', 'Portable Audio', 'Computers', 'Tablets', 'Cell Phones', 'Wearable Technology', 'Cameras, Camcorders, & Drones', 'Video Games', 'Auto Electronics', False]
+    brands = ['Apple', 'Samsung', 'Google', 'HP', 'Sony', 'Dell', 'Microsoft', 'Bose', 'Xbox', 'Playstation', 'Roku', 'Nintendo', 'Amazon', False]
+    descriptions = ['new', 'phone', 'pc', 'game', 'console', 'camera', '50gb', '100gb', '250gb', 'tv', 'used', 'laptop', 'tablet', '4k', 'apple', 'samsung', 'google', 'hp', 'sony', 'microsoft', 'xbox', 'playstation', 'roku', 'nintendo', 'amazon']
+    for _ in range(NUM_USERS):
+        description = [random.sample(descriptions, random.randint(1,3)), False]
+        prices = [ random.randint(100,1500), False]
+        sizes = [ random.randint(1,50), False]
+        option = {'category': random.choice(categories), 'price': random.choice(prices), 'description': random.choice(description), 'brand': random.choice(brands), 'size': random.choice(sizes) }
+        firstName = fake.first_name()
+        lastName = fake.last_name()
+        user = User(firstName=firstName, lastName=lastName, email=(firstName+lastName).lower()+random.choice(['@gmail.com', '@me.com', '@icloud.com', 'yahoo.com']), password=fake.credit_card_security_code(), options=option)
+        # print(UserSchema().dump(user))
+        db.session.add(user)
+    db.session.commit()
+
+def generateVendors():
+    for _ in range(NUM_VENDORS):
+        firstName = fake.first_name()
+        lastName = fake.last_name()
+        email = (firstName+lastName).lower()+random.choice(['@gmail.com', '@me.com', '@icloud.com', '@yahoo.com'])
+        vendor = Vendor(firstName=firstName, lastName=lastName, email=email, password=fake.credit_card_security_code())
+        # print(VendorSchema().dump(vendor))
+        db.session.add(vendor)
+    db.session.commit()
+
+def getBrandandName(category):
+    brand = 'NO BRAND'
+    name = ''
+    if category == 'TV & Video':
+        brand = random.choice(['Samsung', 'Sony', 'LG', 'Vizio'])
+        name += brand + ' Tv'
+    elif category == 'Home Audio & Theater':
+        brand = random.choice(['Bose', 'Sony', 'JBL'])
+        name += brand + random.choice([' Sound System', ' Audio System'])
+    elif category == 'Video Games':
+        brand = random.choice(['Xbox', 'Playstation', 'Nintendo'])
+        name += brand + random.choice([' Gaming Console', ' Console'])
+    elif category == 'Cameras, Camcorders, & Drones':
+        brand = random.choice(['Canon', 'Sony', 'Nikon'])
+        name += brand + random.choice([' Camera', ' Video'])
+    elif category == 'Computers':
+        brand = random.choice(['Apple', 'HP', 'Dell', 'Lenovo', 'Asus', 'Microsoft'])
+        name += brand + ' Computer'
+    elif category == 'Tablets':
+        brand = random.choice(['Apple', 'Microsoft', 'Samsung', 'Amazon'])
+        name += brand + ' Tablet'
+    elif category == 'Cell Phones':
+        brand = random.choice(['Apple', 'Motorola', 'Samsung', 'Google'])
+        name += brand + ' Phone'
+    elif category == 'Wearable Technology':
+        brand = random.choice(['Apple', 'Garmin', 'Samsung', 'Fitbit'])
+        name += brand + ' Watch'
+    elif category == 'Electronics':
+        brand = random.choice(['Apple', 'Samsung', 'IBM', 'Panasonic', 'Intel', 'Microsoft'])
+        name += brand + ' Electronics'
+    elif category == 'Portable Audio':
+        brand = random.choice(['Bose', 'Sony', 'JBL', 'Beats'])
+        name += brand + ' Portable Speaker'
+    elif category == 'Auto Electronics':
+        brand = random.choice(['Omron', 'Delta', 'Atotech', 'Hitachi'])
+        name += brand + ' Auto Electronics'
+    return brand, name
+
+
+def getDescription(category, brand):
+    description = brand.lower()
+    description += random.choice([' used', ' new', ''])
+    if category == 'TV & Video':
+            description += random.choice([' tv', ' video', ' tv', ''])
+            description += random.choice([' 4k', ' ultra', ''])
+    elif category == 'Home Audio & Theater':
+        description += random.choice([' audio', ' speaker', ' sound', ''])
+        description += random.choice([' home', ' theater', ''])
+    elif category == 'Video Games':
+        description += random.choice([' game', ' games', ' console', ''])
+    elif category == 'Cameras, Camcorders, & Drones':
+        description += random.choice([' camera', ' record', ' picture', ''])
+    elif category == 'Computers':
+        description += random.choice([' pc', ' computer', ''])
+        description += random.choice([' 250gb', ' 500gb', ' 1tb', ''])
+    elif category == 'Tablets':
+        description += random.choice([' 25gb', ' 50gb', ' 100gb', ''])
+    elif category == 'Cell Phones':
+        description += random.choice([' 50gb', ' 100gb', ' 250gb', ' 500gb', ''])
+    elif category == 'Wearable Technology':
+        pass
+    return description
+
+def generateProducts():
+    categories = ['Electronics', 'TV & Video', 'Home Audio & Theater', 'Portable Audio', 'Computers', 'Tablets', 'Cell Phones', 'Wearable Technology', 'Cameras, Camcorders, & Drones', 'Video Games']
+    for _ in range(NUM_PRODUCTS):
+        # name, brand, category, price, size, description, vendorId
+        category = random.choice(categories)
+        brand, name = getBrandandName(category)
+        description = getDescription(category=category, brand=brand)
+        product = Products(name=name, category=category, brand=brand, description=description, price=round(random.uniform(10,1000), 2), size=random.randint(1,20), vendorId=random.randint(0,NUM_VENDORS-1))
+        # print(ProductsSchema().dump(product))
+        db.session.add(product)
+    db.session.commit()
+
+def generateOffers():
+    for _ in range(NUM_OFFERS):
+        vendor = find_vendor(random.randint(0, NUM_VENDORS-1))
+        user = find_user(random.randint(0, NUM_USERS-1))
+        product = find_product(random.randint(0, NUM_PRODUCTS-1))
+        offer = Offers(vendor=vendor, user=user, product=product, penalty=random.randint(0, 250), vendorAccept=False, userAccept=True)
+        # print(OffersSchema().dump(offer))
+        db.session.add(offer)
+    db.session.commit()
+#-------------------------------------------
+#----------- End Generating Data -----------
+#-------------------------------------------
+#-------------------------------------------
+
 #------------ Utility Functions ------------
 #-------------------------------------------
 # if the database does not exist, use db.create_all()
 def initialize_database():
     try:
-        User.query.get(1) and Vendor.query.get(1) and Products.query.get(1) and Offers.query.get(1) 
+        User.query.get(1) and Vendor.query.get(1) and Products.query.get(1) and Offers.query.get(1)
     except:
+        # remove old tables
+        db.drop_all()
+        # create new tables
         db.create_all()
-        # Add initial user
-        option1 = {'category': False, 'price': False, 'description': False, 'brand': False, 'size': False}
-        user1 = User(firstName='Joe', lastName='Vandal', email='joe@vandal.com', password='123', options=option1)
-        db.session.add(user1)        
-        # Add initial vendor
-        vendor1 = Vendor(firstName='Vendor1', lastName='V', email='vendor1@gmail.com', password='123')
-        db.session.add(vendor1)  
-        # Add initial products
-        product1 = Products(vendorId=1, name='product1', price=0.0, description='productDescription1', brand='productBrand1', category='Electronics', size=0.0)
-        product2 = Products(vendorId=2, name='product2', price=0.0, description='productDescription2', brand='productBrand2', category='Electronics', size=0.0)
-        db.session.add(product1)
-        db.session.add(product2)
-        db.session.commit()
-        # Add initial offer
-        offer1 = Offers(vendor=VendorSchema().dump(vendor1), user=UserSchema().dump(user1), product=ProductsSchema().dump(product1), penalty=50)
-        db.session.add(offer1)  
-        # add and then commit to apply changes
-        db.session.commit()
+        # generate initial users
+        generateUsers()
+        # generate initial vendors
+        generateVendors()
+        # generate initial products
+        generateProducts()
+        # generate intial offers
+        generateOffers()
 
 def query_users():
     users = User.query.all()
@@ -253,26 +372,60 @@ def calculate_matches(id=-1):
         return jsonify(status='Error no user found')
     else:
         exactProd = {'id': 0, 'score': 0}
+        bestProd = {'id': 0, 'score': 0}
+        lowProd = {'id': 0, 'score': 0}
         user = find_user(id)
         options = user['options']
         products = query_products()
+        lowPrice = 20000
         for product in products: # go through all products
             exactScore = 0
+            bestScore = 0
+            lowScore = 0
+            currPrice = 0
             for option in options: # go through options and check if they match product
                 opt_val = options[option]
                 prod_val = product[option]
                 if opt_val: # if option is set 
-                    if option == 'price' and prod_val <= opt_val: # price of product less or equal to price of option
-                        exactScore += 1                        
-                    elif option == 'description' and opt_val in prod_val: # option description substring of product description
+                    if option == 'price':
+                        currPrice = prod_val
+                        if prod_val <= opt_val: # price of product less or equal to price of option
+                            exactScore += 1
+                        bestScore += 100 - (prod_val-opt_val) # add price difference to best score
+                    elif option == 'description':
+                        for val in opt_val:
+                            if val in prod_val: # option description substring of product description
+                                exactScore += 1
+                                bestScore += 50
+                    elif option == 'size':
+                        if opt_val+5 >= prod_val or opt_val-5 <= prod_val :
+                            exactScore += 1
+                            bestScore += 100
+                    elif option == 'brand' and  product[option] == options[option]:
                         exactScore += 1
-                    elif product[option] == options[option]: # if product and option match
+                        bestScore += 75
+                        lowScore += 1
+                    elif option == 'category' and product[option] == options[option]: # if product and option match
                         exactScore += 1
-            if exactScore >= exactProd['score']: # check and update exact product
+                        bestScore += 100
+                        lowScore += 1
+            if exactScore > exactProd['score']: # check and update exact product
                 exactProd['id'] = product['id']
                 exactProd['score'] = exactScore
+            if bestScore > bestProd['score']: # check and update exact product
+                bestProd['id'] = product['id']
+                bestProd['score'] = bestScore
+            if lowScore > 0 and currPrice < lowPrice:
+                lowPrice = currPrice
+                lowProd['id'] = product['id']
+                lowProd['score'] = lowPrice + lowScore * 25        
+        print('Exact Score', exactProd['score'])
+        print('Best Score', bestProd['score'])
+        print('Low Score', lowProd['score'])
         exactMatch = find_product(exactProd['id'])
-        return exactMatch
+        bestMatch = find_product(bestProd['id'])
+        lowMatch = find_product(lowProd['id'])
+        return exactMatch, bestMatch, lowMatch
 
 #-------------------------------------------
 #---------- End Utility Functions ----------
