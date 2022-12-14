@@ -343,13 +343,13 @@
                   <!-- <h4 class="text-dark">Low Price:</h4> -->
                   <!-- <input class="form-control form-control-sm border border-dark" type="text" placeholder="$" aria-label="$"></input> -->
                   <h4 class="text-dark">High Price:</h4>
-                  <input class="form-control form-control-sm border border-dark" type="number" placeholder="$$$$$$$" aria-label="$$$$$$$" v-model="price"></input>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="$$$$$$$" aria-label="$$$$$$$" v-model="price"></input>
                   <h4 class="text-dark">Description:</h4>
                   <input class="form-control form-control-sm border border-dark" type="text" placeholder="Desctption of product you are looking for:" aria-label="Desctption of product you are looking for:" v-model="description"></input>
                   <h4 class="text-dark">Brand:</h4>
                   <input class="form-control form-control-sm border border-dark" type="text" placeholder="LG/VIZIO/PANASNIC/SONY/etc..." aria-label="LG/VIZIO/PANASNIC/SONY/etc..." v-model="brand"></input>
                   <h4 class="text-dark">Size Dimensions:</h4>
-                  <input class="form-control form-control-sm border border-dark" type="number" placeholder="32 in./60 in./72 in." aria-label="32 in./60 in./72 in." v-model="size"></input>
+                  <input class="form-control form-control-sm border border-dark" type="text" placeholder="32 in./60 in./72 in." aria-label="32 in./60 in./72 in." v-model="size"></input>
                 </div>
               </div>
               
@@ -449,6 +449,12 @@ export default {
         .catch(error => { console.log(error.response) });
     },
     update_user: function(id) {
+      if(this.price!=false){
+        this.price = parseInt(this.price);
+      }
+      if(this.size!=false){
+        this.size = parseInt(this.size)
+      }
       var options = {category: this.category , price: this.price, description: this.description, brand: this.brand, size: this.size};
       var data = { id: id, options: options };
       this.axios
