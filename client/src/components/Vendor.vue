@@ -144,9 +144,9 @@
   
   <ul class="pagination-list">
     
-    <button type="button" class="btn btn-info btn-block">
+    <button type="button" class="btn btn-info btn-block" @click="prev()">
       <li>
-        <a @click="prev()"> Prev </a>
+        <a> Prev </a>
       </li>
     </button>
     <li>
@@ -156,9 +156,9 @@
           >{{ currentPage }}</span
         >
     </li> 
-    <button type="button" class="btn btn-info btn-block">
+    <button type="button" class="btn btn-info btn-block" @click="next()">
       <li>
-        <a @click="next()"> Next </a>
+        <a> Next </a>
       </li>
     </button>
     </ul>
@@ -198,8 +198,8 @@
                         <td>{{ offer.product.category }}</td>
                         <td>{{ offer.product.price }}</td>
                         <td>{{ offer.penalty }}</td>
-                        <td><button class="btn btn-success" @click="accept_bid(offer.id)" data-dismiss="modal">Accept Bid</button></td>
-                        <td><button class="btn btn-danger" @click="remove_bid(offer.id)" data-dismiss="modal">Decline Bid</button></td>
+                        <td><button class="btn btn-success" @click="accept_offers(offer.id)" data-dismiss="modal">Accept Bid</button></td>
+                        <td><button class="btn btn-danger" @click="remove_offers(offer.id)" data-dismiss="modal">Decline Bid</button></td>
                     </tr>
                   </tbody>
                 </table>

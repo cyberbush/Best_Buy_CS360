@@ -342,7 +342,7 @@
                 <div class="form-group align-content-center">
                   <!-- <h4 class="text-dark">Low Price:</h4> -->
                   <!-- <input class="form-control form-control-sm border border-dark" type="text" placeholder="$" aria-label="$"></input> -->
-                  <h4 class="text-dark">High Price:</h4>
+                  <h4 class="text-dark">Price:</h4>
                   <input class="form-control form-control-sm border border-dark" type="text" placeholder="$$$$$$$" aria-label="$$$$$$$" v-model="price"></input>
                   <h4 class="text-dark">Description:</h4>
                   <input class="form-control form-control-sm border border-dark" type="text" placeholder="Desctption of product you are looking for:" aria-label="Desctption of product you are looking for:" v-model="description"></input>
@@ -407,11 +407,11 @@ export default {
         offers: [ { id: 2, penalty: 0.0, product: null, user: null, userAccept: false, vendorAccept: false, vendor: null},],
         pageSize: 21,
         currentPage: 1,
-        category: false,
-        brand: false,
-        description: false,
-        size: false,
-        price: false,
+        category: "",
+        brand: "",
+        description: "",
+        size: "",
+        price: "",
       }
   },
   mounted: async function() {
@@ -431,6 +431,32 @@ export default {
     sleep: function (ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
+    checkForEmpty: function() {
+      if( this.category === "") {
+        this.category = false;
+      }
+      if( this.brand === "") {
+        this.brand = false;
+      }
+      if( this.description === "") {
+        this.description = false;
+      }
+      else if ( this.description  != false) {
+        this.description = this.description.split(" ");
+      }
+      if( this.price === ""){
+        this.price = false;
+      }
+      else if ( this.price != false) {
+        this.price = parseInt(this.price);
+      }
+      if( this.size === ""){
+        this.size = false;
+      }
+      else if (this.size != false) {
+        this.size = parseInt(this.size);
+      }
+    },
     //USERS FUNCTIONS===========================================================
     load_user: function() {
       this.users.forEach( user => {
@@ -449,12 +475,7 @@ export default {
         .catch(error => { console.log(error.response) });
     },
     update_user: function(id) {
-      if(this.price!=false){
-        this.price = parseInt(this.price);
-      }
-      if(this.size!=false){
-        this.size = parseInt(this.size)
-      }
+      this.checkForEmpty();
       var options = {category: this.category , price: this.price, description: this.description, brand: this.brand, size: this.size};
       var data = { id: id, options: options };
       this.axios
