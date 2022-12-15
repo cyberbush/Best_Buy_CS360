@@ -66,6 +66,7 @@
                   </button>
                   <div class="dropdown-menu bg-primary" aria-labelledby="dropdownMenuButton">
                     <a type="button" class="dropdown-item bg-primary"  data-toggle="modal" data-target="#BidModal">View Offers</a>
+                    <a type="button" class="dropdown-item bg-primary"  data-toggle="modal" data-target="#ProductModal">Product Form</a>
                     <a class="dropdown-item bg-primary" href="/">Logout!</a>
                   </div>
                 </div>
@@ -136,30 +137,94 @@
       </div>
     </div>
   </div>
+
+  <div>
+  
   <ul class="pagination-list">
+    
+    <button type="button" class="btn btn-info btn-block">
       <li>
         <a @click="prev()"> Prev </a>
       </li>
-      <li>
+    </button>
+    <li>
         <span
           class="pagination-link go-to has-text-orange"
           aria-label="Goto page 1"
           >{{ currentPage }}</span
         >
-      </li>
+    </li> 
+    <button type="button" class="btn btn-info btn-block">
       <li>
         <a @click="next()"> Next </a>
       </li>
+    </button>
     </ul>
-
+</div>
 </section>
 
-    <div class="container_page rounded-5">
-        <h1><center>Product Regristration Form</center></h1>
-        <div class="container_page rounded-5">
+  <!-- BID Modal -->
+<div class="modal fade gradient-custom-HomePage border border-dark" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg border border-dark" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-primary text-light">
+                <h5 class="modal-title" id="exampleModalLabel">Current Bids!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-center">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">BID ID:</th>
+                      <th scope="col">From:</th>
+                      <th scope="col">Product Name</th>
+                      <th scope="col">Product Type</th>
+                      <th scope="col">Current Bid Amount</th>
+                      <th scope="col">Penalty</th>
+                      <th scope="col">Accept Bid</th>
+                      <th scope="col">Decline Bid</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr v-for="offer in offers" :key="offer.id">
+                        <th scope="row">{{ offer.id }}</th>
+                        <td>{{ offer.user.firstName + " " + offer.user.lastName }}</td>
+                        <td>{{ offer.product.name }}</td>
+                        <td>{{ offer.product.category }}</td>
+                        <td>{{ offer.product.price }}</td>
+                        <td>{{ offer.penalty }}</td>
+                        <td><button class="btn btn-success" @click="accept_bid(offer.id)" data-dismiss="modal">Accept Bid</button></td>
+                        <td><button class="btn btn-danger" @click="remove_bid(offer.id)" data-dismiss="modal">Decline Bid</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer bg-primary">
+                <button type="button" class="btn btn-secondary border border-dark" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---END BID MODAL-->
+
+  <!-- Product Modal -->
+<div class="modal fade gradient-custom-HomePage border border-dark" id="ProductModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg border border-dark" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-primary text-light">
+                <h5 class="modal-title" id="exampleModalLabel">Product Registration Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-center">
+                <div class="container_page rounded-5">
           <div class="row">
             <div class="col-7 text-center mx-auto container-fluid">
-              <label for="inputAddress">Description</label>
+              <label class="text-dark" for="inputAddress2">Description</label>
               <input
                 type="text"
                 class="form-control"
@@ -170,7 +235,7 @@
 
               <div class="form-row">
                 <div class="form-group col-md-4">
-                  <label for="inputAddress2">Name</label>
+                  <label class="text-dark" for="inputAddress2">Name</label>
                   <input
                     type="text"
                     class="form-control"
@@ -180,7 +245,7 @@
                   />
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="inputAddress2">Product Brand</label>
+                  <label class="text-dark" for="inputAddress2">Brand</label>
                   <input
                     type="text"
                     class="form-control"
@@ -190,7 +255,7 @@
                   />
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="inputAddress2">Size</label>
+                  <label class="text-dark" for="inputAddress2">Size</label>
                   <input
                     type="text"
                     class="form-control"
@@ -202,7 +267,7 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputAddress2">Price</label>
+                  <label class="text-dark" for="inputAddress2">Price</label>
                   <input
                     type="text"
                     class="form-control"
@@ -213,7 +278,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="inputState">Product Category</label>
+                  <label class="text-dark" for="inputAddress2">Category</label>
                   <select id="inputState" class="form-control" v-model="category">
                     <option selected>Choose...</option>
                     <option>Electronics</option>
@@ -251,61 +316,18 @@
           </div>
         </div>
     </div>
-  
-  <!-- BID Modal -->
-  <!-- <div class="modal fade gradient-custom-HomePage border border-dark" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="BidModalLabel" aria-hidden="true">
-    <div class="modal-dialog border border-dark" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-primary text-light">
-          <h5 class="modal-title" id="exampleModalLabel">Offers!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div v-for="offer in offers" :key="offer.id">
-            <div class="card2" >
-              <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.firstName + " " + offer.lastName}} </small> </h4>
-              <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{products.name + "(" + offer.productId + ")"}} </small> </h4>
-              <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + products.price}} </small> </h4>
-              <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
-              <div class="ui buttons big">
-                <button
-                  class="btn btn-success"
-                  @click="accept_offers(offer.id)" 
-                  :class="[acceptDecline ? 'active' : '']">Accept</button>
-                <button
-                  class="btn btn-danger"
-                  @click="remove_offers(offer.id)"
-                  :class="[!acceptDecline ? 'active' : '']">Decline</button>
               </div>
-           </div>
+              <div class="modal-footer bg-primary">
+                <button type="button" class="btn btn-secondary border border-dark" data-dismiss="modal">Close</button>
+              </div>
+            </div>
           </div>
-
         </div>
-      </div>
-    </div>
-  </div> -->
+        <!---END Product MODAL-->
 
 <!-- END of Modal -->
 
-  <div v-for="offer in offers" :key="offer.id">
-    <div class="card2" >
-      <h4 style="color:black; text-align: left; line-height: 2px;" > From: <small> {{offer.user.firstName + " " + offer.user.lastName}} </small> </h4>
-      <h4 style="color:black; text-align: left; line-height: 2px;"> Product: <small> {{offer.product.name + " (" + offer.product.id + ")"}} </small> </h4>
-      <h4 style="color:black; text-align: left; line-height: 2px;"> Price: <small> {{"$" + offer.product.price}} </small> </h4>
-      <h4 style="color:black; text-align: left; line-height: 2px;"> Penalty: <small> {{"$" + offer.penalty}} </small> </h4>
-      <div class="ui buttons big">
-        <button
-          class="btn btn-success"
-          @click="accept_offers(offer.id)" 
-          :class="[acceptDecline ? 'active' : '']">Accept</button>
-        <button
-          class="btn btn-danger"
-          @click="remove_offers(offer.id)"
-          :class="[!acceptDecline ? 'active' : '']">Decline</button>
-      </div>
-    </div>
-  </div>
-  
+ 
   </body>
 </template>
 
